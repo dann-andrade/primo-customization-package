@@ -68,7 +68,86 @@ app.component('prm-search-after', {
   
   /************* LibraryH3lp code ends here **********/
 
+  /******************* Adding Report a Problem link ***************************/
 
+    app.controller('prmActionContainerAfterController', ['$location', '$httpParamSerializer', '$scope', '$http', '$sce',
+      function ($location, $httpParamSerializer, $scope, $http, $sce) {
+
+        $scope.buttontext = "report problem";
+        $scope.icon = "error";
+
+        //hide form on load
+        this.$onInit = function () {  
+
+          this.showRPForm = false;
+
+        };
+
+        //show form
+        this.showReportForm = function () {
+
+          this.showRPForm = !this.showRPForm; 
+
+
+          if (!this.showRPForm) {
+
+            $scope.buttontext = "report problem";
+            $scope.icon = "error";
+            document.getElementById("bu-report-form").classList.remove("fade-in");
+
+          } else {
+
+            $scope.buttontext = "close form";
+            $scope.icon = "close";
+            document.getElementById("bu-report-form").classList.add("fade-in");
+
+          }
+          
+                  
+        };
+
+        //Set focus to form
+        if (this.showRPForm) {   
+
+
+          setTimeout(() => {  
+            document.getElementById("femail").focus();                  
+          }, 0)              
+
+        };
+
+        //return 
+        return this.showRPForm;
+
+      }]
+    );
+
+    app.component('prmActionContainerAfter', {
+      bindings: { parentCtrl: '<' },
+      controller: 'prmActionContainerAfterController',
+      template: `
+      <div id="bu-report-problem" class="layout-align-center-center layout-row margin-bottom-medium margin-top-medium" layout="row" layout-align="center center" ">
+          <button id="bu-report-button" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Report Pproblem" ng-click="$ctrl.showReportForm()">
+            <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="error" ng-if="$ctrl.showRPForm == false"></prm-icon>
+            <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="close" ng-if="$ctrl.showRPForm == true" ></prm-icon>
+            <span style="text-transform: none; font-variant: small-caps;">{{buttontext}}</span>
+          </button>  
+      </div>
+      <div id="bu-report-form" ng-if="$ctrl.showRPForm" class="fade-in">
+        <div layout="row" class="layout-full-width" layout-align="center center">
+          <form name="$ctrl.reportForm" layout="column" layout-align="center center">
+            <label for="femail">Email Address:</label><br>
+            <input type="email" id="femail" name="femail"><br>
+            <label for="fdesc">Problem:</label><br>
+            <textarea id="fdesc" name="fdesc" cols="40" rows="5"></textarea><br><br>
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+      </div>
+      `,
+    });
+   
+/******************* end - Adding Report a Problem link ***************************/
 
 
 })();
