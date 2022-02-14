@@ -73,9 +73,6 @@ app.component('prm-search-after', {
     app.controller('prmActionContainerAfterController', ['$location', '$httpParamSerializer', '$scope', '$http', '$sce',
       function ($location, $httpParamSerializer, $scope, $http, $sce) {
 
-        $scope.buttontext = "report problem";
-        $scope.icon = "error";
-
         //hide form on load
         this.$onInit = function () {  
 
@@ -83,27 +80,22 @@ app.component('prm-search-after', {
 
         };
 
+        
         //show form
         this.showReportForm = function () {
 
-          this.showRPForm = !this.showRPForm; 
+          if (angular.element(document.querySelector("#bu-report-form")).hasClass('fade-in')) {
 
-
-          if (!this.showRPForm) {
-
-            $scope.buttontext = "report problem";
-            $scope.icon = "error";
-            document.getElementById("bu-report-form").classList.remove("fade-in");
+            angular.element(document.querySelector("#bu-report-form")).removeClass('fade-in');
 
           } else {
 
-            $scope.buttontext = "close form";
-            $scope.icon = "close";
-            document.getElementById("bu-report-form").classList.add("fade-in");
+            angular.element(document.querySelector("#bu-report-form")).addClass('fade-in');
 
           }
-          
-                  
+
+          this.showRPForm = !this.showRPForm; 
+
         };
 
         //Set focus to form
@@ -126,21 +118,28 @@ app.component('prm-search-after', {
       bindings: { parentCtrl: '<' },
       controller: 'prmActionContainerAfterController',
       template: `
-      <div id="bu-report-problem" class="layout-align-center-center layout-row margin-bottom-medium margin-top-medium" layout="row" layout-align="center center" ">
-          <button id="bu-report-button" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Report Pproblem" ng-click="$ctrl.showReportForm()">
-            <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="error" ng-if="$ctrl.showRPForm == false"></prm-icon>
-            <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="close" ng-if="$ctrl.showRPForm == true" ></prm-icon>
-            <span style="text-transform: none; font-variant: small-caps;">{{buttontext}}</span>
+      <div id="bu-rap" class="layout-align-center-center layout-row margin-bottom-medium margin-top-medium" layout="row" layout-align="center center">
+        <div id="bu-report-button" class="" ng-if="$ctrl.showRPForm == false">
+          <button id="freport" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Report Problem" ng-click="$ctrl.showReportForm()">
+            <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
+            <span style="text-transform: none; font-variant: small-caps;">report problem</span>
           </button>  
-      </div>
-      <div id="bu-report-form" ng-if="$ctrl.showRPForm" class="fade-in">
-        <div layout="row" class="layout-full-width" layout-align="center center">
-          <form name="$ctrl.reportForm" layout="column" layout-align="center center">
-            <label for="femail">Email Address:</label><br>
-            <input type="email" id="femail" name="femail"><br>
-            <label for="fdesc">Problem:</label><br>
-            <textarea id="fdesc" name="fdesc" cols="40" rows="5"></textarea><br><br>
-            <input type="submit" value="Submit">
+        </div>
+        <div id="bu-report-form" class="fade-in" ng-if="$ctrl.showRPForm">
+          <form /*action="https://formspree.io/f/xnqwdjpw" method="POST"*/  class="layout-align-center-center layout-column">
+            <legend id="ftitle" style="text-transform: none; font-variant: small-caps;">Report A Problem</legend>
+            <input id="femail" type="email" name="email" placeholder="Please enter your email address"> 
+            <textarea id="fdesc" name="message" placeholder="Please describe the problem you are experiencing"></textarea>
+            <div class="layout-row">
+              <button id="fsubmit" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="submit" ng-click="$ctrl.showReportForm()">
+                <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="check"></prm-icon>
+                Send
+              </button>
+              <button id="fsubmit" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="cancel" ng-click="$ctrl.showReportForm()">
+                <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"></prm-icon>
+                Cancel
+              </button>
+            </div>
           </form>
         </div>
       </div>

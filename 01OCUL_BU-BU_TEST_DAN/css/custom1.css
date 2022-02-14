@@ -811,49 +811,40 @@ body {
 /* END askus popout */
 
 /* Report a Problem Button */
-
-#bu-report-problem {
-
-  margin: 0px 0px 10px 0px;
-  padding: 0px;
-
-}
-
 #bu-report-form {
 
-  margin: 0px;
-  padding: 0px;
-  
-}
-
-#bu-report-form form{
-
-  width: 60%;
+  width: 80%;
   background-color: #e2e2e2;
   padding: 30px;
-  border-radius: 4px;
-  
+  border-radius: 10px;
+  /* box-shadow: 0 0 10px gray; */
 
 }
 
-#bu-report-form label {
+#ftitle {
 
-  margin: 5px;
+  padding: 10px 0px 30px 0px;
+  font-size: 125%;
+  font-weight: 500;
+  color: black;
+  text-transform: none; 
+  font-variant: small-caps;
 
 }
 
-#bu-report-form input {
+#femail {
 
   width: 100%;
-  padding: 5px 10px;
+  padding: 10px 10px;
   margin: 5px 0;
   box-sizing: border-box;
   border-radius: 4px;
   background-color: #f3f3f3;
+  font-family: Roboto,Helvetica Neue,sans-serif;
 
 }
 
-#bu-report-form textarea {
+#fdesc {
 
   width: 100%;
   padding: 10px 10px;
@@ -867,7 +858,7 @@ body {
 }
 
 
-#bu-report-button {
+#freport {
 
   color: inherit;
   margin:0px;
@@ -875,10 +866,38 @@ body {
 
 }
 
-#bu-report-button:hover {
+#freport:hover {
 
   color:#600;
   margin:0px;
+
+}
+
+#fsubmit {
+
+  color: inherit;
+  margin:20px 0 0 0;
+  width: 175px;
+  
+}
+
+#fsubmit:hover {
+
+  color:#600;
+
+}
+
+#fcancel {
+
+  color: inherit;
+  margin:20px 0 0 0;
+  width: 175px;
+  
+}
+
+#fcancel:hover {
+
+  color:#600;
 
 }
 
@@ -920,5 +939,45 @@ body {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+
+.fade-out {
+
+  -webkit-animation: fadeout ease 1s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadeout ease 1s; /* Firefox < 16 */
+        -ms-animation: fadeout ease 1s; /* Internet Explorer */
+         -o-animation: fadeout ease 1s; /* Opera < 12.1 */
+            animation: fadeout ease 1s;
+
+}
+
+@keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
 
 /* END Report a Problem Button */
