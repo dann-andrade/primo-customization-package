@@ -821,6 +821,12 @@ body {
 #bu-report-form {
 
   width: 80%;
+
+}
+
+#bu-form-items {
+
+  width: 100%;
   background-color: #e2e2e2;
   padding: 30px;
   border-radius: 10px;
@@ -835,6 +841,7 @@ body {
   color: darkgreen;
   padding: 10px;
   border-radius: 5px;
+  margin: 10px;
   /* box-shadow: 0 0 10px gray; */
 
 }
@@ -881,32 +888,15 @@ body {
 
 }
 
+#bu-rb-submit-form {
 
-#fsubmit {
-
-  color: inherit;
-  margin:20px 0 0 0;
-  width: 175px;
+  margin:15px 0 0 0;
   
 }
 
-#fsubmit:hover {
+#bu-rap button:hover {
 
-  color:#600;
-
-}
-
-#fcancel {
-
-  color: inherit;
-  margin:20px 0 0 0;
-  width: 175px;
-  
-}
-
-#fcancel:hover {
-
-  color:#600;
+  color:darkred;
 
 }
 
