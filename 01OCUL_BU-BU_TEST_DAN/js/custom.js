@@ -73,43 +73,113 @@ app.component('prm-search-after', {
     app.controller('prmActionContainerAfterController', ['$location', '$httpParamSerializer', '$scope', '$http', '$sce',
       function ($location, $httpParamSerializer, $scope, $http, $sce) {
 
-        //hide form on load
+        const rform = angular.element(document.querySelector("#bu-report-form"));
+
+        //initialize form to hidden
         this.$onInit = function () {  
 
           this.showRPForm = false;
+          this.showMenu = false;
+          this.validEmail = true;
+          this.reportSubmitted = false;
 
         };
 
-        
-        //show form
+        this.showMenuButtons = function() {
+
+          this.showMenu = !this.showMenu;
+          this.showRPForm = false;
+          this.validEmail = true;
+          this.reportSubmitted = false;
+          document.getElementById('bu-submit-confirm').style.display = "block";
+          document.getElementById('bu-submit-confirm').classList.remove('fade-out');
+
+
+        };
+
+    
+        //button logic
         this.showReportForm = function () {
 
-          if (angular.element(document.querySelector("#bu-report-form")).hasClass('fade-in')) {
+          
 
-            angular.element(document.querySelector("#bu-report-form")).removeClass('fade-in');
+          this.validEmail = true;
+          
 
+          //adds/removes fade classes 
+          if (this.showRPForm) {
+            rform.removeClass('fade-in');
           } else {
+            rform.addClass('fade-in');
+          };
 
-            angular.element(document.querySelector("#bu-report-form")).addClass('fade-in');
+          //flip actual toggle 
+          this.showRPForm = !this.showRPForm;
 
-          }
+          //Sets focus to email field upon form display
+          if (this.showRPForm) {
+            setTimeout(() => {
+              document.getElementById("fdesc").focus();
+            }, 0);
+          };
 
-          this.showRPForm = !this.showRPForm; 
+          //return 
+          return this.showRPForm;
 
         };
 
-        //Set focus to form
-        if (this.showRPForm) {   
+        //email validation
+        this.validateEmail = function () {
+
+          let patronemail = document.getElementById("femail").value;
+          this.validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(patronemail);
+          let submitbutton = document.getElementById("bu-rb-submit")
+
+          if (patronemail == ''){
+
+            this.validEmail = true;
+
+          };
 
 
-          setTimeout(() => {  
-            document.getElementById("femail").focus();                  
-          }, 0)              
+          if(!this.validEmail) {
+            setTimeout(() => {
+              submitbutton.disabled = true;
+              submitbutton.style.color = 'gray';
+            }, 0);
+          } else {
+            setTimeout(() => {
+              submitbutton.disabled = false;
+              submitbutton.style.color = 'black';
+            }, 0);
+          }; 
 
         };
 
-        //return 
-        return this.showRPForm;
+        this.submitReport = function () {
+
+          rform.removeClass('fade-in')
+
+          this.reportSubmitted = true;
+          this.showRPForm = false;
+          this.showMenu = false;
+          this.validEmail = true;
+
+          setTimeout(() => {
+            
+            document.getElementById('bu-submit-confirm').style.display = "none";
+          
+          }, 5000);
+
+          setTimeout(() => {
+            
+            document.getElementById('bu-submit-confirm').classList.add('fade-out');
+          
+          }, 4000);
+
+          
+
+        };
 
       }]
     );
@@ -118,29 +188,48 @@ app.component('prm-search-after', {
       bindings: { parentCtrl: '<' },
       controller: 'prmActionContainerAfterController',
       template: `
-      <div id="bu-rap" class="layout-align-center-center layout-row margin-bottom-medium margin-top-medium" layout="row" layout-align="center center">
-        <div id="bu-report-button" class="" ng-if="$ctrl.showRPForm == false">
-          <button id="freport" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Report Problem" ng-click="$ctrl.showReportForm()">
-            <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
-            <span style="text-transform: none; font-variant: small-caps;">report problem</span>
-          </button>  
+      <div id="bu-rap" class="layout-align-center-center layout-row margin-bottom-medium margin-top-medium" layout="column" layout-align="center center">
+        <div id="bu-report-button">
+          <div class="layout-align-center-center layout-row margin-bottom-medium margin-top-medium" layout="row" layout-align="center center">
+            <div ng-if="$ctrl.showMenu == false">
+              <button id="bu-rb-report" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Report Problem" ng-click="$ctrl.showMenuButtons()">
+                <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
+                <span style="text-transform: none; font-variant: small-caps;">report problem</span>
+              </button>
+            </div>
+            <div ng-if="$ctrl.showMenu">
+              <button id="bu-rb-cancel" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Cancel Report" ng-click="$ctrl.showMenuButtons()">
+                <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"></prm-icon>
+                <span style="text-transform: none; font-variant: small-caps;">cancel report</span>
+              </button>
+            </div>
+            <div ng-if="$ctrl.showMenu">
+              <button id="bu-rb-showmenu" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Detailed Report" ng-click="$ctrl.showReportForm()">
+                <prm-icon icon-type="svg" svg-icon-set="primo-actions" icon-definition="info" ng-if="$ctrl.showRPForm == false"></prm-icon>
+                <span style="text-transform: none; font-variant: small-caps;" ng-if="$ctrl.showRPForm == false">add details</span>
+                <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="double-chevron-up" ng-if="$ctrl.showRPForm"></prm-icon>
+                <span style="text-transform: none; font-variant: small-caps;" ng-if="$ctrl.showRPForm">close details</span>
+              </button>
+            </div>
+            <div ng-if="$ctrl.showMenu">
+              <button id="bu-rb-submit" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Submit Report" ng-click="$ctrl.submitReport()">
+                <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="check" ng-if="$ctrl.validEmail"></prm-icon>
+                <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="error-outline" ng-if="$ctrl.validEmail == false"></prm-icon>
+                <span style="text-transform: none; font-variant: small-caps;">submit report</span>
+              </button>
+            </div>
+          </div> 
         </div>
         <div id="bu-report-form" class="fade-in" ng-if="$ctrl.showRPForm">
           <form /*action="https://formspree.io/f/xnqwdjpw" method="POST"*/  class="layout-align-center-center layout-column">
-            <legend id="ftitle" style="text-transform: none; font-variant: small-caps;">Report A Problem</legend>
-            <input id="femail" type="email" name="email" placeholder="Please enter your email address"> 
-            <textarea id="fdesc" name="message" placeholder="Please describe the problem you are experiencing"></textarea>
-            <div class="layout-row">
-              <button id="fsubmit" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="submit" ng-click="$ctrl.showReportForm()">
-                <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="check"></prm-icon>
-                Send
-              </button>
-              <button id="fsubmit" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="cancel" ng-click="$ctrl.showReportForm()">
-                <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"></prm-icon>
-                Cancel
-              </button>
-            </div>
+            <textarea id="fdesc" name="message" placeholder="Please describe the problem you are experienceing"></textarea>
+            <label id="invalidemail" ng-if="$ctrl.validEmail == false">Please enter a valid email address or leave blank to submit anonymously</label>
+            <input id="femail" type="email" (keyup)="$ctrl.validateEmail()" name="email" placeholder="Please enter your email address">
           </form>
+        </div>
+        <div id="bu-submit-confirm" class="layout-align-center-center layout-row margin-bottom-medium" layout="row" layout-align="center center" ng-if="$ctrl.reportSubmitted">
+          <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="check"></prm-icon>
+          <span style="font-variant: small-caps;">report submitted</span>
         </div>
       </div>
       `,

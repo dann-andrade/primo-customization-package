@@ -811,6 +811,13 @@ body {
 /* END askus popout */
 
 /* Report a Problem Button */
+#bu-rap {
+
+  align-items: center;
+  justify-content: center;
+
+}
+
 #bu-report-form {
 
   width: 80%;
@@ -821,9 +828,20 @@ body {
 
 }
 
+#bu-submit-confirm {
+
+  width: 80%;
+  background-color: #e2e2e2;
+  color: darkgreen;
+  padding: 10px;
+  border-radius: 5px;
+  /* box-shadow: 0 0 10px gray; */
+
+}
+
 #ftitle {
 
-  padding: 10px 0px 30px 0px;
+  padding: 0px 0px 20px 0px;
   font-size: 125%;
   font-weight: 500;
   color: black;
@@ -857,21 +875,12 @@ body {
 
 }
 
+#invalidemail {
 
-#freport {
-
-  color: inherit;
-  margin:0px;
-  width: 175px;
+  color:darkred;
 
 }
 
-#freport:hover {
-
-  color:#600;
-  margin:0px;
-
-}
 
 #fsubmit {
 
@@ -978,6 +987,5 @@ body {
     from { opacity: 1; }
     to   { opacity: 0; }
 }
-
 
 /* END Report a Problem Button */
