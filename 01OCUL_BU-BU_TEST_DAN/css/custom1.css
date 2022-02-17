@@ -819,8 +819,6 @@ body {
 }
 
 #bu-rap button:hover {
-
-  
   
   background-color: #616161;;
   color: #e2e2e2;
@@ -852,8 +850,8 @@ body {
 
   width: 100%;
   background-color: #e2e2e2;
-  padding: 30px;
-  border-radius: 10px;
+  padding: 20px;
+  border-radius: 2px;
   /* box-shadow: 0 0 10px gray; */
 
 }
@@ -864,7 +862,7 @@ body {
   background-color: #e2e2e2;
   color: #0f7d00;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 2px;
   margin: 10px;
   /* box-shadow: 0 0 10px gray; */
 
@@ -876,7 +874,7 @@ body {
   padding: 10px 10px;
   margin: 5px 0;
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 2px;
   background-color: #f3f3f3;
   font-family: Roboto,Helvetica Neue,sans-serif;
 
@@ -888,20 +886,12 @@ body {
   padding: 10px 10px;
   margin: 5px 0;
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 2px;
   background-color: #f3f3f3;
   height: 150px;
   border: none;
 
 }
-
-#bu-rb-submit-form {
-
-  margin:15px 0 0 0;
-  
-}
-
-
 
 
 /* END Report a Problem Button */

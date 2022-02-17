@@ -82,19 +82,20 @@ app.component('prm-search-after', {
           this.showForm = false;
           this.validEmail = true;
           this.validDesc = true;
-          this.reportSubmitted = false;
+          this.submitSuccess = false;
           this.submitted = false
 
         };
 
         this.showReportForm = function () {
 
-          this.reportSubmitted = false;
           this.showForm = true;
+          this.submitSuccess = false;
           this.submitted = false;
 
           setTimeout(() => {
             document.getElementById('fdesc').focus();
+            document.getElementById('bu-submit-confirm').style.display = 'block';
           },0);
 
         };
@@ -141,6 +142,19 @@ app.component('prm-search-after', {
           this.validateDesc();
           this.validateEmail();
 
+          if (this.validDesc && this.validEmail) {
+
+            this.showForm = false;
+            this.submitSuccess = true;
+
+            setTimeout(() => {
+
+              document.getElementById('bu-submit-confirm').style.display = 'none';
+
+            }, 5000);
+
+          };
+
         };
 
         
@@ -153,14 +167,13 @@ app.component('prm-search-after', {
       controller: 'prmActionContainerAfterController',
       template: `
       <div id="bu-rap" class="layout-align-center-center layout-row margin-bottom-medium margin-top-medium" layout="column" layout-align="center center">
-        <div id="bu-buttons" class="layout-align-center-center layout-row margin-bottom-medium margin-top-medium" layout="row" layout-align="center center">
+        <div id="bu-buttons" class="layout-align-center-center layout-row margin-bottom-small" layout="row" layout-align="center center">
           <div ng-if="$ctrl.showForm == false">
             <button id="bu-report-button" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Report Problem" ng-click="$ctrl.showReportForm()">
               <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
               <span style="text-transform: none; font-variant: small-caps;">report problem</span>
             </button>
           </div>
-
           <div class="layout-align-center-center layout-row" layout="row" layout-align="center center" ng-if="$ctrl.showForm">
             <button id="bu-close-button"  class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Close Form" ng-click="$ctrl.closeReportForm()">
               <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"></prm-icon>
@@ -172,11 +185,11 @@ app.component('prm-search-after', {
             </button> 
           </div>
         </div> 
+        <div id="bu-submit-confirm" class="layout-align-center-center" layout-row" layout="row" layout-align="center center" ng-if="$ctrl.submitSuccess">
+          <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="check"></prm-icon>
+          <span style="font-variant: small-caps;">report submitted</span>
+        </div>
         <div id="bu-report-form" ng-if="$ctrl.showForm">
-          <div id="bu-submit-confirm" class="layout-align-center-center" layout-row" layout="row" layout-align="center center" ng-if="$ctrl.reportSubmitted">
-            <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="check"></prm-icon>
-            <span style="font-variant: small-caps;">report submitted</span>
-          </div>
           <form class="layout-align-center-center layout-column">
             <div id="bu-form-items">
               <div class="layout-align-left-center" layout-row" layout="row" layout-align="left center">
@@ -193,7 +206,7 @@ app.component('prm-search-after', {
                 <span style="color:#cc0000; margin: 0 0 0 5px; font-variant: small-caps;" ng-if="$ctrl.validEmail == false && $ctrl.submitted">invalid email</span>
                 <prm-icon style="color:#cc0000; margin: 0 0 0 0; icon-type="svg" svg-icon-set="primo-ui" icon-definition="remove" ng-if="$ctrl.validEmail == false && $ctrl.submitted"></prm-icon>
               </div>
-              <div class="layout-align-center-center margin-bottom-medium" layout-row" layout="row" layout-align="center center">
+              <div class="layout-align-center-center margin-bottom-small" layout-row" layout="row" layout-align="center center">
                 <input id="femail" autofill="false" name="email" placeholder=" Please enter your email address or leave blank to submit anonymously" (keyup)="$ctrl.validateEmail()">
               </div>
             </div>
