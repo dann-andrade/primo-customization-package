@@ -177,7 +177,7 @@ app.component('prm-search-after', {
 
               console.log(rmessage);
 
-              let url = "<insert http post url here>";
+              let url = "";
 
               $http.post(url, rmessage);
 
