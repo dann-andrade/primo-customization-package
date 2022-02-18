@@ -85,6 +85,11 @@ app.component('prm-search-after', {
           this.submitSuccess = false;
           this.submitted = false
 
+          $scope.itemMMSID = this.parentCtrl.item.pnx.display.mms[0];
+          $scope.itemTitle = this.parentCtrl.item.pnx.display.title[0];
+          $scope.itemURL= 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
+                          $scope.itemMMSID +
+                          '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
         };
 
         this.showReportForm = function () {
@@ -114,10 +119,15 @@ app.component('prm-search-after', {
           
           this.validDesc = /^[\s\S]*(?!\s*$).+$/.test(desc);
 
-          if (!this.validDesc){
+          if (this.validDesc){
+            setTimeout(() => {
+              $scope.userDesc = desc;
+            },0);
+          } else {
             setTimeout(() => {
               document.getElementById('fdesc').focus();
             },0);
+
           };
 
         };
@@ -131,6 +141,13 @@ app.component('prm-search-after', {
 
           if (pemail == ''){
             this.validEmail = true;
+            $scope.userEmail = 'Anonymous';
+          };
+
+          if(this.validEmail){
+            setTimeout(() => {
+              $scope.userEmail = pemail;
+            },0);
           };
 
         };
@@ -149,6 +166,25 @@ app.component('prm-search-after', {
 
             setTimeout(() => {
 
+              let rmessage = {report: 
+                                [{title: $scope.itemTitle, 
+                                  mmsid: $scope.itemMMSID, 
+                                  user: $scope.userEmail, 
+                                  desc: $scope.userDesc, 
+                                  url: $scope.itemURL}
+                                ]
+                              };
+
+              console.log(rmessage);
+
+              let url = "<insert http post url here>";
+
+              $http.post(url, rmessage);
+
+            }, 0);
+
+            setTimeout(() => {
+
               document.getElementById('bu-submit-confirm').style.display = 'none';
 
             }, 5000);
@@ -156,8 +192,6 @@ app.component('prm-search-after', {
           };
 
         };
-
-        
 
       }]
     );
@@ -210,8 +244,12 @@ app.component('prm-search-after', {
                 <input id="femail" autofill="false" name="email" placeholder=" Please enter your email address or leave blank to submit anonymously" (keyup)="$ctrl.validateEmail()">
               </div>
             </div>
-           
           </form>
+        </div>
+        <div id="bu-sample-report" class="layout-align-center-center" layout-row" layout="row" layout-align="center center" ng-if="$ctrl.submitSuccess">
+          <p id="repemail"></p>
+          <p id="repdesc"></p>
+          <p id="repurl"></p>
         </div>
       </div>
       `,

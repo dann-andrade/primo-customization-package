@@ -822,6 +822,7 @@ body {
   
   background-color: #616161;;
   color: #e2e2e2;
+  box-shadow: 0 0 10px #616161;
 
 }
 
@@ -834,15 +835,18 @@ body {
 #bu-rap button {
 
   background-color: #e2e2e2;
-  border: 2px solid white;
   color: #616161;
   width: 175px;
+  box-shadow: 0 0 10px #e2e2e2;
+  margin:  0 10px 0 10px;
 
 }
 
 #bu-report-form {
 
   width: 80%;
+  box-shadow: 0 0 10px #b8b8b8;
+  margin: 10px;
   
 }
 
