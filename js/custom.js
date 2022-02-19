@@ -90,6 +90,7 @@ app.component('prm-search-after', {
           $scope.itemURL= 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
                           $scope.itemMMSID +
                           '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
+          
         };
 
         this.showReportForm = function () {
@@ -141,7 +142,7 @@ app.component('prm-search-after', {
 
           if (pemail == ''){
             this.validEmail = true;
-            $scope.userEmail = 'Anonymous';
+            $scope.userEmail = pemail = "Anonymous";
           };
 
           if(this.validEmail){
