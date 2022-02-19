@@ -142,7 +142,7 @@ app.component('prm-search-after', {
 
           if (pemail == ''){
             this.validEmail = true;
-            $scope.userEmail = pemail = "Anonymous";
+            pemail = "Anonymous";
           };
 
           if(this.validEmail){
