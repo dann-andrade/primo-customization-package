@@ -1,6 +1,5 @@
 # The Primo New UI Customization Workflow Development Environment
 
-
 ##images documentation
 
  - Primo allows the customization of the following images;
