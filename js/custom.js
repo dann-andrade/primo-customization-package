@@ -204,17 +204,17 @@ app.component('prm-search-after', {
       <div id="bu-rap" class="layout-align-center-center layout-row margin-bottom-medium margin-top-medium" layout="column" layout-align="center center">
         <div id="bu-buttons" class="layout-align-center-center layout-row margin-bottom-small" layout="row" layout-align="center center">
           <div ng-if="$ctrl.showForm == false">
-            <button id="bu-report-button" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Report Problem" ng-click="$ctrl.showReportForm()">
+            <button id="bu-report-button" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Report problem" ng-click="$ctrl.showReportForm()">
               <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
               <span style="text-transform: none; font-variant: small-caps;">report problem</span>
             </button>
           </div>
           <div class="layout-align-center-center layout-row" layout="row" layout-align="center center" ng-if="$ctrl.showForm">
-            <button id="bu-close-button"  class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Close Form" ng-click="$ctrl.closeReportForm()">
+            <button id="bu-close-button"  class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Close form" ng-click="$ctrl.closeReportForm()">
               <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"></prm-icon>
               <span style="text-transform: none; font-variant: small-caps;">cancel report</span>
             </button>
-            <button id="bu-submit-button" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="submit" aria-label="Submit Report" ng-click="$ctrl.submitReport()">
+            <button id="bu-submit-button" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="submit" aria-label="Submit report" ng-click="$ctrl.submitReport()">
               <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="check"></prm-icon>
               <span style="text-transform: none; font-variant: small-caps;">submit report</span>
             </button> 
@@ -234,7 +234,7 @@ app.component('prm-search-after', {
                 <prm-icon style="color:#cc0000; margin: 0 0 0 0; icon-type="svg" svg-icon-set="primo-ui" icon-definition="remove" ng-if="$ctrl.validDesc == false && $ctrl.submitted"></prm-icon>
               </div>
               <div class="layout-align-center-center" layout-row" layout="row" layout-align="center center">
-                <textarea id="fdesc" name="message" placeholder="Please describe in detail." (keyup)="$ctrl.validateDesc()" ></textarea>
+                <textarea id="fdesc" name="message" placeholder="Please describe in detail." (keyup)="$ctrl.validateDesc()" aria-label="Describe your problem"></textarea>
               </div>
               <div class="layout-align-left-center layout-row margin-top-medium" layout="row" layout-align="left center">
                 <label style="font-family: Roboto,Helvetica Neue,sans-serif; margin: 5px 0 5px 10px;" name="emailerror">Would you like us to follow up with you? </label>
@@ -242,15 +242,10 @@ app.component('prm-search-after', {
                 <prm-icon style="color:#cc0000; margin: 0 0 0 0; icon-type="svg" svg-icon-set="primo-ui" icon-definition="remove" ng-if="$ctrl.validEmail == false && $ctrl.submitted"></prm-icon>
               </div>
               <div class="layout-align-center-center margin-bottom-small" layout-row" layout="row" layout-align="center center">
-                <input id="femail" autofill="false" name="email" placeholder=" Please enter your email address or leave blank to submit anonymously" (keyup)="$ctrl.validateEmail()">
+                <input id="femail" autofill="false" name="email" placeholder=" Please enter your email address or leave blank to submit anonymously" (keyup)="$ctrl.validateEmail()" aria-label="Enter your email">
               </div>
             </div>
           </form>
-        </div>
-        <div id="bu-sample-report" class="layout-align-center-center" layout-row" layout="row" layout-align="center center" ng-if="$ctrl.submitSuccess">
-          <p id="repemail"></p>
-          <p id="repdesc"></p>
-          <p id="repurl"></p>
         </div>
       </div>
       `,
