@@ -100,7 +100,6 @@ app.component('prm-search-after', {
           this.submitted = false;
 
           setTimeout(() => {
-            document.getElementById('fdesc').focus();
             document.getElementById('bu-submit-confirm').style.display = 'block';
           },0);
 
@@ -160,9 +159,9 @@ app.component('prm-search-after', {
 
           this.submitted = true;
 
-          this.validateDesc();
           this.validateEmail();
-
+          this.validateDesc();
+          
           if (this.validDesc && this.validEmail) {
 
             this.showForm = false;
@@ -205,36 +204,38 @@ app.component('prm-search-after', {
       controller: 'prmActionContainerAfterController',
       template: `
       <div id="bu-rap" class="layout-align-center-center layout-row margin-bottom-medium margin-top-medium" layout="column" layout-align="center center">
-        <div id="bu-buttons" class="layout-align-center-center layout-row margin-bottom-small" layout="row" layout-align="center center">
-          <div ng-if="$ctrl.showForm == false">
-            <button id="bu-report-button" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Report problem" ng-click="$ctrl.showReportForm()">
-              <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
-              <span style="text-transform: none; font-variant: small-caps;">report problem</span>
-            </button>
-          </div>
-        </div> 
+        <div ng-if="$ctrl.showForm == false">
+          <button id="bu-report-button" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Report problem" ng-click="$ctrl.showReportForm()">
+            <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
+            <span style="text-transform: none; font-variant: small-caps;">report problem</span>
+          </button>
+        </div>
         <div id="bu-submit-confirm" class="layout-align-center-center" layout-row" layout="row" layout-align="center center" ng-if="$ctrl.submitSuccess">
           <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="check"></prm-icon>
           <span style="font-variant: small-caps;">report submitted</span>
         </div>
         <div id="bu-report-form" ng-if="$ctrl.showForm">
           <form class="layout-align-center-center layout-column">
-            <div id="bu-form-items">
+            <div id="bu-form-items"> 
               <div class="layout-align-left-center" layout-row" layout="row" layout-align="left center">
                 <label style="font-family: Roboto,Helvetica Neue,sans-serif; margin: 5px 0 5px 10px;" name="descerror">What is the problem? </label>
                 <span style="color:#cc0000; margin: 0 0 0 5px; font-variant: small-caps;">required</span>
-                <prm-icon style="color:#cc0000; margin: 0 0 0 0; icon-type="svg" svg-icon-set="primo-ui" icon-definition="remove" ng-if="$ctrl.validDesc == false && $ctrl.submitted"></prm-icon>
               </div>
               <div class="layout-align-center-center" layout-row" layout="row" layout-align="center center">
                 <textarea id="fdesc" name="message" placeholder="Please provide as much detail as possible to help us understand how we might resolve the problem." (keyup)="$ctrl.validateDesc()" aria-label="Describe your problem"></textarea>
+                <div class="layout-align-center-center layout-row warning-bg" layout="column" layout-align="center center" ng-if="$ctrl.validDesc == false && $ctrl.submitted">   
+                  <prm-icon class="warning-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
+                </div>
               </div>
               <div class="layout-align-left-center layout-row margin-top-medium" layout="row" layout-align="left center">
                 <label style="font-family: Roboto,Helvetica Neue,sans-serif; margin: 5px 0 5px 10px;" name="emailerror">Would you like us to follow up with you? </label>
                 <span style="color:#cc0000; margin: 0 0 0 5px; font-variant: small-caps;" ng-if="$ctrl.validEmail == false && $ctrl.submitted">invalid email</span>
-                <prm-icon style="color:#cc0000; margin: 0 0 0 0; icon-type="svg" svg-icon-set="primo-ui" icon-definition="remove" ng-if="$ctrl.validEmail == false && $ctrl.submitted"></prm-icon>
               </div>
               <div class="layout-align-center-center margin-bottom-small" layout-row" layout="row" layout-align="center center">
                 <input id="femail" autofill="false" name="email" placeholder=" Please enter your email address or leave blank to submit anonymously." (keyup)="$ctrl.validateEmail()" aria-label="Enter your email">
+                <div class="layout-align-center-center layout-row warning-bg" layout="column" layout-align="center center" ng-if="$ctrl.validEmail == false && $ctrl.submitted"> 
+                  <prm-icon class="warning-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error" ></prm-icon>
+                </div>
               </div>
             </div>
           </form>

@@ -810,91 +810,62 @@ body {
 
 /* END askus popout */
 
-/* Report a Problem Button */
-#bu-rap button {
+/*Report a Problem Button */
 
-  background-color: #cc0000;;
+/*General appwide styles*/
+#bu-rap label {
+  text-shadow: 0 0 5px #b6b6b6;
+}
+
+
+/* General Button Sytling*/
+#bu-rap button {
+  background-color: #cc0000;
   color: #f3f3f3;
   border-radius: 2px;
   padding: 0;
-  
 }
 
+
+/*Animations*/
 #bu-rap button:hover {
-  
-  
   background-color: #202020;
   color: #e2e2e2;
-
 }
-
 #bu-rap button:active {
-
   transform: scale(0.97);
-
 }
 
-#bu-form-buttons button {
+/*Main Button*/
+#bu-report-button {
+  width: 145px;
+  height: 35px;
+  box-shadow: 0 0 5px #969696;
+}
 
+/*Cancel and Submit buttons*/
+#bu-form-buttons button {
   width: 80px;
   height: 35px;
   border-radius: 2px;
   box-shadow: 0 0 5px #969696;
-
 }
 
-#bu-report-button {
-
-  width: 145px;
-  height: 35px;
-  box-shadow: 0 0 5px #969696;
-
-}
-
-#bu-report-button prm-icon {
-
-  transform: scale(0.90);
-
-}
-
+/*form background and styling*/
 #bu-report-form {
-
   width: 80%;
   background-color: #e2e2e2;
   padding: 5px;
   border-radius: 2px;
   box-shadow: 0 0 10px #b3b3b3;
-  
-}
-
-#bu-form-items {
-
-  width: 100%;
-  padding: 10px 10px 0 10px;
-
-}
-
-#bu-form-buttons {
-
-  width: 100%;
-  padding: 0 0 10px 0;
-
-}
-
-
-#bu-submit-confirm {
-
-  width: 90%;
-  background-color: #e2e2e2;
-  color: #0f7d00;
   padding: 10px;
-  border-radius: 2px;
-  margin: 10px;
-
+} 
+#bu-form-items {
+  width: 100%;
 }
 
+/*email field*/
 #femail {
-
   width: 100%;
   padding: 10px 10px;
   margin: 5px 0;
@@ -903,15 +874,15 @@ body {
   background-color: #f3f3f3;
   font-family: Roboto,Helvetica Neue,sans-serif;
   box-shadow: 0 0 5px #b3b3b3 inset;
-
 }
 
+/*input focus outline to red*/
 #femail:focus, #fdesc:focus {
-  outline: 2px solid #e66f6f;
+  outline: 2px solid #cc0000;
 }
 
+/*description field*/
 #fdesc {
-
   width: 100%;
   padding: 10px 10px;
   margin: 5px 0;
@@ -921,14 +892,31 @@ body {
   height: 150px;
   border: none;
   box-shadow: 0 0 5px #b3b3b3 inset;
-
 }
 
-#bu-rap label {
-
-  text-shadow: 0 0 5px #a8a8a8;
-
+/*submit confirmation notification*/
+#bu-submit-confirm {
+  width: 90%;
+  background-color: #e2e2e2;
+  color: #0f7d00;
+  padding: 10px;
+  border-radius: 2px;
+  margin: 10px;
 }
 
+
+/*warning icons*/
+.warning-icon {
+  color: #e2e2e2;
+}
+
+.warning-bg {
+  margin-left: 8px;
+  height: 24px;
+  width: 24px;
+  background-color: #cc0000;
+  border-radius: 11px;
+  box-shadow: 0 0 5px #9c9c9c;
+}
 
 /* END Report a Problem Button */
