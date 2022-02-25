@@ -816,7 +816,11 @@ body {
 #bu-rap label {
   text-shadow: 0 0 5px #b6b6b6;
 }
-
+.bu-special-text {
+  color:#cc0000; 
+  margin: 0 0 0 5px; 
+  font-variant: small-caps;
+}
 
 /* General Button Sytling*/
 #bu-rap button {
@@ -824,6 +828,10 @@ body {
   color: #f3f3f3;
   border-radius: 2px;
   padding: 0;
+}
+.bu-button-text {
+  font-variant: small-caps;
+  text-transform: none;
 }
 
 
@@ -851,7 +859,7 @@ body {
   box-shadow: 0 0 5px #969696;
 }
 
-/*form background and styling*/
+/*form bg*/
 #bu-report-form {
   width: 80%;
   background-color: #e2e2e2;
@@ -905,11 +913,10 @@ body {
 }
 
 
-/*warning icons*/
+/*invalid flag icons*/
 .warning-icon {
   color: #e2e2e2;
 }
-
 .warning-bg {
   margin-left: 8px;
   height: 24px;
