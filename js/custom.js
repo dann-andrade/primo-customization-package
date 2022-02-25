@@ -128,7 +128,6 @@ app.component('prm-search-after', {
             setTimeout(() => {
               document.getElementById('fdesc').focus();
             },0);
-
           };
 
         };
@@ -148,6 +147,10 @@ app.component('prm-search-after', {
           if(this.validEmail){
             setTimeout(() => {
               $scope.userEmail = pemail;
+            },0);
+          } else {
+            setTimeout(() => {
+              document.getElementById('femail').focus();
             },0);
           };
 
