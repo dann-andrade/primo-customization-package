@@ -813,16 +813,18 @@ body {
 /* Report a Problem Button */
 #bu-rap button {
 
-  background-color: #e2e2e2;
-  color: #5f5f5f;
-  width: 200px;
+  background-color: #cc0000;;
+  color: #f3f3f3;
+  border-radius: 2px;
+  padding: 0;
   
 }
 
 #bu-rap button:hover {
   
-  background-color: #cc0000;;
-  color: #f3f3f3;
+  
+  background-color: #202020;
+  color: #e2e2e2;
 
 }
 
@@ -832,22 +834,53 @@ body {
 
 }
 
+#bu-form-buttons button {
+
+  width: 80px;
+  height: 35px;
+  border-radius: 2px;
+  box-shadow: 0 0 5px #969696;
+
+}
+
+#bu-report-button {
+
+  width: 145px;
+  height: 35px;
+  box-shadow: 0 0 5px #969696;
+
+}
+
+#bu-report-button prm-icon {
+
+  transform: scale(0.90);
+
+}
 
 #bu-report-form {
 
   width: 80%;
   background-color: #e2e2e2;
-  padding: 10px;
+  padding: 5px;
   border-radius: 2px;
+  box-shadow: 0 0 10px #b3b3b3;
   
 }
 
 #bu-form-items {
 
   width: 100%;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
 
 }
+
+#bu-form-buttons {
+
+  width: 100%;
+  padding: 0 0 10px 0;
+
+}
+
 
 #bu-submit-confirm {
 
@@ -869,6 +902,7 @@ body {
   border-radius: 2px;
   background-color: #f3f3f3;
   font-family: Roboto,Helvetica Neue,sans-serif;
+  box-shadow: 0 0 5px #b3b3b3 inset;
 
 }
 
@@ -886,6 +920,13 @@ body {
   background-color: #f3f3f3;
   height: 150px;
   border: none;
+  box-shadow: 0 0 5px #b3b3b3 inset;
+
+}
+
+#bu-rap label {
+
+  text-shadow: 0 0 5px #a8a8a8;
 
 }
 
