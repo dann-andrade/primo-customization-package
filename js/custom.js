@@ -77,20 +77,47 @@ app.component('prm-search-after', {
         //initialize invalid flags to initially hide warning icons
         //initialize submission and success flags off
         //pull pnx data into scope variable
+        // - Adds mmsid/recordid depending on what is available in pnx
+        // - Construct url and initialize desc to empty string
+        // - Adds ISBN/ISSN for reporting clarity and aggregation
+        // - Adds title depending on material type
         this.$onInit = function () {  
 
           this.showForm = false;
           this.validEmail = true;
           this.validDesc = true;
           this.submitSuccess = false;
-          this.submitted = false
-
-          $scope.itemMMSID = this.parentCtrl.item.pnx.display.mms[0];
-          $scope.itemTitle = this.parentCtrl.item.pnx.display.title[0];
-          $scope.itemURL= 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
-                          $scope.itemMMSID +
+          this.submitted = false;
+        
+          if (undefined != this.parentCtrl.item.pnx.display.mms) {
+            $scope.linkID = this.parentCtrl.item.pnx.display.mms[0];
+            $scope.itemURL= 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
+                          $scope.linkID +
                           '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
-          
+          } else  {
+            $scope.linkID = this.parentCtrl.item.pnx.control.recordid[0];
+            $scope.itemURL= 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=' + 
+                            $scope.linkID +
+                            '&context=PC&vid=01OCUL_BU:BU_DEFAULT&lang=en';
+          };
+
+          if (undefined != this.parentCtrl.item.pnx.addata.issn) {
+            $scope.itemIsbn = this.parentCtrl.item.pnx.addata.issn[0];
+          } else if (undefined != this.parentCtrl.item.pnx.addata.isbn) {
+            $scope.itemIsbn = this.parentCtrl.item.pnx.addata.isbn[0];         
+          };
+
+          if (undefined != this.parentCtrl.item.pnx.display.title) {
+            $scope.itemTitle = this.parentCtrl.item.pnx.display.title[0];
+          } else if (undefined != this.parentCtrl.item.pnx.addata.btitle) {
+            $scope.itemTitle = this.parentCtrl.item.pnx.addata.btitle[0];
+          } else if (undefined != this.parentCtrl.item.pnx.addata.jtitle) {
+            $scope.itemTitle = this.parentCtrl.item.pnx.addata.jtitle[0];
+          } else if (undefined != this.parentCtrl.item.pnx.addata.atitle) {
+            $scope.itemTitle = this.parentCtrl.item.pnx.addata.atitle[0];
+          };
+
+          $scope.userDesc='';
         };
 
 
@@ -178,9 +205,9 @@ app.component('prm-search-after', {
           this.submitted = true;
 
           this.validateEmail();
-          this.validateDesc();
+          //this.validateDesc();
           
-          if (this.validDesc && this.validEmail) {
+          if (this.validEmail) {
 
             this.showForm = false;
             this.submitSuccess = true;
@@ -188,12 +215,13 @@ app.component('prm-search-after', {
             setTimeout(() => {
 
               let rmessage = {report: 
-                                [{title: $scope.itemTitle, 
-                                  mmsid: $scope.itemMMSID, 
+                                [{ 
+                                  isbn: $scope.itemIsbn,
+                                  title: $scope.itemTitle, 
                                   user: $scope.userEmail, 
                                   desc: $scope.userDesc, 
-                                  url: $scope.itemURL}
-                                ]
+                                  url: $scope.itemURL
+                                }]
                               };
 
               let url = "";
@@ -205,9 +233,7 @@ app.component('prm-search-after', {
             }, 5000);
 
           };
-
         };
-
       }]
     );
 
