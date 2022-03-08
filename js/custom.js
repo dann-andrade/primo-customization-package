@@ -220,7 +220,8 @@ app.component('prm-search-after', {
                                   title: $scope.itemTitle, 
                                   user: $scope.userEmail, 
                                   desc: $scope.userDesc, 
-                                  url: $scope.itemURL
+                                  url: $scope.itemURL,
+                                  mmsid: $scope.linkID
                                 }]
                               };
 
