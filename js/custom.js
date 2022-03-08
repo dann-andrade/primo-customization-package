@@ -100,13 +100,15 @@ app.component('prm-search-after', {
             $scope.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=' + 
                             $scope.linkID +
                             '&context=PC&vid=01OCUL_BU:BU_DEFAULT&lang=en';
-            $scope.itemMMSID = 'n/a - CDI string';
+            $scope.itemMMSID = 'n/a';
           };
 
           if (undefined != this.parentCtrl.item.pnx.addata.issn) {
             $scope.itemIsbn = this.parentCtrl.item.pnx.addata.issn[0];
           } else if (undefined != this.parentCtrl.item.pnx.addata.isbn) {
             $scope.itemIsbn = this.parentCtrl.item.pnx.addata.isbn[0];         
+          } else {
+            $scope.itemIsbn = 'n/a';
           };
 
           if (undefined != this.parentCtrl.item.pnx.display.title) {
@@ -229,7 +231,6 @@ app.component('prm-search-after', {
                                 }]
                               };
 
-              let url = "";
               $http.post(url, rmessage);
             }, 0);
 
