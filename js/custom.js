@@ -91,14 +91,16 @@ app.component('prm-search-after', {
         
           if (undefined != this.parentCtrl.item.pnx.display.mms) {
             $scope.linkID = this.parentCtrl.item.pnx.display.mms[0];
-            $scope.itemURL= 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
+            $scope.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
                           $scope.linkID +
                           '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
-          } else  {
+            $scope.itemMMSID = this.parentCtrl.item.pnx.display.mms[0];
+          } else {
             $scope.linkID = this.parentCtrl.item.pnx.control.recordid[0];
-            $scope.itemURL= 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=' + 
+            $scope.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=' + 
                             $scope.linkID +
                             '&context=PC&vid=01OCUL_BU:BU_DEFAULT&lang=en';
+            $scope.itemMMSID = 'n/a - CDI string';
           };
 
           if (undefined != this.parentCtrl.item.pnx.addata.issn) {
@@ -221,7 +223,7 @@ app.component('prm-search-after', {
                                   user: $scope.userEmail, 
                                   desc: $scope.userDesc, 
                                   url: $scope.itemURL,
-                                  mmsid: $scope.linkID
+                                  mmsid: $scope.itemMMSID
                                 }]
                               };
 
