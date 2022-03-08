@@ -813,6 +813,9 @@ body {
 /*Report a Problem Button */
 
 /*General appwide styles*/
+#bu-rap {
+  margin: 30px 0 30px 0;  
+}
 #bu-rap label {
   text-shadow: 0 0 5px #b6b6b6;
 }

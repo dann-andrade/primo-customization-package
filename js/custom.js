@@ -265,7 +265,6 @@ app.component('prm-search-after', {
               <!--Description Label-->
               <div class="layout-align-left-center" layout-row" layout="row" layout-align="left center">
                 <label style="font-family: Roboto,Helvetica Neue,sans-serif; margin: 5px 0 5px 10px;" name="descerror">What is the problem? </label>
-                <span class="bu-special-text">required</span>
               </div>
 
               <!--Description Field-->
