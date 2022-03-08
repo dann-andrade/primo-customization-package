@@ -231,6 +231,7 @@ app.component('prm-search-after', {
                                 }]
                               };
 
+              let url = "";
               $http.post(url, rmessage);
             }, 0);
 
