@@ -117,6 +117,8 @@ app.component('prm-search-after', {
             $scope.itemTitle = this.parentCtrl.item.pnx.addata.jtitle[0];
           } else if (undefined != this.parentCtrl.item.pnx.addata.atitle) {
             $scope.itemTitle = this.parentCtrl.item.pnx.addata.atitle[0];
+          } else {
+            $scope.itemTitle = 'PNX TITLE ERROR'
           };
 
           $scope.userDesc='';
