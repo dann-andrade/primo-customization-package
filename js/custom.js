@@ -151,28 +151,6 @@ app.component('prm-search-after', {
 
         };
 
-        //use regex to determine validDesc flag from desc input
-        // - True if description contains some letters and false otherise
-        //if true pass data to scope
-        //if false set focus to field for input
-        this.validateDesc = function(){
-
-          let desc = document.getElementById("fdesc").value;
-
-          this.validDesc = /^[\s\S]*(?!\s*$).+$/.test(desc);
-
-          if (this.validDesc){
-            setTimeout(() => {
-              $scope.userDesc = desc;
-            },0);
-          } else {
-            setTimeout(() => {
-              document.getElementById('fdesc').focus();
-            },0);
-          };
-
-        };
-
         //use regex to determine validEmail flag from pemail input
         // - True if description contains properly formatted email address
         //if field is empty pass anonymous in place of data
@@ -213,7 +191,6 @@ app.component('prm-search-after', {
           this.submitted = true;
 
           this.validateEmail();
-          //this.validateDesc();
           
           if (this.validEmail) {
 
