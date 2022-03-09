@@ -130,6 +130,7 @@ app.component('prm-search-after', {
         //function for Report Button
         //show form, toggle submission and success flags off
         //unhide the submit confirm, this is here in case someone double reports without refreshing
+        //re-initializes the desc to an empty string in case of double report
         this.showReportForm = function () {
 
           this.showForm = true;
