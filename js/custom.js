@@ -140,6 +140,7 @@ app.component('prm-search-after', {
             document.getElementById('bu-submit-confirm').style.display = 'block';
           },0);
 
+          $scope.userDesc='';
         };
 
         // closing the form simple re-initializes everything (for now)
