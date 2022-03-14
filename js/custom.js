@@ -77,15 +77,13 @@ app.component('prm-search-after', {
         //initialize invalid flags to initially hide warning icons
         //initialize submission and success flags off
         //pull pnx data into scope variable
-        // - Adds mmsid/recordid depending on what is available in pnx
-        // - Construct url and initialize desc to empty string
-        // - Adds ISBN/ISSN for reporting clarity and aggregation
-        // - Adds title depending on material type
+        // - Construct url and adds mmsid/recordid depending on what is available in pnx
+        // - Adds title depending on material type 
+        //-  Initialize desc to empty string
         this.$onInit = function () {  
 
           this.showForm = false;
-          this.validEmail = true;
-          this.validDesc = true;
+          this.validEmail = true
           this.submitSuccess = false;
           this.submitted = false;
         
@@ -101,14 +99,6 @@ app.component('prm-search-after', {
                             $scope.linkID +
                             '&context=PC&vid=01OCUL_BU:BU_DEFAULT&lang=en';
             $scope.itemMMSID = 'n/a';
-          };
-
-          if (undefined != this.parentCtrl.item.pnx.addata.issn) {
-            $scope.itemIsbn = this.parentCtrl.item.pnx.addata.issn[0];
-          } else if (undefined != this.parentCtrl.item.pnx.addata.isbn) {
-            $scope.itemIsbn = this.parentCtrl.item.pnx.addata.isbn[0];         
-          } else {
-            $scope.itemIsbn = 'n/a';
           };
 
           if (undefined != this.parentCtrl.item.pnx.display.title) {
@@ -130,7 +120,6 @@ app.component('prm-search-after', {
         //function for Report Button
         //show form, toggle submission and success flags off
         //unhide the submit confirm, this is here in case someone double reports without refreshing
-        //re-initializes the desc to an empty string in case of double report
         this.showReportForm = function () {
 
           this.showForm = true;
@@ -141,7 +130,6 @@ app.component('prm-search-after', {
             document.getElementById('bu-submit-confirm').style.display = 'block';
           },0);
 
-          $scope.userDesc='';
         };
 
         // closing the form simple re-initializes everything (for now)
@@ -185,7 +173,9 @@ app.component('prm-search-after', {
         //if input is valid
         // - hide form
         // - show success popup 
+        // - pull problem description
         // - post data via api lin
+        // - Hide submission confirmation
         this.submitReport = function () {
 
           this.submitted = true;
@@ -196,12 +186,12 @@ app.component('prm-search-after', {
 
             this.showForm = false;
             this.submitSuccess = true;
+            $scope.userDesc = document.getElementById("fdesc").value;
 
             setTimeout(() => {
 
               let rmessage = {report: 
                                 [{ 
-                                  isbn: $scope.itemIsbn,
                                   title: $scope.itemTitle, 
                                   user: $scope.userEmail, 
                                   desc: $scope.userDesc, 
@@ -255,12 +245,7 @@ app.component('prm-search-after', {
 
               <!--Description Field-->
               <div class="layout-align-center-center" layout-row" layout="row" layout-align="center center">
-                <textarea id="fdesc" name="message" placeholder="Please provide as much detail as possible to help us understand how we might resolve the problem." (keyup)="$ctrl.validateDesc()" aria-label="Describe your problem"></textarea>
-                
-                <!--Invalid Flag-->
-                <div class="layout-align-center-center layout-row warning-bg" layout="column" layout-align="center center" ng-if="$ctrl.validDesc == false && $ctrl.submitted">   
-                  <prm-icon class="warning-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
-                </div>
+                <textarea id="fdesc" name="message" placeholder="Please provide as much detail as possible to help us understand how we might resolve the problem." aria-label="Describe your problem"></textarea>
               </div>
 
               <!--Email Label-->
