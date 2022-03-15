@@ -86,6 +86,8 @@ app.component('prm-search-after', {
           this.validEmail = true
           this.submitSuccess = false;
           this.submitted = false;
+
+          $scope.rURL = window.location.href;
         
           if (undefined != this.parentCtrl.item.pnx.display.mms) {
             $scope.linkID = this.parentCtrl.item.pnx.display.mms[0];
@@ -196,6 +198,7 @@ app.component('prm-search-after', {
                                   user: $scope.userEmail, 
                                   desc: $scope.userDesc, 
                                   url: $scope.itemURL,
+                                  rurl: $scope.rURL,
                                   mmsid: $scope.itemMMSID
                                 }]
                               };
