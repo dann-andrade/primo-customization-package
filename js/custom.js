@@ -95,6 +95,12 @@ app.component('prm-search-after', {
                           $scope.linkID +
                           '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
             $scope.itemMMSID = this.parentCtrl.item.pnx.display.mms[0];
+          } else if ((undefined != this.parentCtrl.item.pnx.display.source) && (this.parentCtrl.item.pnx.display.source == 'literatum:achs')) {
+            $scope.linkID = this.parentCtrl.item.pnx.control.sourcerecordid[0];
+            $scope.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
+                          $scope.linkID +
+                          '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
+            $scope.itemMMSID = this.parentCtrl.item.pnx.control.sourcerecordid[0];
           } else {
             $scope.linkID = this.parentCtrl.item.pnx.control.recordid[0];
             $scope.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=' + 
