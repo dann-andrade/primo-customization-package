@@ -265,7 +265,7 @@ app.component('prm-search-after', {
 
               <!--Email Field-->
               <div class="layout-align-center-center margin-bottom-small" layout-row" layout="row" layout-align="center center">
-                <input id="femail" autofill="false" name="email" placeholder=" Please enter your email address or leave blank to submit anonymously." (keyup)="$ctrl.validateEmail()" aria-label="Enter your email">
+                <input id="femail" autofill="false" name="email" placeholder="If yes, please enter your email address" (keyup)="$ctrl.validateEmail()" aria-label="Enter your email">
                 
                 <!--Invalid Flag-->
                 <div class="layout-align-center-center layout-row warning-bg" layout="column" layout-align="center center" ng-if="$ctrl.validEmail == false && $ctrl.submitted"> 
