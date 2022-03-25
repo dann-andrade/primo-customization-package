@@ -906,10 +906,17 @@ body {
 }
 
 /*submit confirmation notification*/
-#bu-submit-confirm {
+#bu-submit-status {
   width: 90%;
-  background-color: #e2e2e2;
   color: #0f7d00;
+  padding: 10px;
+  border-radius: 2px;
+  margin: 10px;
+}
+
+#bu-submit-fail {
+  width: 90%;
+  color: #cc0000;
   padding: 10px;
   border-radius: 2px;
   margin: 10px;

@@ -84,7 +84,7 @@ app.component('prm-search-after', {
 
           this.showForm = false;
           this.validEmail = true
-          this.submitSuccess = false;
+          this.submitFlow = false;
           this.submitted = false;
 
           $scope.rURL = window.location.href;
@@ -131,11 +131,11 @@ app.component('prm-search-after', {
         this.showReportForm = function () {
 
           this.showForm = true;
-          this.submitSuccess = false;
+          this.submitFlow = false;
           this.submitted = false;
 
           setTimeout(() => {
-            document.getElementById('bu-submit-confirm').style.display = 'block';
+            document.getElementById('bu-submit-status').style.display = 'block';
           },0);
 
         };
@@ -183,18 +183,19 @@ app.component('prm-search-after', {
         // - show success popup 
         // - pull problem description
         // - post data via api lin
-        // - Hide submission confirmation
+        // -  
+        // - Hide submission status report
         this.submitReport = function () {
 
           this.submitted = true;
-
+          
+          
           this.validateEmail();
           
           if (this.validEmail) {
 
-            this.showForm = false;
-            this.submitSuccess = true;
             $scope.userDesc = document.getElementById("fdesc").value;
+            this.showForm = false;
 
             setTimeout(() => {
 
@@ -209,12 +210,40 @@ app.component('prm-search-after', {
                                 }]
                               };
 
-              let url = "";
-              $http.post(url, rmessage);
+              let url = '';
+
+              $http.post(url, rmessage, {headers:{'Content-Type': 'application/json'}}).then(function successCallback(resp) {
+
+                if (url != '') {
+
+                  $scope.submitMessage = 'report submitted';
+                  document.getElementById('bu-submit-status').style.color = '#0f7d00';
+                  document.getElementById('bu-submit-status').style.backgroundColor = '#e2e2e2';
+
+                } else {
+
+                  $scope.submitMessage = 'error  -  please contact libhelp@brocku.ca';
+                  document.getElementById('bu-submit-status').style.color = '#cc0000';
+                  document.getElementById('bu-submit-status').style.backgroundColor = '#e2e2e2';
+
+                };
+
+              }, function errorCallback(err) {
+
+                $scope.submitMessage = 'error  -  please contact libhelp@brocku.ca';
+                document.getElementById('bu-submit-status').style.color = '#cc0000';
+                document.getElementById('bu-submit-status').style.backgroundColor = '#e2e2e2';
+
+              });
+
             }, 0);
 
             setTimeout(() => {
-              document.getElementById('bu-submit-confirm').style.display = 'none';
+              this.submitFlow = true;
+            }, 1);
+
+            setTimeout(() => {
+              document.getElementById('bu-submit-status').style.display = 'none';
             }, 5000);
 
           };
@@ -237,9 +266,8 @@ app.component('prm-search-after', {
         </div>
 
         <!--Submission Confirmation Popup-->
-        <div id="bu-submit-confirm" class="layout-align-center-center" layout-row" layout="row" layout-align="center center" ng-if="$ctrl.submitSuccess">
-          <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="check"></prm-icon>
-          <span class="bu-button-text">report submitted</span>
+        <div id="bu-submit-status" class="layout-align-center-center" layout-row" layout="row" layout-align="center center" ng-if="$ctrl.submitFlow">
+          <span class="bu-button-text">{{submitMessage}}</span>
         </div>
 
         <!--Main Form Element-->
