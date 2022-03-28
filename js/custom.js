@@ -122,6 +122,13 @@ app.component('prm-search-after', {
           };
 
           $scope.userDesc='';
+
+          //set submit confirm as default message until wording/email are approved by PWG
+          //$scope.submitMessage = 'error  -  please contact libhelp@brocku.ca';
+          //$scope.submitColor = '#cc0000';
+          $scope.submitMessage = 'report submitted';
+          $scope.submitColor = '#0f7d00';
+
         };
 
 
@@ -174,7 +181,7 @@ app.component('prm-search-after', {
           };
 
         };
-
+ 
         //function for Submit Button
         //set submittd flag to true
         //call validation functions
@@ -210,37 +217,24 @@ app.component('prm-search-after', {
                                 }]
                               };
 
-              let url = '';
-
+              let url = '<insert url>';
+              
               $http.post(url, rmessage, {headers:{'Content-Type': 'application/json'}}).then(function successCallback(resp) {
 
-                if (url != '') {
+                if (url != '<insert url>') {
 
                   $scope.submitMessage = 'report submitted';
-                  document.getElementById('bu-submit-status').style.color = '#0f7d00';
-                  document.getElementById('bu-submit-status').style.backgroundColor = '#e2e2e2';
-
-                } else {
-
-                  $scope.submitMessage = 'error  -  please contact libhelp@brocku.ca';
-                  document.getElementById('bu-submit-status').style.color = '#cc0000';
-                  document.getElementById('bu-submit-status').style.backgroundColor = '#e2e2e2';
-
+                  $scope.submitColor = '#0f7d00';
+                  
                 };
-
-              }, function errorCallback(err) {
-
-                $scope.submitMessage = 'error  -  please contact libhelp@brocku.ca';
-                document.getElementById('bu-submit-status').style.color = '#cc0000';
-                document.getElementById('bu-submit-status').style.backgroundColor = '#e2e2e2';
-
+                
               });
 
             }, 0);
 
             setTimeout(() => {
               this.submitFlow = true;
-            }, 1);
+            }, 150);
 
             setTimeout(() => {
               document.getElementById('bu-submit-status').style.display = 'none';
@@ -266,7 +260,7 @@ app.component('prm-search-after', {
         </div>
 
         <!--Submission Confirmation Popup-->
-        <div id="bu-submit-status" class="layout-align-center-center" layout-row" layout="row" layout-align="center center" ng-if="$ctrl.submitFlow">
+        <div id="bu-submit-status" class="layout-align-center-center" style="color: {{submitColor}}; background-color: {{submitBGC}};" layout-row" layout="row" layout-align="center center" ng-if="$ctrl.submitFlow">
           <span class="bu-button-text">{{submitMessage}}</span>
         </div>
 

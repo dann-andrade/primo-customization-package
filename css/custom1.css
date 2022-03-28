@@ -908,20 +908,11 @@ body {
 /*submit confirmation notification*/
 #bu-submit-status {
   width: 90%;
-  color: #0f7d00;
+  background-color: #e2e2e2;
   padding: 10px;
   border-radius: 2px;
   margin: 10px;
 }
-
-#bu-submit-fail {
-  width: 90%;
-  color: #cc0000;
-  padding: 10px;
-  border-radius: 2px;
-  margin: 10px;
-}
-
 
 /*invalid flag icons*/
 .warning-icon {
