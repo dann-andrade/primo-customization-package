@@ -79,7 +79,8 @@ app.component('prm-search-after', {
         //pull pnx data into scope variable
         // - Construct url and adds mmsid/recordid depending on what is available in pnx
         // - Adds title depending on material type 
-        //-  Initialize desc to empty string
+        // - Initialize desc to empty string
+        // - set submit confirm as default message until wording/email are approved by PWG
         this.$onInit = function () {  
 
           this.showForm = false;
@@ -122,12 +123,8 @@ app.component('prm-search-after', {
           };
 
           $scope.userDesc='';
-
-          //set submit confirm as default message until wording/email are approved by PWG
-          //$scope.submitMessage = 'error  -  please contact libhelp@brocku.ca';
-          //$scope.submitColor = '#cc0000';
-          $scope.submitMessage = 'report submitted';
-          $scope.submitColor = '#0f7d00';
+          $scope.submitMessage = 'error  -  please contact libhelp@brocku.ca';
+          $scope.submitColor = '#cc0000';
 
         };
 
@@ -190,12 +187,10 @@ app.component('prm-search-after', {
         // - show success popup 
         // - pull problem description
         // - post data via api lin
-        // -  
         // - Hide submission status report
         this.submitReport = function () {
 
           this.submitted = true;
-          
           
           this.validateEmail();
           
@@ -217,16 +212,12 @@ app.component('prm-search-after', {
                                 }]
                               };
 
-              let url = '<insert url>';
+              let url = '';
               
               $http.post(url, rmessage, {headers:{'Content-Type': 'application/json'}}).then(function successCallback(resp) {
 
-                if (url != '<insert url>') {
-
-                  $scope.submitMessage = 'report submitted';
-                  $scope.submitColor = '#0f7d00';
-                  
-                };
+                $scope.submitMessage = 'report submitted';
+                $scope.submitColor = '#0f7d00';
                 
               });
 
