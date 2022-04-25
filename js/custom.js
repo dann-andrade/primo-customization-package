@@ -123,7 +123,7 @@ app.component('prm-search-after', {
           };
 
           $scope.userDesc='';
-          $scope.submitMessage = 'error  -  please contact libhelp@brocku.ca';
+          $scope.submitMessage = 'error  -  please contact liberm@brocku.ca';
           $scope.submitColor = '#cc0000';
 
         };
