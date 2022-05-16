@@ -241,7 +241,7 @@ app.component('prm-search-after', {
                                 }]
                               };
 
-              let url = 'https://prod-08.westus.logic.azure.com:443/workflows/3ed6fdd6a8244ce5a9c5ae17c826b922/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=pVAZN1cylBIHAjq42Z8tu7okyHlD88Duff-gnfGF-7U';
+              let url = '';
               
               $http.post(url, rmessage, {headers:{'Content-Type': 'application/json'}}).then(function successCallback(resp) {
 
