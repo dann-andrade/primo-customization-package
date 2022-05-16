@@ -241,7 +241,7 @@ app.component('prm-search-after', {
                                 }]
                               };
 
-              let url = '';
+              let url = '<insert flow url>';
               
               $http.post(url, rmessage, {headers:{'Content-Type': 'application/json'}}).then(function successCallback(resp) {
 
