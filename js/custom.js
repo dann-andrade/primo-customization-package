@@ -84,9 +84,11 @@ app.component('prm-search-after', {
         this.$onInit = function () {  
 
           this.showForm = false;
-          this.validEmail = true
+          this.validEmail = false;
+          this.validDesc = false;
           this.submitFlow = false;
           this.submitted = false;
+          this.noEmail = true;
 
           $scope.rURL = window.location.href;
         
@@ -132,6 +134,7 @@ app.component('prm-search-after', {
         //function for Report Button
         //show form, toggle submission and success flags off
         //unhide the submit confirm, this is here in case someone double reports without refreshing
+        //re-initializes the desc to an empty string in case of double report
         this.showReportForm = function () {
 
           this.showForm = true;
@@ -142,6 +145,8 @@ app.component('prm-search-after', {
             document.getElementById('bu-submit-status').style.display = 'block';
           },0);
 
+          $scope.userDesc='';
+
         };
 
         // closing the form simple re-initializes everything (for now)
@@ -151,9 +156,31 @@ app.component('prm-search-after', {
 
         };
 
+        //use regex to determine validDesc flag from desc input
+        // - True if description contains some letters and false otherise
+        //if true pass data to scope
+        //if false set focus to field for input
+        this.validateDesc = function(){
+
+          let desc = document.getElementById("fdesc").value;
+
+          this.validDesc = /^[\s\S]*(?!\s*$).+$/.test(desc);
+
+          if (this.validDesc){
+            setTimeout(() => {
+              $scope.userDesc = desc;
+            },0);
+          } else {
+            setTimeout(() => {
+              document.getElementById('fdesc').focus();
+            },0);
+          };
+
+        };
+
         //use regex to determine validEmail flag from pemail input
         // - True if description contains properly formatted email address
-        //if field is empty pass anonymous in place of data
+        //if field is empty adjust error message
         //if true pass data to scope
         //if false set focus to field for input
         this.validateEmail = function () {
@@ -162,9 +189,10 @@ app.component('prm-search-after', {
           
           this.validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(pemail);
 
+          $scope.emailError = "invalid email";
+
           if (pemail == ''){
-            this.validEmail = true;
-            pemail = "Anonymous";
+            $scope.emailError = "email required";
           };
 
           if(this.validEmail){
@@ -193,8 +221,9 @@ app.component('prm-search-after', {
           this.submitted = true;
           
           this.validateEmail();
-          
-          if (this.validEmail) {
+          this.validateDesc();
+
+          if (this.validEmail && this.validDesc) {
 
             $scope.userDesc = document.getElementById("fdesc").value;
             this.showForm = false;
@@ -212,7 +241,7 @@ app.component('prm-search-after', {
                                 }]
                               };
 
-              let url = '';
+              let url = 'https://prod-08.westus.logic.azure.com:443/workflows/3ed6fdd6a8244ce5a9c5ae17c826b922/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=pVAZN1cylBIHAjq42Z8tu7okyHlD88Duff-gnfGF-7U';
               
               $http.post(url, rmessage, {headers:{'Content-Type': 'application/json'}}).then(function successCallback(resp) {
 
@@ -263,17 +292,23 @@ app.component('prm-search-after', {
               <!--Description Label-->
               <div class="layout-align-left-center" layout-row" layout="row" layout-align="left center">
                 <label style="font-family: Roboto,Helvetica Neue,sans-serif; margin: 5px 0 5px 10px;" name="descerror">What is the problem? </label>
+                <span class="bu-special-text" ng-if="$ctrl.validDesc == false && $ctrl.submitted">description required</span>
               </div>
 
               <!--Description Field-->
               <div class="layout-align-center-center" layout-row" layout="row" layout-align="center center">
-                <textarea id="fdesc" name="message" placeholder="Please provide as much detail as possible to help us understand how we might resolve the problem." aria-label="Describe your problem"></textarea>
+                <textarea id="fdesc" name="message" placeholder="Please provide as much detail as possible to help us understand how we might resolve the problem." (keyup)="$ctrl.validateDesc()" aria-label="Describe your problem"></textarea>
+                  
+                <!--Invalid Flag-->
+                <div class="layout-align-center-center layout-row warning-bg" layout="column" layout-align="center center" ng-if="$ctrl.validDesc == false && $ctrl.submitted">   
+                  <prm-icon class="warning-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
+                </div>
               </div>
 
               <!--Email Label-->
               <div class="layout-align-left-center layout-row margin-top-medium" layout="row" layout-align="left center">
                 <label style="font-family: Roboto,Helvetica Neue,sans-serif; margin: 5px 0 5px 10px;" name="emailerror">Would you like us to follow up with you? </label>
-                <span class="bu-special-text" ng-if="$ctrl.validEmail == false && $ctrl.submitted">invalid email</span>
+                <span class="bu-special-text" ng-if="$ctrl.validEmail == false && $ctrl.submitted">{{emailError}}</span>
               </div>
 
               <!--Email Field-->
