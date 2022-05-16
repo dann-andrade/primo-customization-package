@@ -307,13 +307,13 @@ app.component('prm-search-after', {
 
               <!--Email Label-->
               <div class="layout-align-left-center layout-row margin-top-medium" layout="row" layout-align="left center">
-                <label style="font-family: Roboto,Helvetica Neue,sans-serif; margin: 5px 0 5px 10px;" name="emailerror">Would you like us to follow up with you? </label>
+                <label style="font-family: Roboto,Helvetica Neue,sans-serif; margin: 5px 0 5px 10px;" name="emailerror">Please provide your email address so we can follow up with you. </label>
                 <span class="bu-special-text" ng-if="$ctrl.validEmail == false && $ctrl.submitted">{{emailError}}</span>
               </div>
 
               <!--Email Field-->
               <div class="layout-align-center-center margin-bottom-small" layout-row" layout="row" layout-align="center center">
-                <input id="femail" autofill="false" name="email" placeholder="If yes, please enter your email address" (keyup)="$ctrl.validateEmail()" aria-label="Enter your email">
+                <input id="femail" autofill="false" name="email" placeholder="Eg. aa00bb@brocku.ca" (keyup)="$ctrl.validateEmail()" aria-label="Enter your email">
                 
                 <!--Invalid Flag-->
                 <div class="layout-align-center-center layout-row warning-bg" layout="column" layout-align="center center" ng-if="$ctrl.validEmail == false && $ctrl.submitted"> 
