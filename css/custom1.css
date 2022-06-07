@@ -731,13 +731,14 @@ body {
   position: fixed;  
   bottom: -19em;
   right: 5em;
-  border-radius: 5px 5px 0 0;
+  border-radius: 0px;
   width: 17em;
   transition: all .2s ease-in-out;
   box-shadow: 3px 3px 10px rgba(185, 185, 185, 0.4);
   border: 1px solid rgba(185, 185, 185, 0.8);
   background-color: white;
   z-index: 99;
+  font-family: "Bliss Light","Trebuchet MS",sans-serif;
 }
 
 @media(max-width: 600px) {
@@ -759,7 +760,7 @@ body {
 
 #askus-popout[data-askus-popout-state="collapsed"] {  
   bottom: -19em;
-  width: 9em;  
+  width: 11em;  
 }
 
 #askus-popout[data-askus-popout-state="expanded"] {
@@ -785,19 +786,28 @@ body {
 
 #askus-popout a.tab-head img {
   height: 1.4em;
-  margin-right: 0.5em;
+  margin-left: 0.5em;
 }
 
 #askus-popout a.tab-head {
   color: white;
   background-color: #cc0000;
   margin-bottom: 0.4em;
-  padding-top: 0.5em;
-  padding-bottom: 0.75em;
+  padding-top: 0.75em;
+  padding-bottom: 1.2em;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
   margin-left: 0;
-  border-radius: 5px 5px 0 0;
+  border-radius: 0;
   display: flex;
   justify-content: center;
+  font-family: "Bliss Light","Trebuchet MS",sans-serif;
+  font-size:16px
+}
+
+#askus-popout[data-askus-popout-state="expanded"] a.tab-head {
+  padding-top: 0.75em;
+  padding-bottom: 0.5em;
 }
 
 #askus-popout ul {
@@ -823,6 +833,7 @@ body {
   color:#cc0000; 
   margin: 0 0 0 5px; 
   font-variant: small-caps;
+  float: right;
 }
 
 /* General Button Sytling*/

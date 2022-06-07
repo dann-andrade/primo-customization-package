@@ -46,7 +46,7 @@ app.component('prm-search-after', {
   var askus = document.createElement('div');
   askus.id = 'askus-popout';
   askus.setAttribute('data-askus-popout-state', 'collapsed'); 
-  askus.innerHTML = '<a class="tab-head" href="javascript:void()" ><img src="custom/01OCUL_BU-BU_DEFAULT/img/speech-bubble_white-fill-small.png" alt="">Ask a Librarian</a> \
+  askus.innerHTML = '<a class="tab-head" href="javascript:void()" >Ask Us Chat<img src="custom/01OCUL_BU-BU_DEFAULT/img/speech-bubble_white-fill-small-web.png" alt=""></a> \
   <div class="askus_tab"> \
   <!--<h2 class="askus_centre">Chat With Us</h2>--><!--Chat Button BEGIN--> \
       <div class="needs-js">chat loading...</div> \
