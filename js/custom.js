@@ -71,7 +71,9 @@ app.component('prm-search-after', {
   /******************* BrockU Report a Problem ***************************/
 
     app.controller('prmActionContainerAfterController', ['$scope', '$http',
-      function ($scope, $http) {
+      function ($http) {
+
+        let self = this;
 
         //initialize form to hidden
         //initialize invalid flags to initially hide warning icons
@@ -81,78 +83,78 @@ app.component('prm-search-after', {
         // - Adds title depending on material type 
         // - Initialize desc to empty string
         // - set submit confirm as default message until wording/email are approved by PWG
-        this.$onInit = function () {  
+        self.$onInit = function () {  
 
-          this.showForm = false;
-          this.validEmail = false;
-          this.validDesc = false;
-          this.submitFlow = false;
-          this.submitted = false;
-          this.noEmail = true;
+          self.showForm = false;
+          self.validEmail = false;
+          self.validDesc = false;
+          self.submitFlow = false;
+          self.submitted = false;
+          self.noEmail = true;
 
-          $scope.rURL = window.location.href;
+          self.rURL = window.location.href;
         
-          if (undefined != this.parentCtrl.item.pnx.display.mms) {
-            $scope.linkID = this.parentCtrl.item.pnx.display.mms[0];
-            $scope.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
-                          $scope.linkID +
+          if (undefined != self.parentCtrl.item.pnx.display.mms) {
+            self.linkID = self.parentCtrl.item.pnx.display.mms[0];
+            self.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
+                          self.linkID +
                           '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
-            $scope.itemMMSID = this.parentCtrl.item.pnx.display.mms[0];
-          } else if ((undefined != this.parentCtrl.item.pnx.display.source) && (this.parentCtrl.item.pnx.display.source == 'literatum:achs')) {
-            $scope.linkID = this.parentCtrl.item.pnx.control.sourcerecordid[0];
-            $scope.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
-                          $scope.linkID +
+            self.itemMMSID = self.parentCtrl.item.pnx.display.mms[0];
+          } else if ((undefined != self.parentCtrl.item.pnx.display.source) && (self.parentCtrl.item.pnx.display.source == 'literatum:achs')) {
+            self.linkID = self.parentCtrl.item.pnx.control.sourcerecordid[0];
+            self.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
+                          self.linkID +
                           '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
-            $scope.itemMMSID = this.parentCtrl.item.pnx.control.sourcerecordid[0];
+            self.itemMMSID = self.parentCtrl.item.pnx.control.sourcerecordid[0];
           } else {
-            $scope.linkID = this.parentCtrl.item.pnx.control.recordid[0];
-            $scope.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=' + 
-                            $scope.linkID +
+            self.linkID = self.parentCtrl.item.pnx.control.recordid[0];
+            self.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=' + 
+                            self.linkID +
                             '&context=PC&vid=01OCUL_BU:BU_DEFAULT&lang=en';
-            $scope.itemMMSID = 'n/a';
+            self.itemMMSID = 'n/a';
           };
 
-          if (undefined != this.parentCtrl.item.pnx.display.title) {
-            $scope.itemTitle = this.parentCtrl.item.pnx.display.title[0];
-          } else if (undefined != this.parentCtrl.item.pnx.addata.btitle) {
-            $scope.itemTitle = this.parentCtrl.item.pnx.addata.btitle[0];
-          } else if (undefined != this.parentCtrl.item.pnx.addata.jtitle) {
-            $scope.itemTitle = this.parentCtrl.item.pnx.addata.jtitle[0];
-          } else if (undefined != this.parentCtrl.item.pnx.addata.atitle) {
-            $scope.itemTitle = this.parentCtrl.item.pnx.addata.atitle[0];
+          if (undefined != self.parentCtrl.item.pnx.display.title) {
+            self.itemTitle = self.parentCtrl.item.pnx.display.title[0];
+          } else if (undefined != self.parentCtrl.item.pnx.addata.btitle) {
+            self.itemTitle = self.parentCtrl.item.pnx.addata.btitle[0];
+          } else if (undefined != self.parentCtrl.item.pnx.addata.jtitle) {
+            self.itemTitle = self.parentCtrl.item.pnx.addata.jtitle[0];
+          } else if (undefined != self.parentCtrl.item.pnx.addata.atitle) {
+            self.itemTitle = self.parentCtrl.item.pnx.addata.atitle[0];
           } else {
-            $scope.itemTitle = 'PNX TITLE ERROR'
+            self.itemTitle = 'PNX TITLE ERROR'
           };
 
-          $scope.userDesc='';
-          $scope.submitMessage = 'error  -  please contact liberm@brocku.ca';
-          $scope.submitColor = '#cc0000';
+          self.userDesc='';
+          self.submitMessage = 'error  -  please contact liberm@brocku.ca';
+          self.submitColor = '#cc0000';
 
         };
 
 
         //function for Report Button
         //show form, toggle submission and success flags off
-        //unhide the submit confirm, this is here in case someone double reports without refreshing
+        //unhide the submit confirm, self is here in case someone double reports without refreshing
         //re-initializes the desc to an empty string in case of double report
-        this.showReportForm = function () {
+        self.showReportForm = function () {
 
-          this.showForm = true;
-          this.submitFlow = false;
-          this.submitted = false;
+          self.showForm = true;
+          self.submitFlow = false;
+          self.submitted = false;
 
           setTimeout(() => {
-            document.getElementById('bu-submit-status').style.display = 'block';
+            document.getElementById('bu-submit-status').style.display = 'flex';
           },0);
 
-          $scope.userDesc='';
+          self.userDesc='';
 
         };
 
         // closing the form simple re-initializes everything (for now)
-        this.closeReportForm = function () {
+        self.closeReportForm = function () {
 
-          this.$onInit();
+          self.$onInit();
 
         };
 
@@ -160,15 +162,15 @@ app.component('prm-search-after', {
         // - True if description contains some letters and false otherise
         //if true pass data to scope
         //if false set focus to field for input
-        this.validateDesc = function(){
+        self.validateDesc = function(){
 
           let desc = document.getElementById("fdesc").value;
 
-          this.validDesc = /^[\s\S]*(?!\s*$).+$/.test(desc);
+          self.validDesc = /^[\s\S]*(?!\s*$).+$/.test(desc);
 
-          if (this.validDesc){
+          if (self.validDesc){
             setTimeout(() => {
-              $scope.userDesc = desc;
+              self.userDesc = desc;
             },0);
           } else {
             setTimeout(() => {
@@ -183,21 +185,21 @@ app.component('prm-search-after', {
         //if field is empty adjust error message
         //if true pass data to scope
         //if false set focus to field for input
-        this.validateEmail = function () {
+        self.validateEmail = function () {
 
           let pemail = document.getElementById("femail").value;
           
-          this.validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(pemail);
+          self.validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(pemail);
 
-          $scope.emailError = "invalid email";
+          self.emailError = "invalid email";
 
           if (pemail == ''){
-            $scope.emailError = "email required";
+            self.emailError = "email required";
           };
 
-          if(this.validEmail){
+          if(self.validEmail){
             setTimeout(() => {
-              $scope.userEmail = pemail;
+              self.userEmail = pemail;
             },0);
           } else {
             setTimeout(() => {
@@ -216,28 +218,28 @@ app.component('prm-search-after', {
         // - pull problem description
         // - post data via api lin
         // - Hide submission status report
-        this.submitReport = function () {
+        self.submitReport = function () {
 
-          this.submitted = true;
+          self.submitted = true;
           
-          this.validateEmail();
-          this.validateDesc();
+          self.validateEmail();
+          self.validateDesc();
 
-          if (this.validEmail && this.validDesc) {
+          if (self.validEmail && self.validDesc) {
 
-            $scope.userDesc = document.getElementById("fdesc").value;
-            this.showForm = false;
+            self.userDesc = document.getElementById("fdesc").value;
+            self.showForm = false;
 
             setTimeout(() => {
 
               let rmessage = {report: 
                                 [{ 
-                                  title: $scope.itemTitle, 
-                                  user: $scope.userEmail, 
-                                  desc: $scope.userDesc, 
-                                  url: $scope.itemURL,
-                                  rurl: $scope.rURL,
-                                  mmsid: $scope.itemMMSID
+                                  title: self.itemTitle, 
+                                  user: self.userEmail, 
+                                  desc: self.userDesc, 
+                                  url: self.itemURL,
+                                  rurl: self.rURL,
+                                  mmsid: self.itemMMSID
                                 }]
                               };
 
@@ -245,15 +247,15 @@ app.component('prm-search-after', {
               
               $http.post(url, rmessage, {headers:{'Content-Type': 'application/json'}}).then(function successCallback(resp) {
 
-                $scope.submitMessage = 'report submitted';
-                $scope.submitColor = '#0f7d00';
+                self.submitMessage = 'report submitted';
+                self.submitColor = '#0f7d00';
                 
               });
 
             }, 0);
 
             setTimeout(() => {
-              this.submitFlow = true;
+              self.submitFlow = true;
             }, 150);
 
             setTimeout(() => {
@@ -272,7 +274,7 @@ app.component('prm-search-after', {
       <div id="bu-rap" class="layout-align-center-center layout-row margin-bottom-medium margin-top-medium" layout="column" layout-align="center center">
 
         <!--Initial Report Button-->
-        <div ng-if="$ctrl.showForm == false">
+        <div ng-hide="$ctrl.showForm">
           <button id="bu-report-button" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Report problem" ng-click="$ctrl.showReportForm()">
             <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
             <span class="bu-button-text">report problem</span>
@@ -280,8 +282,8 @@ app.component('prm-search-after', {
         </div>
 
         <!--Submission Confirmation Popup-->
-        <div id="bu-submit-status" class="layout-align-center-center" style="color: {{submitColor}}; background-color: {{submitBGC}};" layout-row" layout="row" layout-align="center center" ng-if="$ctrl.submitFlow">
-          <span class="bu-button-text">{{submitMessage}}</span>
+        <div id="bu-submit-status" class="layout-align-center-center" style="color: {{$ctrl.submitColor}}; background-color: {{$ctrl.submitBGC}};" layout-row" layout="row" layout-align="center center" ng-show="$ctrl.submitFlow">
+          <span class="bu-button-text">{{$ctrl.submitMessage}}</span>
         </div>
 
         <!--Main Form Element-->
@@ -300,7 +302,7 @@ app.component('prm-search-after', {
                 <textarea id="fdesc" name="message" placeholder="Please provide as much detail as possible to help us understand how we might resolve the problem." (keyup)="$ctrl.validateDesc()" aria-label="Describe your problem"></textarea>
                   
                 <!--Invalid Flag-->
-                <div class="layout-align-center-center layout-row warning-bg" layout="column" layout-align="center center" ng-if="$ctrl.validDesc == false && $ctrl.submitted">   
+                <div class="layout-align-center-center layout-row warning-bg" layout="column" layout-align="center center" ng-show="$ctrl.validDesc == false && $ctrl.submitted">   
                   <prm-icon class="warning-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
                 </div>
               </div>
@@ -308,7 +310,7 @@ app.component('prm-search-after', {
               <!--Email Label-->
               <div class="layout-align-left-center layout-row margin-top-medium" layout="row" layout-align="left center">
                 <label style="font-family: Roboto,Helvetica Neue,sans-serif; margin: 5px 0 5px 10px;" name="emailerror">Please provide your email address so we can follow up with you. </label>
-                <span class="bu-special-text" ng-if="$ctrl.validEmail == false && $ctrl.submitted">{{emailError}}</span>
+                <span class="bu-special-text" ng-show="$ctrl.validEmail == false && $ctrl.submitted">{{$ctrl.emailError}}</span>
               </div>
 
               <!--Email Field-->
