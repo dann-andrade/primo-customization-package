@@ -70,10 +70,10 @@ app.component('prm-search-after', {
 
   /******************* BrockU Report a Problem ***************************/
 
-    app.controller('prmActionContainerAfterController', ['$scope', '$http',
+    app.controller('prmActionContainerAfterController', ['$http',
       function ($http) {
 
-        let self = this;
+        var self = this;
 
         //initialize form to hidden
         //initialize invalid flags to initially hide warning icons
