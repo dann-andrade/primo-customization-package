@@ -70,8 +70,8 @@ app.component('prm-search-after', {
 
   /******************* BrockU Report a Problem ***************************/
 
-    app.controller('prmActionContainerAfterController', ['$http',
-      function ($http) {
+    app.controller('prmActionContainerAfterController', ['$scope', '$http',
+      function ($scope, $http) {
 
         var self = this;
 
@@ -190,6 +190,7 @@ app.component('prm-search-after', {
             setTimeout(() => {
               self.submitFlow = false;
               self.submitSuccess = false;
+              $scope.$apply();
             }, 5000);
           };
         };
