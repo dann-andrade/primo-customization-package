@@ -243,10 +243,13 @@ app.component('prm-search-after', {
               <div id="bu-faq-button-items">
                 <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"
                 ng-if="$ctrl.showFAQ"></prm-icon>
+
                 <span class="bu-button-text"
                 ng-if="$ctrl.showFAQ">close</span>
+
                 <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="chevron-down"
                 ng-if="!$ctrl.showFAQ"></prm-icon>
+                
                 <span class="bu-button-text"
                 ng-if="!$ctrl.showFAQ">view faq</span>
               </div>
@@ -279,7 +282,7 @@ app.component('prm-search-after', {
             <div id="bu-form-items"> 
 
               <!--Description Label-->
-              <div class="layout-align-left-center" layout="row" layout-align="left center">
+              <div class="layout-align-left-center layout-row margin-top-small bu-label-wrap" layout="row" layout-align="left center">
                 <label class="bu-label-text" name="descerror">What is the problem? </label>
               </div>
 
@@ -299,7 +302,7 @@ app.component('prm-search-after', {
               </div>
 
               <!--Email Label-->
-              <div class="layout-align-left-center layout-row margin-top-medium" layout="row" layout-align="left center">
+              <div class="layout-align-left-center layout-row margin-top-medium bu-label-wrap" layout="row" layout-align="left center">
                 <label class="bu-label-text" name="emailerror">Please provide your email address so we can follow up with you. </label>
               </div>
 

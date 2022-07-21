@@ -889,6 +889,9 @@ body {
   font-family: Roboto,Helvetica Neue,sans-serif; 
   margin: 5px 0 5px 10px;
 }
+.bu-label-wrap {
+  width: 100%;
+}
 /*email field*/
 #femail {
   width: 100%;
@@ -965,7 +968,7 @@ body {
   width: 80%;
   background-color: #e2e2e2;
   border-radius: 2px;
-  padding: 5px;
+  padding: 5px 17px 5px 17px;
   box-shadow: 0 0 10px #b3b3b3;
   margin: 0 0 15px 0;
 }
@@ -991,7 +994,13 @@ body {
   position: relative;
   right: 5px;
 }
-
+/* Mobile Width Styles*/
+@media (max-width: 630px) {
+  .bu-special-text-wrap {
+    float:none;
+    position: static;
+  }
+}
 
 /* END Report a Problem Button */
 
