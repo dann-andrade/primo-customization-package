@@ -135,6 +135,7 @@ app.component('prm-search-after', {
           self.submitFlow = false;
           self.submitted = false;
           self.submitConf = false;
+          self.showFAQ = false;
 
         };
 
@@ -145,6 +146,10 @@ app.component('prm-search-after', {
 
         };
 
+        self.toggleFAQ = function () {
+
+          self.showFAQ = !self.showFAQ
+        };
 
         //function for Submit Button
         //set submittd flag to true
@@ -207,25 +212,69 @@ app.component('prm-search-after', {
         <div ng-hide="$ctrl.showForm">
           <button id="bu-report-button" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Report problem" 
           ng-click="$ctrl.showReportForm()">
-            <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
+            <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
             <span class="bu-button-text">report problem</span>
           </button>
         </div>
 
-        <!--Submission Confirmation Popup-->
-
+        <!--Submission Success Popup-->
         <div id="bu-submit-success" class="layout-align-center-center bu-submit-conf" layout="row" layout-align="center center" 
-        ng-show="$ctrl.submitFlow && $ctrl.submitSuccess">
+        ng-if="$ctrl.submitFlow && $ctrl.submitSuccess">
           <span class="bu-button-text">report submitted</span>
         </div>
+
+        <!--Submission Fail Popup-->
         <div id="bu-submit-fail" class="layout-align-center-center bu-submit-conf" layout="row" layout-align="center center" 
-        ng-show="$ctrl.submitFlow && !$ctrl.submitSuccess">
+        ng-if="$ctrl.submitFlow && !$ctrl.submitSuccess">
           <span class="bu-button-text">error  -  please contact liberm@brocku.ca</span>
         </div>
 
+        <!-- FAQ -->
+        <div id="bu-faq" class="layout-align-center-center layout-column" layout="column" layout-align="center center"
+        ng-if="$ctrl.showForm">
+          <div id="bu-faq-wrap" class="layout-align-center-center layout-row" layout="row" layout-align="center center">
+
+            <!-- Main Label -->
+            <label id="bu-faq-label">Please read our FAQ to learn about common problems and solutions</label>
+
+            <!-- FAQ toggle button -->
+            <button class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected bu-faq-button" type="button" aria-label="Read FAQ" 
+            ng-click="$ctrl.toggleFAQ()">
+              <div id="bu-faq-button-items">
+                <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"
+                ng-if="$ctrl.showFAQ"></prm-icon>
+                <span class="bu-button-text"
+                ng-if="$ctrl.showFAQ">close</span>
+                <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="chevron-down"
+                ng-if="!$ctrl.showFAQ"></prm-icon>
+                <span class="bu-button-text"
+                ng-if="!$ctrl.showFAQ">view faq</span>
+              </div>
+            </button>
+          </div>
+
+          <!-- FAQ text -->
+          <div class="layout-align-center-center layout-row" layout="row" layout-align="center center">
+            <p id="bu-faq-text"
+              ng-show="$ctrl.showFAQ"> 
+              <b>Problem</b>: When I click on the link, I get an error message.<br />
+              <b>Solution</b>: Retry the link in another browser, or try an incognito/private window in your preferred browser. Another option is to clear your preferred browser’s cache.<br /><br />
+              
+              <b>Problem</b>: I clicked on an article link, but don’t see the fulltext of that article. Instead the link goes to the journal landing page.<br />
+              <b>Solution</b>: Sometimes publishers don’t provide direct links to articles. You may need to navigate the journal webpage by first selecting the correct volume and issue, or by 
+              copying and pasting the article title in the webpage’s search box.<br /><br />
+              
+              <b>Problem</b>: My search results in Omni doesn’t offer fulltext, just this message: ‘The library doesn't have the article? Request it via Interlibrary Loan’.<br />
+              <b>Solution</b>: Sign into Omni using the link provided on that page, and then click on the ‘Request it via Interlibrary Loan’ link to request this item from another library. We 
+              will notify you if/when it is available.<br /><br />
+              
+              Did these solutions not solve your problem? Please submit a report or email libhelp@brocku.ca and describe your problem. </p>
+          </div>
+        </div>
 
         <!--Main Form Element-->
         <div id="bu-report-form" ng-if="$ctrl.showForm">
+
           <form name="mform" class="layout-align-center-center layout-column" novalidate>
             <div id="bu-form-items"> 
 
@@ -241,8 +290,12 @@ app.component('prm-search-after', {
               </div>
 
               <!--Invalid Text-->
-              <div class="bu-special-text-wrap" class="layout-align-center-center"layout="row" layout-align="center center">
-                <span class="bu-special-text" ng-show="mform.fdesc.$invalid && ($ctrl.submitted || mform.fdesc.$touched)">description required</span>
+              <div class="bu-special-text-wrap" class="layout-align-center-center"layout="row" layout-align="center center"
+              ng-if="mform.fdesc.$invalid && ($ctrl.submitted || mform.fdesc.$touched)">
+                <div class="warning-bg">
+                  <prm-icon class="bu-special-text-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
+                </div>
+                <span class="bu-special-text" >description required</span>
               </div>
 
               <!--Email Label-->
@@ -257,9 +310,11 @@ app.component('prm-search-after', {
               </div>
 
               <!--Invalid Text-->
-              <div class="bu-special-text-wrap" class="layout-align-center-center" layout="row" layout-align="center center">
-                <span class="bu-special-text" ng-show="(mform.email.$invalid && !mform.email.$error.required) && ($ctrl.submitted || mform.email.$touched)">invalid email</span>
-                <span class="bu-special-text" ng-show="mform.email.$error.required && ($ctrl.submitted || mform.email.$touched)">email required</span>
+              <div class="bu-special-text-wrap" class="layout-align-center-center" layout="row" layout-align="center center"
+              ng-if="mform.email.$invalid && ($ctrl.submitted || mform.email.$touched)">
+                <prm-icon class="bu-special-text-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
+                <span class="bu-special-text" ng-if="!mform.email.$error.required">invalid email</span>
+                <span class="bu-special-text" ng-if="mform.email.$error.required">email required</span>
               </div>
 
             </div>
@@ -271,7 +326,7 @@ app.component('prm-search-after', {
             <!--Close Button-->
             <button id="bu-close-button"  class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Close form" 
             ng-click="$ctrl.closeReportForm()">
-              <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"></prm-icon>
+              <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"></prm-icon>
               <span class="bu-button-text">cancel</span>
             </button>
             
@@ -279,7 +334,7 @@ app.component('prm-search-after', {
             <!--Submit Button-->
             <button id="bu-submit-button" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="submit" aria-label="Submit report" 
             ng-click="$ctrl.submitReport(mform.$valid, remail, rdesc); mform.email.$setTouched(); mform.fdesc.$setTouched()">
-              <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="check"></prm-icon>
+              <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="check"></prm-icon>
               <span class="bu-button-text">submit</span>
             </button> 
           </div>

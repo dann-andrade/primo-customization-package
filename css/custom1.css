@@ -835,10 +835,18 @@ body {
   color: #f3f3f3;
   border-radius: 2px;
   padding: 0;
+  min-width: 105px;
+  min-height: 37px;
+}
+.bu-button-icon{
+  display: inline-block;
+  scale: 75%; 
 }
 .bu-button-text {
   font-variant: small-caps;
   text-transform: none;
+  position: relative;
+  top: 1px;
 }
 /*Animations*/
 #bu-rap button:hover {
@@ -850,14 +858,13 @@ body {
 }
 /*Main Button*/
 #bu-report-button {
-  width: 145px;
+  width: 155px;
   height: 35px;
   box-shadow: 0 0 5px #969696;
 }
 /*Cancel and Submit buttons*/
 #bu-form-buttons button {
-  width: 80px;
-  height: 35px;
+  height: 30px;
   border-radius: 2px;
   box-shadow: 0 0 5px #969696;
 }
@@ -893,9 +900,14 @@ body {
   font-family: Roboto,Helvetica Neue,sans-serif;
   box-shadow: 0 0 5px #b3b3b3 inset;
 }
+/*Send me a copy*/
+#bu-send-label {
+  font-family: Roboto,Helvetica Neue,sans-serif;
+  color: gray
+}
 /*input focus outline to red*/
 #femail.ng-invalid.ng-touched, #fdesc.ng-invalid.ng-touched {
-  outline: 2px solid #f3aeae;
+  outline: 2px solid #f78e8e;
   outline-offset: -1px;
 }
 /*input elements clear outline before focused element is touched or after element is valid*/
@@ -928,34 +940,59 @@ body {
 #bu-submit-fail {
   color: #cc0000;
 }
-/*invalid flag icons*/
-.warning-icon {
-  color: #e2e2e2;
-}
-.warning-bg {
-  margin-left: 8px;
-  height: 24px;
-  width: 24px;
-  background-color: #cc0000;
-  border-radius: 11px;
-  box-shadow: 0 0 5px #9c9c9c;
-}
+/*invalid input warnings*/
 .bu-special-text {
-  color: white;
-  background-color: #cc0000; 
-  margin: 0 0 0 5px; 
-  padding: 2px 10px 2px 10px;
+  color: #cc0000;
+  padding: 2px 0 2px 0;
   font-variant: small-caps;
   float: right;
   border-radius: 2px;
-  position: relative;
-  bottom: 29px;
-  right: 25px;
-  box-shadow: 0 0 10px #b3b3b3;
+  
 }
 .bu-special-text-wrap {
   float: right;
+  position: relative;
+  bottom: 33px;
+  right: 15px;
 }
+.bu-special-text-icon{
+  color: #cc0000;
+  scale: 85%; 
+  padding: 0 3px 0 0;
+}
+/* Faq/Common Problem styles*/
+#bu-faq {
+  width: 80%;
+  background-color: #e2e2e2;
+  border-radius: 2px;
+  padding: 5px;
+  box-shadow: 0 0 10px #b3b3b3;
+  margin: 0 0 15px 0;
+}
+#bu-faq-label{
+  font-family: Roboto,Helvetica Neue,sans-serif; 
+  margin: 5px 0 5px 0px;
+  padding: 0 9px 0 0;
+}
+#bu-faq-text{
+  font-family: Roboto,Helvetica Neue,sans-serif; 
+  margin: 15px 15px 15px 15px;
+  padding: 15px;
+  background-color: #f3f3f3;
+  box-shadow: 0 0 3px #969696;
+  line-height: 1.7em;
+}
+/*Common problems button*/
+.bu-faq-button {
+  margin: 0px !important;
+  box-shadow: 0 0 3px #969696;
+}
+#bu-faq-button-items {
+  position: relative;
+  right: 5px;
+}
+
+
 /* END Report a Problem Button */
 
 /*Hide select Omni locations on the REQUEST FORM in Alma*/
