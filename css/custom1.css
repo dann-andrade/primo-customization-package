@@ -863,6 +863,9 @@ body {
   box-shadow: 0 0 5px #969696;
 }
 /*Cancel and Submit buttons*/
+#bu-form-buttons {
+  margin: 15px 0 15px 0;
+}
 #bu-form-buttons button {
   height: 30px;
   border-radius: 2px;
@@ -965,12 +968,11 @@ body {
 }
 /* Faq/Common Problem styles*/
 #bu-faq {
-  width: 80%;
+  width: 100%;
   background-color: #e2e2e2;
   border-radius: 2px;
-  padding: 5px 17px 5px 17px;
-  box-shadow: 0 0 10px #b3b3b3;
-  margin: 0 0 15px 0;
+  padding: 10px 17px 10px 17px;
+  margin: 0 0 10px 0;
 }
 #bu-faq-label{
   font-family: Roboto,Helvetica Neue,sans-serif; 
@@ -979,20 +981,33 @@ body {
 }
 #bu-faq-text{
   font-family: Roboto,Helvetica Neue,sans-serif; 
-  margin: 15px 15px 15px 15px;
+  margin: 15px;
   padding: 15px;
   background-color: #f3f3f3;
   box-shadow: 0 0 3px #969696;
-  line-height: 1.7em;
+  line-height: 1.8em;
 }
-/*Common problems button*/
 .bu-faq-button {
   margin: 0px !important;
   box-shadow: 0 0 3px #969696;
+  box-shadow: 0 0 3px #292929;
 }
+
 #bu-faq-button-items {
   position: relative;
   right: 5px;
+}
+#faq-list {
+  list-style-type: none;
+  padding: 0 25px 0 25px;
+}
+#bu-sep{
+  width: 95%;
+  color: #ffffff;
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 /* Mobile Width Styles*/
 @media (max-width: 630px) {

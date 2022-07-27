@@ -229,54 +229,68 @@ app.component('prm-search-after', {
           <span class="bu-button-text">error  -  please contact liberm@brocku.ca</span>
         </div>
 
-        <!-- FAQ -->
-        <div id="bu-faq" class="layout-align-center-center layout-column" layout="column" layout-align="center center"
-        ng-if="$ctrl.showForm">
-          <div id="bu-faq-wrap" class="layout-align-center-center layout-row" layout="row" layout-align="center center">
-
-            <!-- Main Label -->
-            <label id="bu-faq-label">Please read our FAQ to learn about common problems and solutions</label>
-
-            <!-- FAQ toggle button -->
-            <button class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected bu-faq-button" type="button" aria-label="Read FAQ" 
-            ng-click="$ctrl.toggleFAQ()">
-              <div id="bu-faq-button-items">
-                <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"
-                ng-if="$ctrl.showFAQ"></prm-icon>
-
-                <span class="bu-button-text"
-                ng-if="$ctrl.showFAQ">close</span>
-
-                <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="chevron-down"
-                ng-if="!$ctrl.showFAQ"></prm-icon>
-                
-                <span class="bu-button-text"
-                ng-if="!$ctrl.showFAQ">view faq</span>
-              </div>
-            </button>
-          </div>
-
-          <!-- FAQ text -->
-          <div class="layout-align-center-center layout-row" layout="row" layout-align="center center">
-            <p id="bu-faq-text"
-              ng-show="$ctrl.showFAQ"> 
-              <b>Problem</b>: When I click on the link, I get an error message.<br />
-              <b>Solution</b>: Retry the link in another browser, or try an incognito/private window in your preferred browser. Another option is to clear your preferred browser’s cache.<br /><br />
-              
-              <b>Problem</b>: I clicked on an article link, but don’t see the fulltext of that article. Instead the link goes to the journal landing page.<br />
-              <b>Solution</b>: Sometimes publishers don’t provide direct links to articles. You may need to navigate the journal webpage by first selecting the correct volume and issue, or by 
-              copying and pasting the article title in the webpage’s search box.<br /><br />
-              
-              <b>Problem</b>: My search results in Omni doesn’t offer fulltext, just this message: ‘The library doesn't have the article? Request it via Interlibrary Loan’.<br />
-              <b>Solution</b>: Sign into Omni using the link provided on that page, and then click on the ‘Request it via Interlibrary Loan’ link to request this item from another library. We 
-              will notify you if/when it is available.<br /><br />
-              
-              Did these solutions not solve your problem? Please submit a report or email libhelp@brocku.ca and describe your problem. </p>
-          </div>
-        </div>
+        
 
         <!--Main Form Element-->
         <div id="bu-report-form" ng-if="$ctrl.showForm">
+
+            <!-- FAQ -->
+          <div id="bu-faq" class="layout-align-center-center layout-column" layout="column" layout-align="center center">
+            <div id="bu-faq-wrap" class="layout-align-center-center layout-row" layout="row" layout-align="center center">
+
+              <!-- Main Label -->
+              <label id="bu-faq-label">Please read our FAQ to learn about common problems and solutions</label>
+
+              <!-- FAQ toggle button -->
+              <button class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected bu-faq-button" type="button" aria-label="Read FAQ" 
+              ng-click="$ctrl.toggleFAQ()">
+                <div id="bu-faq-button-items">
+                  <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"
+                  ng-if="$ctrl.showFAQ"></prm-icon>
+
+                  <span class="bu-button-text"
+                  ng-if="$ctrl.showFAQ">close</span>
+
+                  <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="chevron-down"
+                  ng-if="!$ctrl.showFAQ"></prm-icon>
+                  
+                  <span class="bu-button-text"
+                  ng-if="!$ctrl.showFAQ">view faq</span>
+                </div>
+              </button>
+            </div>
+
+            <!-- FAQ text -->
+            <div id="bu-faq-text" class="layout-align-center-center layout-row" layout="row" layout-align="center center"
+              ng-show="$ctrl.showFAQ"> 
+                <ul id="faq-list">
+                  <li><b>1. The link is giving an error message.</b></li>
+
+                  <li>Solution: Retry the link through a new incognito/private window in your preferred browser, or retry the link in another browser 
+                  (<a href="https://library.viu.ca/privacy" target="_blank">instructions for private browsing</a>).
+                  <br />  
+                  If that fixes the problem, consider clearing your browser cache to avoid this problem in the future 
+                  (<a href="https://its.uiowa.edu/support/article/719" target="_blank">tips on clearing your browser cache</a>).</li>
+                  <br />
+                  <li><b>2. The link should have gone to a journal article, but instead went to an unexpected page.</b></li>
+                  <li> Solution: Sometimes publishers don’t provide links directly to the article, but instead send you to the home page for the journal. 
+                  In this case, copy and paste the article title in the search box of the publisher homepage, to find the article.</li>
+                  <br />
+                  <li><b>3. I’ve found the item I need in Omni, but I don’t see options for access.</b></li>
+                  <li>Solution: First ensure you are signed into your Omni account, to see all options for requesting the item. Watch a brief 
+                  <a href="https://youtu.be/DJZd9vpaKHk" target="_blank">video </a> to learn more. 
+                  <br />
+                  If there is no option in Omni for either print or online access, you can request the item from another library by submitting an 
+                  <a href="https://brocku.ca/library/interlibrary-loan/" target="_blank">interlibrary loan request</a>.</li> 
+                  <br />
+                  <li><b>Still have questions?</b>
+                  <li>Please contact us at 
+                  <a href="mailto:libhelp@brocku.ca" target="_blank">libhelp@brocku.ca</a>, and we’ll get back to you as soon as we can!</li>
+                </ul>
+            </div>
+          </div>
+
+          <hr id="bu-sep">
 
           <form name="mform" class="layout-align-center-center layout-column" novalidate>
             <div id="bu-form-items"> 
