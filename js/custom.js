@@ -360,7 +360,101 @@ app.component('prm-search-after', {
       `,
     });
    
-/******************* end - Adding Report a Problem link ***************************/
+  /******************* end - BrockU Report a Problem ***************************/
 
 
+  /******************* BrockU New Titles ***************************/
+
+  app.controller('prmSearchBarAfterController', ['$scope', '$http',
+  function ($scope, $http) {
+
+      var self = this;
+      
+      $scope.books = [
+            {
+                "isbn": "1551112000",
+                "mmsid": "991002992389705152"
+            },
+            {
+                "isbn": "1915070872",
+                "mmsid": "991009351620905152"
+            },
+            {
+                "isbn": "0199533989;",
+                "mmsid": "991009351621105152"
+            },
+            {
+                "isbn": "0367682060",
+                "mmsid": "991009351621405152"
+            },
+            {
+                "isbn": "1492598925",
+                "mmsid": "991009351623005152"
+            },
+            {
+                "isbn": "1492594229",
+                "mmsid": "991009351623405152"
+            },
+            {
+                "isbn": "1718200307",
+                "mmsid": "991009351623505152"
+            },
+            {
+                "isbn": "1492598496",
+                "mmsid": "991009351623605152"
+            },
+            {
+                "isbn": "1718202997",
+                "mmsid": "991009351624405152"
+            },
+            {
+                "isbn": "1718201729",
+                "mmsid": "991009351624505152"
+            },
+            {
+                "isbn": "9783030418113",
+                "mmsid": "991009351624605152"
+            },
+            {
+                "isbn": "9780367761714",
+                "mmsid": "991009351624705152"
+            },
+            {
+                "isbn": "1524635340",
+                "mmsid": "991009351720105152"
+            },
+            {
+                "isbn": "9781849171694",
+                "mmsid": "991009351720205152"
+            },
+            {
+                "isbn": "1771135689",
+                "mmsid": "991009351721505152"
+            }
+        ];
+      
+      self.$onInit = function () { 
+
+        
+
+      };
+
+    }]
+  );
+
+  app.component('prmSearchBarAfter', {
+  bindings: { parentCtrl: '<' },
+  controller: 'prmSearchBarAfterController',
+  template: `
+  <div id="bu-new-titles" class="layout-align-center-center layout-row margin-bottom-medium margin-top-medium" layout="column" layout-align="center center">
+    <div id="bu-nt-carousel">
+      <li class="bu-book" ng-repeat="book in books">
+        <img src="https://syndetics.com/index.php?client=primo&isbn={{book.isbn}}/mc.jpg"></img>
+      </li> 
+    </div>
+  </div>
+  `,
+  });
+
+  /******************* end - BrockU New Titles Display***************************/
 })();
