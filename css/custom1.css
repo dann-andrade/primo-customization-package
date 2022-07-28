@@ -940,6 +940,24 @@ body {
 
 /* END Report a Problem Button */
 
+
+/* New Titles Display */
+
+#bu-new-titles {
+  padding: 50px 0 20px 0;
+}
+#bu-nt-carousel {
+  height: 200px;
+  overflow: scroll;
+}
+.bu-book {
+  display: inline;
+  float: left;
+  list-style-type: none;
+}
+
+/* END New Titles Display */
+
 /*Hide select Omni locations on the REQUEST FORM in Alma*/
 /*makes sure that external patrons can't see weird locations at other Omni partners to request items to be sent to*/
 /*remove the section for your own institution from this set below so that these locations show up for your LOCAL patrons*/
