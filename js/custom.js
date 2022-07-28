@@ -347,4 +347,191 @@ app.component('prm-search-after', {
    
   /******************* end - BrockU Report a Problem ***************************/
 
+  /******************* BrockU A-Z List ***************************/
+
+  app.controller('prmBackToLibrarySearchButtonAfterController', ['$scope',  
+    function ($scope) {
+
+      this.$onInit = function () {
+
+        this.showAZList = false;
+
+        setTimeout(() => {
+ 
+          this.checkPage();
+
+        },0);
+
+      };
+
+
+      this.checkPage = function () {
+
+        let urlString = window.location.href;
+        
+        if (urlString.includes('dbsearch')) {
+          if (urlString.includes('dbsearch?vid=01OCUL_BU:BU_TEST_DAN')) {
+            setTimeout(() => {
+              window.open('http://10.20.124.28:8003/discovery/dbsearch?query=any,contains,%3F%3F&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F','_self');
+            }, 0);
+          };
+
+          setTimeout(() => {
+            this.showAZList = true; 
+            document.getElementById("facets").style.visibility = "hidden";
+          },0);
+        };
+      };
+
+      this.searchSub = function() {
+
+        // let urlString = 'http://10.20.124.28:8003/discovery/dbsearch?query=any,contains,%3F%3F&facet=topic,include,';
+        // urlString.concat($scope.sSubject); 
+        // urlString.concat('&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F');
+
+        console.log($scope.sSubject);
+
+        //window.open('http://10.20.124.28:8003/discovery/dbsearch?query=any,contains,%3F%3F&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F','_self');
+
+
+      };
+
+    }]
+  );
+
+  app.component('prmBackToLibrarySearchButtonAfter', {
+    bindings: { parentCtrl: '<' },
+    controller: 'prmBackToLibrarySearchButtonAfterController',
+    template: `
+    <div id="bu-azlist" class="layout-align-center-center layout-row" layout="row" layout-align="center center" ng-if="$ctrl.showAZList">
+
+      <div id="azlist-main" class="layout-align-center-center layout-column" layout="column" layout-align="center center">
+
+        <div id="azlist-top" class="layout-align-center-center layout-row" layout="row" layout-align="center center">  
+          
+          <div id="azlist-col-subject" class="azlist-col">
+            <select class="azlist-fcontrol" name="azlist-subjects" id="azlist-subjects" aria-label="Select Subject" ng-model="sSubject" = ng-change="$ctrl.searchSub()">
+              <option value="">All Subjects</option>
+              <option value="132168">Accounting and Finance (26)</option>
+              <option value="132153">Applied Disability Studies (25)</option>
+              <option value="23160">Applied Health Sciences (9)</option>
+              <option value="132160">Applied Linguistics (16)</option>
+              <option value="132166">Biological Sciences (40)</option>
+              <option value="23159">Business (29)</option>
+              <option value="132130">Canadian Studies (19)</option>
+              <option value="132164">Chemistry (62)</option>
+              <option value="132133">Child and Youth Studies (20)</option>
+              <option value="132137">Classics (18)</option>
+              <option value="132171">Communication (11)</option>
+              <option value="132151">Computer Science (10)</option>
+              <option value="132154">Dramatic Arts (20)</option>
+              <option value="132163">Earth Sciences (37)</option>
+              <option value="132150">Economics (34)</option>
+              <option value="23161">Education (20)</option>
+              <option value="132139">English Language and Literature (41)</option>
+              <option value="132149">Entrepreneurship (14)</option>
+              <option value="132170">Film Studies (15)</option>
+              <option value="132324">Game Design and Programming (2)</option>
+              <option value="132162">Geography (28)</option>
+              <option value="132757">Gerontology (10)</option>
+              <option value="132181">Health Sciences (18)</option>
+              <option value="132134">History (69)</option>
+              <option value="132167">Indigenous Studies (16)</option>
+              <option value="132142">Information Technology (6)</option>
+              <option value="132175">Interdisciplinary Humanities (10)</option>
+              <option value="132183">Kinesiology (11)</option>
+              <option value="132161">Labour Studies (23)</option>
+              <option value="132180">Legal Information (7)</option>
+              <option value="132136">Liberal Arts (14)</option>
+              <option value="132146">Management (12)</option>
+              <option value="132145">Marketing (21)</option>
+              <option value="132159">Mathematics and Statistics (35)</option>
+              <option value="132176">Medieval and Renaissance Studies (18)</option>
+              <option value="132174">Modern Languages, Literature and Cultures (25)</option>
+              <option value="132152">Multidisciplinary (47)</option>
+              <option value="132158">Music (18)</option>
+              <option value="132173">Neuroscience (24)</option>
+              <option value="136074">Niagara (10)</option>
+              <option value="132179">Nursing (17)</option>
+              <option value="132178">Occupational Health and Safety (8)</option>
+              <option value="132144">Oenology and Viticulture (29)</option>
+              <option value="132141">Operations Management (7)</option>
+              <option value="132147">Organizational Behavior and Human Resources (16)</option>
+              <option value="132157">Philosophy (9)</option>
+              <option value="132156">Physics (59)</option>
+              <option value="132155">Political Science (37)</option>
+              <option value="132129">Popular Culture (15)</option>
+              <option value="130791">Psychology (26)</option>
+              <option value="132182">Recreation and Leisure Studies (9)</option>
+              <option value="132132">Sociology (28)</option>
+              <option value="132143">Sport Management (9)</option>
+              <option value="132148">Tourism Studies (27)</option>
+              <option value="132128">Visual Arts (22)</option>
+              <option value="132135">Women's and Gender Studies (19)</option>
+            </select> 
+          </div>
+
+          <div id="azlist-col-type" class="azlist-col">
+            <select class="azlist-fcontrol name="azlist-types" id="azlist-types" aria-label="Select Type">
+              <option value="all">All Database Types</option>
+              <option value="alumni">Alumni (188)</option>
+              <option value="biography">Biography (3)</option>
+              <option value="news">News (26)</option>
+              <option value="openaccess">Open Access (120)</option>
+              <option value="primarysources">Primary Sources (35)</option>
+              <option value="references">References (11)</option>
+              <option value="statisticsanddata">Statistics and Data (23)</option>
+              <option value="streamingvideo">Streaming Video (12)</option>
+            </select> 
+          </div>
+
+          <div id="azlist-col-search" class="azlist-col layout-align-center-center layout-row" layout="row" layout-align="center center">
+            <input type="text" id="azlist-search" placeholder="Search for Databases">
+            <button id="azlist-go-btn" type="button" aria-label="Submit for Search Results">
+              <span>Go</span>
+            </button>
+          </div>
+
+        </div>
+
+        <div id="azlist-bottom" class="layout-align-center-center layout-row" layout="row" layout-align="center center">
+
+          <div id="azlist-alpha" class="layout-align-center-center layout-row" layout="row" layout-align="center center">
+        <button type="button" class="azlist-btn-alpha" id="azlist-btn-all" aria-label="Search for All"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=any,contains,%3F%3F&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">All</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-a" aria-label="Search for A"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,A&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">A</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-b" aria-label="Search for B"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,B&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">B</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-c" aria-label="Search for C"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,C&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">C</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-d" aria-label="Search for D"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,D&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">D</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-e" aria-label="Search for E"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,E&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">E</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-f" aria-label="Search for F"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,F&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">F</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-g" aria-label="Search for G"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,G&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">G</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-h" aria-label="Search for H"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,H&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">H</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-i" aria-label="Search for I"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,I&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">I</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-j" aria-label="Search for J"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,J&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">J</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-k" aria-label="Search for K"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,K&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">K</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-l" aria-label="Search for L"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,L&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">L</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-m" aria-label="Search for M"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,M&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">M</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-n" aria-label="Search for N"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,N&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">N</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-o" aria-label="Search for O"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,O&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">O</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-p" aria-label="Search for P"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,P&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">P</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-q" aria-label="Search for Q"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,Q&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">Q</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-r" aria-label="Search for R"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,R&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">R</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-s" aria-label="Search for S"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,S&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">S</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-t" aria-label="Search for T"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,T&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">T</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-u" aria-label="Search for U"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,U&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">U</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-v" aria-label="Search for V"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,V&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">V</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-w" aria-label="Search for W"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,W&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">W</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-x" aria-label="Search for X"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,X&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">X</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-y" aria-label="Search for Y"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,Y&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">Y</a></button>
+            <button type="button" class="azlist-btn-alpha" id="azlist-btn-z" aria-label="Search for Z"><a href="http://10.20.124.28:8003/discovery/dbsearch?query=title,begins_with,Z&sortby=title&tab=jsearch_slot&vid=01OCUL_BU:BU_TEST_DAN&offset=0&databases=any,%3F%3F">Z</a></button>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+    `,
+  });
+
+  /******************* END BrockU A-Z List ***************************/
+
 })();
