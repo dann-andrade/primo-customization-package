@@ -70,8 +70,8 @@ app.component('prm-search-after', {
 
   /******************* BrockU Report a Problem ***************************/
 
-    app.controller('prmActionContainerAfterController', ['$scope', '$http',
-      function ($scope, $http) {
+    app.controller('prmActionContainerAfterController', ['$http',
+      function ($http) {
 
         var self = this;
 
@@ -86,8 +86,11 @@ app.component('prm-search-after', {
         self.$onInit = function () {  
 
           self.showForm = false;
+          self.validEmail = false;
+          self.validDesc = false;
           self.submitFlow = false;
           self.submitted = false;
+          self.noEmail = true;
 
           self.rURL = window.location.href;
         
@@ -122,6 +125,11 @@ app.component('prm-search-after', {
           } else {
             self.itemTitle = 'PNX TITLE ERROR'
           };
+
+          self.userDesc='';
+          self.submitMessage = 'error  -  please contact liberm@brocku.ca';
+          self.submitColor = '#cc0000';
+
         };
 
 
@@ -134,8 +142,12 @@ app.component('prm-search-after', {
           self.showForm = true;
           self.submitFlow = false;
           self.submitted = false;
-          self.submitConf = false;
-          self.showFAQ = false;
+
+          setTimeout(() => {
+            document.getElementById('bu-submit-status').style.display = 'flex';
+          },0);
+
+          self.userDesc='';
 
         };
 
@@ -146,11 +158,57 @@ app.component('prm-search-after', {
 
         };
 
-        self.toggleFAQ = function () {
+        //use regex to determine validDesc flag from desc input
+        // - True if description contains some letters and false otherise
+        //if true pass data to scope
+        //if false set focus to field for input
+        self.validateDesc = function(){
 
-          self.showFAQ = !self.showFAQ
+          let desc = document.getElementById("fdesc").value;
+
+          self.validDesc = /^[\s\S]*(?!\s*$).+$/.test(desc);
+
+          if (self.validDesc){
+            setTimeout(() => {
+              self.userDesc = desc;
+            },0);
+          } else {
+            setTimeout(() => {
+              document.getElementById('fdesc').focus();
+            },0);
+          };
+
         };
 
+        //use regex to determine validEmail flag from pemail input
+        // - True if description contains properly formatted email address
+        //if field is empty adjust error message
+        //if true pass data to scope
+        //if false set focus to field for input
+        self.validateEmail = function () {
+
+          let pemail = document.getElementById("femail").value;
+          
+          self.validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(pemail);
+
+          self.emailError = "invalid email";
+
+          if (pemail == ''){
+            self.emailError = "email required";
+          };
+
+          if(self.validEmail){
+            setTimeout(() => {
+              self.userEmail = pemail;
+            },0);
+          } else {
+            setTimeout(() => {
+              document.getElementById('femail').focus();
+            },0);
+          };
+
+        };
+ 
         //function for Submit Button
         //set submittd flag to true
         //call validation functions
@@ -160,12 +218,16 @@ app.component('prm-search-after', {
         // - pull problem description
         // - post data via api lin
         // - Hide submission status report
-        self.submitReport = function (valid, remail, rdesc) {
+        self.submitReport = function () {
 
-          self.submitted = true;       
+          self.submitted = true;
+          
+          self.validateEmail();
+          self.validateDesc();
 
-          if (valid) {
+          if (self.validEmail && self.validDesc) {
 
+            self.userDesc = document.getElementById("fdesc").value;
             self.showForm = false;
 
             setTimeout(() => {
@@ -173,19 +235,23 @@ app.component('prm-search-after', {
               let rmessage = {report: 
                                 [{ 
                                   title: self.itemTitle, 
-                                  user: remail, 
-                                  desc: rdesc, 
+                                  user: self.userEmail, 
+                                  desc: self.userDesc, 
                                   url: self.itemURL,
                                   rurl: self.rURL,
                                   mmsid: self.itemMMSID
                                 }]
                               };
 
-              let url = '<insert flow url>';
-
+              let url = 'https://prod-38.westus.logic.azure.com:443/workflows/8d36d7d4bd034615bb5cc1c3b0fee268/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=nse5QpflC-OuYyGDeChf3lp2fU_WhODKi3xyAcSVZWI';
+              
               $http.post(url, rmessage, {headers:{'Content-Type': 'application/json'}}).then(function successCallback(resp) {
-                self.submitSuccess = true;
+
+                self.submitMessage = 'report submitted';
+                self.submitColor = '#0f7d00';
+                
               });
+
             }, 0);
 
             setTimeout(() => {
@@ -193,10 +259,9 @@ app.component('prm-search-after', {
             }, 150);
 
             setTimeout(() => {
-              self.submitFlow = false;
-              self.submitSuccess = false;
-              $scope.$apply();
+              document.getElementById('bu-submit-status').style.display = 'none';
             }, 5000);
+
           };
         };
       }]
@@ -210,148 +275,68 @@ app.component('prm-search-after', {
 
         <!--Initial Report Button-->
         <div ng-hide="$ctrl.showForm">
-          <button id="bu-report-button" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Report problem" 
-          ng-click="$ctrl.showReportForm()">
-            <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
+          <button id="bu-report-button" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Report problem" ng-click="$ctrl.showReportForm()">
+            <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
             <span class="bu-button-text">report problem</span>
           </button>
         </div>
 
-        <!--Submission Success Popup-->
-        <div id="bu-submit-success" class="layout-align-center-center bu-submit-conf" layout="row" layout-align="center center" 
-        ng-if="$ctrl.submitFlow && $ctrl.submitSuccess">
-          <span class="bu-button-text">report submitted</span>
+        <!--Submission Confirmation Popup-->
+        <div id="bu-submit-status" class="layout-align-center-center" style="color: {{$ctrl.submitColor}}; background-color: {{$ctrl.submitBGC}};" layout-row" layout="row" layout-align="center center" ng-show="$ctrl.submitFlow">
+          <span class="bu-button-text">{{$ctrl.submitMessage}}</span>
         </div>
-
-        <!--Submission Fail Popup-->
-        <div id="bu-submit-fail" class="layout-align-center-center bu-submit-conf" layout="row" layout-align="center center" 
-        ng-if="$ctrl.submitFlow && !$ctrl.submitSuccess">
-          <span class="bu-button-text">error  -  please contact liberm@brocku.ca</span>
-        </div>
-
-        
 
         <!--Main Form Element-->
         <div id="bu-report-form" ng-if="$ctrl.showForm">
-
-            <!-- FAQ -->
-          <div id="bu-faq" class="layout-align-center-center layout-column" layout="column" layout-align="center center">
-            <div id="bu-faq-wrap" class="layout-align-center-center layout-row" layout="row" layout-align="center center">
-
-              <!-- Main Label -->
-              <label id="bu-faq-label">Please read our FAQ to learn about common problems and solutions</label>
-
-              <!-- FAQ toggle button -->
-              <button class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected bu-faq-button" type="button" aria-label="Read FAQ" 
-              ng-click="$ctrl.toggleFAQ()">
-                <div id="bu-faq-button-items">
-                  <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"
-                  ng-if="$ctrl.showFAQ"></prm-icon>
-
-                  <span class="bu-button-text"
-                  ng-if="$ctrl.showFAQ">close</span>
-
-                  <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="chevron-down"
-                  ng-if="!$ctrl.showFAQ"></prm-icon>
-                  
-                  <span class="bu-button-text"
-                  ng-if="!$ctrl.showFAQ">view faq</span>
-                </div>
-              </button>
-            </div>
-
-            <!-- FAQ text -->
-            <div id="bu-faq-text" class="layout-align-center-center layout-row" layout="row" layout-align="center center"
-              ng-show="$ctrl.showFAQ"> 
-                <ul id="faq-list">
-                  <li><b>1. The link is giving an error message.</b></li>
-
-                  <li>Solution: Retry the link through a new incognito/private window in your preferred browser, or retry the link in another browser 
-                  (<a href="https://library.viu.ca/privacy" target="_blank">instructions for private browsing</a>).
-                  <br />  
-                  If that fixes the problem, consider clearing your browser cache to avoid this problem in the future 
-                  (<a href="https://its.uiowa.edu/support/article/719" target="_blank">tips on clearing your browser cache</a>).</li>
-                  <br />
-                  <li><b>2. The link should have gone to a journal article, but instead went to an unexpected page.</b></li>
-                  <li> Solution: Sometimes publishers don’t provide links directly to the article, but instead send you to the home page for the journal. 
-                  In this case, copy and paste the article title in the search box of the publisher homepage, to find the article.</li>
-                  <br />
-                  <li><b>3. I’ve found the item I need in Omni, but I don’t see options for access.</b></li>
-                  <li>Solution: First ensure you are signed into your Omni account, to see all options for requesting the item. Watch a brief 
-                  <a href="https://youtu.be/DJZd9vpaKHk" target="_blank">video </a> to learn more. 
-                  <br />
-                  If there is no option in Omni for either print or online access, you can request the item from another library by submitting an 
-                  <a href="https://brocku.ca/library/interlibrary-loan/" target="_blank">interlibrary loan request</a>.</li> 
-                  <br />
-                  <li><b>Still have questions?</b>
-                  <li>Please contact us at 
-                  <a href="mailto:libhelp@brocku.ca" target="_blank">libhelp@brocku.ca</a>, and we’ll get back to you as soon as we can!</li>
-                </ul>
-            </div>
-          </div>
-
-          <hr id="bu-sep">
-
-          <form name="mform" class="layout-align-center-center layout-column" novalidate>
+          <form class="layout-align-center-center layout-column">
             <div id="bu-form-items"> 
 
               <!--Description Label-->
-              <div class="layout-align-left-center layout-row margin-top-small bu-label-wrap" layout="row" layout-align="left center">
-                <label class="bu-label-text" name="descerror">What is the problem? </label>
+              <div class="layout-align-left-center" layout-row" layout="row" layout-align="left center">
+                <label style="font-family: Roboto,Helvetica Neue,sans-serif; margin: 5px 0 5px 10px;" name="descerror">What is the problem? </label>
+                <span class="bu-special-text" ng-if="$ctrl.validDesc == false && $ctrl.submitted">description required</span>
               </div>
 
               <!--Description Field-->
-              <div class="layout-align-center-center" layout="row" layout-align="center center">
-                <textarea id="fdesc" name="fdesc" placeholder="Please provide as much detail as possible to help us understand how we might resolve the problem." 
-                aria-label="Describe your problem" ng-model="rdesc" required></textarea>
-              </div>
-
-              <!--Invalid Text-->
-              <div class="bu-special-text-wrap" class="layout-align-center-center"layout="row" layout-align="center center"
-              ng-if="mform.fdesc.$invalid && ($ctrl.submitted || mform.fdesc.$touched)">
-                <div class="warning-bg">
-                  <prm-icon class="bu-special-text-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
+              <div class="layout-align-center-center" layout-row" layout="row" layout-align="center center">
+                <textarea id="fdesc" name="message" placeholder="Please provide as much detail as possible to help us understand how we might resolve the problem." (keyup)="$ctrl.validateDesc()" aria-label="Describe your problem"></textarea>
+                  
+                <!--Invalid Flag-->
+                <div class="layout-align-center-center layout-row warning-bg" layout="column" layout-align="center center" ng-show="$ctrl.validDesc == false && $ctrl.submitted">   
+                  <prm-icon class="warning-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
                 </div>
-                <span class="bu-special-text" >description required</span>
               </div>
 
               <!--Email Label-->
-              <div class="layout-align-left-center layout-row margin-top-medium bu-label-wrap" layout="row" layout-align="left center">
-                <label class="bu-label-text" name="emailerror">Please provide your email address so we can follow up with you. </label>
+              <div class="layout-align-left-center layout-row margin-top-medium" layout="row" layout-align="left center">
+                <label style="font-family: Roboto,Helvetica Neue,sans-serif; margin: 5px 0 5px 10px;" name="emailerror">Please provide your email address so we can follow up with you. </label>
+                <span class="bu-special-text" ng-show="$ctrl.validEmail == false && $ctrl.submitted">{{$ctrl.emailError}}</span>
               </div>
 
               <!--Email Field-->
-              <div class="layout-align-center-center" layout="row" layout-align="center center">
-                <input id="femail" autofill="false" name="email" type="email" placeholder="Eg. aa00bb@brocku.ca" aria-label="Enter your email" 
-                ng-model="remail" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$" required>
+              <div class="layout-align-center-center margin-bottom-small" layout-row" layout="row" layout-align="center center">
+                <input id="femail" autofill="false" name="email" placeholder="Eg. aa00bb@brocku.ca" (keyup)="$ctrl.validateEmail()" aria-label="Enter your email">
+                
+                <!--Invalid Flag-->
+                <div class="layout-align-center-center layout-row warning-bg" layout="column" layout-align="center center" ng-if="$ctrl.validEmail == false && $ctrl.submitted"> 
+                  <prm-icon class="warning-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error" ></prm-icon>
+                </div>
               </div>
-
-              <!--Invalid Text-->
-              <div class="bu-special-text-wrap" class="layout-align-center-center" layout="row" layout-align="center center"
-              ng-if="mform.email.$invalid && ($ctrl.submitted || mform.email.$touched)">
-                <prm-icon class="bu-special-text-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
-                <span class="bu-special-text" ng-if="!mform.email.$error.required">invalid email</span>
-                <span class="bu-special-text" ng-if="mform.email.$error.required">email required</span>
-              </div>
-
             </div>
           </form>
 
           <!--Form Buttons-->
-          <div id="bu-form-buttons" class="layout-align-center-center margin-top-medium" layout="row" layout-align="center center" ng-if="$ctrl.showForm">
+          <div id="bu-form-buttons" class="layout-align-center-center layout-row" layout="row" layout-align="center center" ng-if="$ctrl.showForm">
             
             <!--Close Button-->
-            <button id="bu-close-button"  class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Close form" 
-            ng-click="$ctrl.closeReportForm()">
-              <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"></prm-icon>
+            <button id="bu-close-button"  class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Close form" ng-click="$ctrl.closeReportForm()">
+              <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"></prm-icon>
               <span class="bu-button-text">cancel</span>
             </button>
-            
 
             <!--Submit Button-->
-            <button id="bu-submit-button" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="submit" aria-label="Submit report" 
-            ng-click="$ctrl.submitReport(mform.$valid, remail, rdesc); mform.email.$setTouched(); mform.fdesc.$setTouched()">
-              <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="check"></prm-icon>
+            <button id="bu-submit-button" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="submit" aria-label="Submit report" ng-click="$ctrl.submitReport()">
+              <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="check"></prm-icon>
               <span class="bu-button-text">submit</span>
             </button> 
           </div>
