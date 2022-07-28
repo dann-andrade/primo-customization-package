@@ -829,26 +829,25 @@ body {
 #bu-rap label {
   text-shadow: 0 0 5px #b6b6b6;
 }
-.bu-special-text {
-  color:#cc0000; 
-  margin: 0 0 0 5px; 
-  font-variant: small-caps;
-  float: right;
-}
-
 /* General Button Sytling*/
 #bu-rap button {
   background-color: #cc0000;
   color: #f3f3f3;
   border-radius: 2px;
   padding: 0;
+  min-width: 105px;
+  min-height: 37px;
+}
+.bu-button-icon{
+  display: inline-block;
+  scale: 75%; 
 }
 .bu-button-text {
   font-variant: small-caps;
   text-transform: none;
+  position: relative;
+  top: 1px;
 }
-
-
 /*Animations*/
 #bu-rap button:hover {
   background-color: #202020;
@@ -857,22 +856,25 @@ body {
 #bu-rap button:active {
   transform: scale(0.97);
 }
-
 /*Main Button*/
 #bu-report-button {
-  width: 145px;
+  width: 155px;
   height: 35px;
   box-shadow: 0 0 5px #969696;
 }
-
 /*Cancel and Submit buttons*/
+#bu-form-buttons {
+  margin: 15px 0 15px 0;
+}
 #bu-form-buttons button {
-  width: 80px;
-  height: 35px;
+  height: 30px;
   border-radius: 2px;
   box-shadow: 0 0 5px #969696;
 }
-
+/*Disabled button styles*/
+#bu-submit-button:disabled {
+  background: gray;
+}
 /*form bg*/
 #bu-report-form {
   width: 80%;
@@ -885,7 +887,14 @@ body {
 #bu-form-items {
   width: 100%;
 }
-
+/*field labels*/
+.bu-label-text {
+  font-family: Roboto,Helvetica Neue,sans-serif; 
+  margin: 5px 0 5px 10px;
+}
+.bu-label-wrap {
+  width: 100%;
+}
 /*email field*/
 #femail {
   width: 100%;
@@ -897,12 +906,20 @@ body {
   font-family: Roboto,Helvetica Neue,sans-serif;
   box-shadow: 0 0 5px #b3b3b3 inset;
 }
-
-/*input focus outline to red*/
-#femail:focus, #fdesc:focus {
-  outline: 2px solid #cc0000;
+/*Send me a copy*/
+#bu-send-label {
+  font-family: Roboto,Helvetica Neue,sans-serif;
+  color: gray
 }
-
+/*input focus outline to red*/
+#femail.ng-invalid.ng-touched, #fdesc.ng-invalid.ng-touched {
+  outline: 2px solid #f78e8e;
+  outline-offset: -1px;
+}
+/*input elements clear outline before focused element is touched or after element is valid*/
+#femail:focus, #fdesc:focus {
+  outline: none;
+}
 /*description field*/
 #fdesc {
   width: 100%;
@@ -915,27 +932,89 @@ body {
   border: none;
   box-shadow: 0 0 5px #b3b3b3 inset;
 }
-
 /*submit confirmation notification*/
-#bu-submit-status {
+.bu-submit-conf {
   width: 90%;
   background-color: #e2e2e2;
   padding: 10px;
   border-radius: 2px;
   margin: 10px;
 }
-
-/*invalid flag icons*/
-.warning-icon {
-  color: #e2e2e2;
+#bu-submit-success {
+  color: #0f7d00;
 }
-.warning-bg {
-  margin-left: 8px;
-  height: 24px;
-  width: 24px;
-  background-color: #cc0000;
-  border-radius: 11px;
-  box-shadow: 0 0 5px #9c9c9c;
+#bu-submit-fail {
+  color: #cc0000;
+}
+/*invalid input warnings*/
+.bu-special-text {
+  color: #cc0000;
+  padding: 2px 0 2px 0;
+  font-variant: small-caps;
+  float: right;
+  border-radius: 2px;
+  
+}
+.bu-special-text-wrap {
+  float: right;
+  position: relative;
+  bottom: 33px;
+  right: 15px;
+}
+.bu-special-text-icon{
+  color: #cc0000;
+  scale: 85%; 
+  padding: 0 3px 0 0;
+}
+/* Faq/Common Problem styles*/
+#bu-faq {
+  width: 100%;
+  background-color: #e2e2e2;
+  border-radius: 2px;
+  padding: 10px 17px 10px 17px;
+  margin: 0 0 10px 0;
+}
+#bu-faq-label{
+  font-family: Roboto,Helvetica Neue,sans-serif; 
+  margin: 5px 0 5px 0px;
+  padding: 0 9px 0 0;
+}
+#bu-faq-text{
+  font-family: Roboto,Helvetica Neue,sans-serif; 
+  margin: 15px;
+  padding: 15px;
+  background-color: #f3f3f3;
+  box-shadow: 0 0 3px #969696;
+  line-height: 1.8em;
+}
+.bu-faq-button {
+  margin: 0px !important;
+  box-shadow: 0 0 3px #969696;
+  box-shadow: 0 0 3px #292929;
+}
+
+#bu-faq-button-items {
+  position: relative;
+  right: 5px;
+}
+#faq-list {
+  list-style-type: none;
+  padding: 0 25px 0 25px;
+}
+#bu-sep{
+  width: 95%;
+  color: #ffffff;
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+/* Mobile Width Styles*/
+@media (max-width: 630px) {
+  .bu-special-text-wrap {
+    float:none;
+    position: static;
+  }
 }
 
 /* END Report a Problem Button */
