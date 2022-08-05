@@ -944,16 +944,54 @@ body {
 /* New Titles Display */
 
 #bu-new-titles {
-  padding: 50px 0 20px 0;
+  padding: 20px 0 0 0;
 }
-#bu-nt-carousel {
+#bu-nt-cwrap {
+  display: inline;
   height: 200px;
-  overflow: scroll;
+  width: 100%;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+#bu-nt-cont {
+  width: 10000px;
 }
 .bu-book {
-  display: inline;
   float: left;
-  list-style-type: none;
+}
+.bu-book img {
+  padding: 0 2px 0 2px;
+}
+.bu-nt-scroll {
+  height: 200px;
+  color: white;
+  width: 30px;
+  font-size: 30px;
+}
+.bu-nt-scroll-right {
+  padding: 0 15px 0 0;
+}
+.bu-nt-scroll:hover {
+  color: red;
+  background-color: rgba(255, 255, 255, 0);
+}
+.bu-nt-scroll:active {
+  color: black;
+  background-color: rgba(129, 129, 129, 0.637);
+  scale: 98%;
+}
+.bu-scroll-arrows {
+  position: relative;
+  top: 45%;
+  left: 45%;
+}
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* END New Titles Display */
