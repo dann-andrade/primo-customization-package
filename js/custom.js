@@ -243,7 +243,7 @@ app.component('prm-search-after', {
                                 }]
                               };
 
-              let url = 'https://prod-38.westus.logic.azure.com:443/workflows/8d36d7d4bd034615bb5cc1c3b0fee268/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=nse5QpflC-OuYyGDeChf3lp2fU_WhODKi3xyAcSVZWI';
+              let url = '<insert flow url>';
               
               $http.post(url, rmessage, {headers:{'Content-Type': 'application/json'}}).then(function successCallback(resp) {
 
@@ -349,242 +349,113 @@ app.component('prm-search-after', {
 
   /******************* BrockU New Titles ***************************/
 
-  app.controller('prmSearchBarAfterController', ['$scope', '$http',
-  function ($scope, $http) {
+  //Initialize main array outside controller so data persists when element is destroyed by ng-if
+  var books = new Array();
+  
+  app.controller('prmSearchBarAfterController', ['$http',
+    function ($http) {
 
-      var self = this;
-      var screenWidth = 0;
-      var scrollSpeed = 0;
-      var loadCursor = 0;
-      var contentWidth = 0;
-      var scrollMultiplier = 0;
-
-      self.books = [
-        {
-          "isbn": "1551112000",
-          "mmsid": "991002992389705152"
-        },
-        {
-          "isbn": "1915070872",
-          "mmsid": "991009351620905152"
-        },
-        {
-          "isbn": "0199533989;",
-          "mmsid": "991009351621105152"
-        },
-        {
-          "isbn": "0367682060",
-          "mmsid": "991009351621405152"
-        },
-        {
-          "isbn": "1492598925",
-          "mmsid": "991009351623005152"
-        },
-        {
-          "isbn": "1492594229",
-          "mmsid": "991009351623405152"
-        },
-        {
-          "isbn": "1718200307",
-          "mmsid": "991009351623505152"
-        },
-        {
-          "isbn": "1492598496",
-          "mmsid": "991009351623605152"
-        },
-        {
-          "isbn": "abc",
-          "mmsid": "991009351721505162"
-        },
-        {
-          "isbn": "1718202997",
-          "mmsid": "991009351624405152"
-        },
-        {
-          "isbn": "1718201729",
-          "mmsid": "991009351624505152"
-        },
-        {
-          "isbn": "9783030418113",
-          "mmsid": "991009351624605152"
-        },
-        {
-          "isbn": "abc",
-          "mmsid": "991009351721505162"
-        },
-        {
-          "isbn": "9780367761714",
-          "mmsid": "991009351624705152"
-        },
-        {
-          "isbn": "1524635340",
-          "mmsid": "991009351720105152"
-        },
-        {
-          "isbn": "9781849171694",
-          "mmsid": "991009351720205152"
-        },
-        {
-          "isbn": "1771135689",
-          "mmsid": "991009351721505152"
-        },
-        {
-          "isbn": "abc",
-          "mmsid": "991009351721505162"
-        },
-        {
-          "isbn": "1554815371",
-          "mmsid": "991009351722005152"
-        },
-        {
-          "isbn": "9781645036616",
-          "mmsid": "991009351722705152"
-        },
-        {
-          "isbn": "1433170329",
-          "mmsid": "991009351723505152"
-        },
-        {
-          "isbn": "9783837655841",
-          "mmsid": "991009351724505152"
-        },
-        {
-          "isbn": "1642597406",
-          "mmsid": "991009355723005152"
-        },
-        {
-          "isbn": "1119684234",
-          "mmsid": "991009355723805152"
-        },
-        {
-          "isbn": "0136746918",
-          "mmsid": "991009359323605152"
-        },
-        {
-          "isbn": "1987819675",
-          "mmsid": "991009359325305152"
-        },
-        {
-          "isbn": "0374538980",
-          "mmsid": "991009376883705152"
-        },
-        {
-          "isbn": "1737208334",
-          "mmsid": "991009376883805152"
-        },
-        {
-          "isbn": "0593197143",
-          "mmsid": "991009376883905152"
-        },
-        {
-          "isbn": "1953295592",
-          "mmsid": "991009376884005152"
-        },
-        {
-          "isbn": "9780316461245",
-          "mmsid": "991009376884105152"
-        },
-        {
-          "isbn": "1602234221",
-          "mmsid": "991009376884205152"
-        },
-        {
-          "isbn": "164445064X",
-          "mmsid": "991009376884305152"
-        }
-      ];
-
-      self.display = [];
-      
-      self.$onInit = function () {
-
-        // show display only on the main page of Omni
-        if (window.location.href != 'http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_TEST_DAN'){
-          self.showDisplay = false;
-        } else {
-          self.showDisplay = true;
-        }
-
-        //find viewport width, and then load twice as many books as is needed to fill it
-        setTimeout(() => {
-          self.findWidth();
-          self.nextBooks(~~(screenWidth/150) * 2);
-        }, 0);
-      };
-
-      
-      //Hides books with inadequate or non-existent covers
-      //Incrementally calculates total collective width of valid covers
-      //Set scrolling container width to accomodate collective width
-      self.showBook = function(img){
-
-        img.parentElement.style.display = 'initial';
-
-        if (img.offsetWidth < 100) {
-          img.parentElement.style.display = 'none';
-        } else {
-          contentWidth += img.offsetWidth;
-          document.getElementById('bu-nt-cont').style.width = contentWidth + "px";
-        }
-      };
-
-      // Scroll Left function
-      // Simply scrolls left by dynamically generated amount
-      self.scrollLeft = function () {
-
-        document.getElementById('bu-nt-cwrap').scrollLeft -= scrollSpeed; 
+        //Init variables and display array
+        var self = this;
+        var screenWidth = 0;
+        var scrollSpeed = 0;
+        var loadCursor = 0;
+        var contentWidth = 0;
+        var scrollMultiplier = 0;
+        self.display = [];
         
-      };
+        //Initialization function
+        //Displays feature and calls getBooks function to populate carousel if URL is main Omni page
+        //Otherwise hides feature
+        self.$onInit = function () {
+            self.showDisplay = true;
 
-      //Scroll Right Function
-      //Lazy loads next set of books unless all books have been loaded
-      //Scrolls left by dynamically generated amount
-      self.scrollRight = function () {
+            if (window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_TEST_DAN")) {        
+                self.getBooks();
+            } else {
+                self.showDisplay = false;
+            };
+        };
 
-        if (loadCursor < self.books.length) {
-          
-          //increment books by quotient of screenwidth/avg bookheight x dynamic scroll multiplier, + a buffer of 2 books
-          self.nextBooks((Math.ceil(~~(screenWidth/150)) * scrollMultiplier) + 2); 
-        }
+        //If global array is empty, makes http request to pull json and updates array if the request is successful
+        //If request fails, hide feature
+        //Then calculate width and use it to dynamically populate display array. 
+        self.getBooks = function () {
+            if(books.length == 0 ) {
+                $http.get('http://rtod.library.brocku.ca:8080/gtitles.json'
+                ).then(
+                    function successCallback(data) {
+                        books = data.data;   
+                    },
+                    function errorCallback(data){
+                        self.showDisplay = false;
+                    } 
+                );
+            };
 
-        document.getElementById('bu-nt-cwrap').scrollLeft += scrollSpeed;
+            setTimeout(() =>  {
+                self.findWidth();
+                self.nextBooks(~~(screenWidth/150) * 2);
+            }, 5);
+        };
 
-      }
+        //Incrementally calculates total collective width of valid covers
+        //Set scrolling container width to accomodate collective width
+        self.showBook = function(img){
+            contentWidth += img.offsetWidth;
+            document.getElementById('bu-nt-cont').style.width = contentWidth + "px"
+        };
 
-      //Screen Resize Event
-      //Calls the find width function to update the 
-      addEventListener('resize', (Event) => {
-        self.findWidth();
-      });
+        // Scroll Left function
+        // Simply scrolls left by dynamically generated amount
+        self.scrollLeft = function () {
+            document.getElementById('bu-nt-cwrap').scrollLeft -= scrollSpeed; 
+        };
 
-      //obtain width of screen for scrolling calculations
-      self.findWidth = function () {
+        //Scroll Right Function
+        //Lazy loads next set of books unless all books have been loaded
+        //Scrolls left by dynamically generated amount
+        self.scrollRight = function () {
+            if (loadCursor < books.length) {
+                self.nextBooks((Math.ceil(~~(screenWidth/150)) * scrollMultiplier) + 2); 
+            }
 
-        screenWidth = document.getElementById('bu-nt-cwrap').offsetWidth;
+            document.getElementById('bu-nt-cwrap').scrollLeft += scrollSpeed;
+        };
 
-        if (screenWidth < 800) {
-          scrollMultiplier =  0.9;
-        } else {
-          scrollMultiplier =  0.50;
-        }
-
-        scrollSpeed = screenWidth * scrollMultiplier;
-
-      }
-
-      //add books to display array (for lazy loading cover images)
-      self.nextBooks = function (n) {
-        var i = loadCursor;
-        n = n + loadCursor;
         
-        while (i <= n && loadCursor < self.books.length){
-          self.display[i] = self.books[i];
-          i++;
-          loadCursor++;
-        }
-      }
+        //Obtain width of screen for scrolling calculations
+        self.findWidth = function () {
+            screenWidth = document.getElementById('bu-nt-cwrap').offsetWidth;
+
+            if (screenWidth < 800) {
+                scrollMultiplier =  0.9;
+            } else {
+                scrollMultiplier =  0.50;
+            }
+
+            scrollSpeed = screenWidth * scrollMultiplier;
+        };
+
+        //add books to display array (for lazy loading cover images)
+        self.nextBooks = function (n) {
+            var i = loadCursor;
+            n = n + loadCursor;
+            
+                while (i <= n && loadCursor < books.length){
+                    self.display[i] = books[i];
+                    i++;
+                    loadCursor++;
+                }
+        };
+
+        //Screen Resize Event
+        //Calls the find width function to update the 
+        addEventListener('resize', (Event) => {
+            self.findWidth();
+        });
     }]
-  );
+);
 
   app.component('prmSearchBarAfter', {
   bindings: { parentCtrl: '<' },
@@ -617,3 +488,4 @@ app.component('prm-search-after', {
   /******************* end - BrockU New Titles Display***************************/
 
 })();
+
