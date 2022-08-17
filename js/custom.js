@@ -350,116 +350,150 @@ app.component('prm-search-after', {
   /******************* BrockU New Titles ***************************/
 
   //Initialize main array outside controller so data persists when element is destroyed by ng-if
-  var books = new Array();
+    var books = new Array();
   
   app.controller('prmSearchBarAfterController', ['$http',
     function ($http) {
 
-        //Init variables and display array
-        var self = this;
-        var screenWidth = 0;
-        var scrollSpeed = 0;
-        var loadCursor = 0;
-        var contentWidth = 0;
-        var scrollMultiplier = 0;
-        self.display = [];
-        
-        //Initialization function
-        //Displays feature and calls getBooks function to populate carousel if URL is main Omni page
-        //Otherwise hides feature
-        self.$onInit = function () {
-            self.showDisplay = true;
+      //Init variables and display array
+      var self = this;
+      var screenWidth = 0;
+      var scrollSpeed = 0;
+      var loadCursor = 0;
+      var contentWidth = 0;
+      var scrollMultiplier = 0;
+      self.display = [];
+      
+      //Initialization function
+      //Displays feature and calls getBooks function to populate carousel if URL is main Omni page
+      //Otherwise hides feature
+      self.$onInit = function () {
+          self.showDisplay = true;
 
-            if (window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_TEST_DAN")) {        
-                self.getBooks();
-            } else {
-                self.showDisplay = false;
-            };
+          if (window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_TEST_DAN")) {        
+              self.getBooks();
+          } else {
+              self.showDisplay = false;
+          };
+      };
+
+      //If global array is empty, makes http request to pull json and updates array if the request is successful
+      //If request fails, hide feature
+      //Then calculate width and use it to dynamically populate display array. 
+      //If global array is full, skip request and just update array.
+      self.getBooks = function () {
+          if(books.length == 0 ) {
+              $http.get('http://rtod.library.brocku.ca:8080/gtitles.json'
+              ).then(
+                  function successCallback(data) {
+                      books = data.data;   
+                      console.log('Data retrieved');
+                      self.findWidth();
+                      self.nextBooks(~~(screenWidth/150) * 2);
+                  },
+                  function errorCallback(data){
+                      self.showDisplay = false;
+                      console.log('Data retrieval failed');
+                  } 
+              );
+          } else {
+            setTimeout(() =>  {
+              self.findWidth();
+              self.nextBooks(~~(screenWidth/150) * 2);
+            }, 10);
+          };
+      };
+
+      //Incrementally calculates total collective width of valid covers
+      //Set scrolling container width to accomodate collective width
+      self.showBook = function(img){
+          contentWidth += img.offsetWidth;
+          document.getElementById('bu-nt-cont').style.width = contentWidth + "px"
+      };
+
+      // Scroll Left function
+      // Simply scrolls left by dynamically generated amount
+      self.scrollLeft = function () {
+          document.getElementById('bu-nt-cwrap').scrollLeft -= scrollSpeed; 
+      };
+
+      //Scroll Right Function
+      //Lazy loads next set of books unless all books have been loaded
+      //Scrolls left by dynamically generated amount
+      self.scrollRight = function () {
+          if (loadCursor < books.length) {
+              self.nextBooks((Math.ceil(~~(screenWidth/150)) * scrollMultiplier) + 2); 
+          }
+
+          document.getElementById('bu-nt-cwrap').scrollLeft += scrollSpeed;
+      };
+
+      
+      //Obtain width of screen for scrolling calculations
+      self.findWidth = function () {
+          screenWidth = document.getElementById('bu-nt-cwrap').offsetWidth;
+
+          if (screenWidth < 800) {
+              scrollMultiplier =  0.9;
+          } else {
+              scrollMultiplier =  0.50;
+          }
+
+          scrollSpeed = screenWidth * scrollMultiplier;
+      };
+
+      //add books to display array (for lazy loading cover images)
+      self.nextBooks = function (n) {
+          var i = loadCursor;
+          n = n + loadCursor;
+          
+              while (i <= n && loadCursor < books.length){
+                  self.display[i] = books[i];
+                  i++;
+                  loadCursor++;
+              }
+      };
+
+      //Screen Resize Event
+      //Calls the find width function to update the 
+      addEventListener('resize', (Event) => {
+          self.findWidth();
+      });
+
+      //Custom location change event listener adopted from: 
+      //https://stackoverflow.com/questions/6390341/how-to-detect-if-url-has-changed-after-hash-in-javascript
+      //Question by: AJ00200 [https://stackoverflow.com/users/375569/aj00200]
+      //Answer by: aljgom [https://stackoverflow.com/users/3577695/aljgom]
+      (() => {
+        let oldPushState = history.pushState;
+        history.pushState = function pushState() {
+            let ret = oldPushState.apply(this, arguments);
+            window.dispatchEvent(new Event('pushstate'));
+            window.dispatchEvent(new Event('locationchange'));
+            return ret;
         };
-
-        //If global array is empty, makes http request to pull json and updates array if the request is successful
-        //If request fails, hide feature
-        //Then calculate width and use it to dynamically populate display array. 
-        self.getBooks = function () {
-            if(books.length == 0 ) {
-                $http.get('http://rtod.library.brocku.ca:8080/gtitles.json'
-                ).then(
-                    function successCallback(data) {
-                        books = data.data;   
-                        console.log('Data retrieved');
-                        self.findWidth();
-                        self.nextBooks(~~(screenWidth/150) * 2);
-                    },
-                    function errorCallback(data){
-                        self.showDisplay = false;
-                        console.log('Data retrieval failed');
-                    } 
-                );
-            } else {
-              
-              setTimeout(() =>  {
-                self.findWidth();
-                self.nextBooks(~~(screenWidth/150) * 2);
-              }, 10);
-            };
-            
+    
+        let oldReplaceState = history.replaceState;
+        history.replaceState = function replaceState() {
+            let ret = oldReplaceState.apply(this, arguments);
+            window.dispatchEvent(new Event('replacestate'));
+            window.dispatchEvent(new Event('locationchange'));
+            return ret;
         };
-
-        //Incrementally calculates total collective width of valid covers
-        //Set scrolling container width to accomodate collective width
-        self.showBook = function(img){
-            contentWidth += img.offsetWidth;
-            document.getElementById('bu-nt-cont').style.width = contentWidth + "px"
-        };
-
-        // Scroll Left function
-        // Simply scrolls left by dynamically generated amount
-        self.scrollLeft = function () {
-            document.getElementById('bu-nt-cwrap').scrollLeft -= scrollSpeed; 
-        };
-
-        //Scroll Right Function
-        //Lazy loads next set of books unless all books have been loaded
-        //Scrolls left by dynamically generated amount
-        self.scrollRight = function () {
-            if (loadCursor < books.length) {
-                self.nextBooks((Math.ceil(~~(screenWidth/150)) * scrollMultiplier) + 2); 
-            }
-
-            document.getElementById('bu-nt-cwrap').scrollLeft += scrollSpeed;
-        };
-
-        
-        //Obtain width of screen for scrolling calculations
-        self.findWidth = function () {
-            screenWidth = document.getElementById('bu-nt-cwrap').offsetWidth;
-
-            if (screenWidth < 800) {
-                scrollMultiplier =  0.9;
-            } else {
-                scrollMultiplier =  0.50;
-            }
-
-            scrollSpeed = screenWidth * scrollMultiplier;
-        };
-
-        //add books to display array (for lazy loading cover images)
-        self.nextBooks = function (n) {
-            var i = loadCursor;
-            n = n + loadCursor;
-            
-                while (i <= n && loadCursor < books.length){
-                    self.display[i] = books[i];
-                    i++;
-                    loadCursor++;
-                }
-        };
-
-        //Screen Resize Event
-        //Calls the find width function to update the 
-        addEventListener('resize', (Event) => {
-            self.findWidth();
+    
+        window.addEventListener('popstate', () => {
+            window.dispatchEvent(new Event('locationchange'));
         });
+      })();
+
+      //Removes feature if not on homepage 
+      addEventListener('locationchange', function () {
+        if (!window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_TEST_DAN")) {        
+          self.showDisplay = false;
+        } else {
+          self.showDisplay = true;
+        };
+      });
     }]
 );
 
