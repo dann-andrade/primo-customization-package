@@ -350,7 +350,7 @@ app.component('prm-search-after', {
   /******************* BrockU New Titles ***************************/
 
   //Initialize main array outside controller so data persists when element is destroyed by ng-if
-    var books = new Array();
+  var books = new Array();
   
   app.controller('prmSearchBarAfterController', ['$http',
     function ($http) {
@@ -386,14 +386,12 @@ app.component('prm-search-after', {
               $http.get('http://rtod.library.brocku.ca:8080/gtitles.json'
               ).then(
                   function successCallback(data) {
-                      books = data.data;   
-                      console.log('Data retrieved');
+                      books = data.data;
                       self.findWidth();
                       self.nextBooks(~~(screenWidth/150) * 2);
                   },
                   function errorCallback(data){
                       self.showDisplay = false;
-                      console.log('Data retrieval failed');
                   } 
               );
           } else {
