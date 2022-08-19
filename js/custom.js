@@ -88,6 +88,7 @@ app.component('prm-search-after', {
       self.showForm = false;
       self.submitFlow = false;
       self.submitted = false;
+      self.enableFAQ = false;
 
       self.rURL = window.location.href;
     
@@ -235,7 +236,8 @@ app.component('prm-search-after', {
       <div id="bu-report-form" ng-if="$ctrl.showForm">
 
           <!-- FAQ -->
-        <div id="bu-faq" class="layout-align-center-center layout-column" layout="column" layout-align="center center">
+        <div id="bu-faq" class="layout-align-center-center layout-column" layout="column" layout-align="center center"
+        ng-if="$ctrl.enableFAQ">
           <div id="bu-faq-wrap" class="layout-align-center-center layout-row" layout="row" layout-align="center center">
 
             <!-- Main Label -->
@@ -288,9 +290,10 @@ app.component('prm-search-after', {
                 <a href="mailto:libhelp@brocku.ca" target="_blank">libhelp@brocku.ca</a>, and we’ll get back to you as soon as we can!</li>
               </ul>
           </div>
+        
+          <hr id="bu-sep">
+        
         </div>
-
-        <hr id="bu-sep">
 
         <form name="mform" class="layout-align-center-center layout-column" novalidate>
           <div id="bu-form-items"> 
