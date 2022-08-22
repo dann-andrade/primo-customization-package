@@ -310,7 +310,7 @@ app.component('prm-search-after', {
             </div>
 
             <!--Invalid Text-->
-            <div class="bu-special-text-wrap" class="layout-align-center-center"layout="row" layout-align="center center"
+            <div id="bu-description-flag" class="layout-align-center-center" layout="row" layout-align="center center"
             ng-if="mform.fdesc.$invalid && ($ctrl.submitted || mform.fdesc.$touched)">
               <div class="warning-bg">
                 <prm-icon class="bu-special-text-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
@@ -330,7 +330,7 @@ app.component('prm-search-after', {
             </div>
 
             <!--Invalid Text-->
-            <div class="bu-special-text-wrap" class="layout-align-center-center" layout="row" layout-align="center center"
+            <div id="bu-email-flag" class="layout-align-center-center" layout="row" layout-align="center center"
             ng-if="mform.email.$invalid && ($ctrl.submitted || mform.email.$touched)">
               <prm-icon class="bu-special-text-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
               <span class="bu-special-text" ng-if="!mform.email.$error.required">invalid email</span>
