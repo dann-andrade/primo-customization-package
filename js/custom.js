@@ -410,9 +410,11 @@ app.component('prm-search-after', {
       //Set scrolling container width to accomodate collective width
       self.showBook = function(img){
 
+        if (img.offsetWidth > 100){
           contentWidth += img.offsetWidth;
-          document.getElementById('bu-nt-cont').style.width = contentWidth + "px"
-
+          document.getElementById('bu-nt-cont').style.width = contentWidth + "px";
+        };
+          
       };
 
       // Scroll Left function
@@ -514,7 +516,7 @@ app.component('prm-search-after', {
           self.showDisplay = true;
         };
       });
-      
+
     }]
 );
 
