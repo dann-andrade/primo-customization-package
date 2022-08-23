@@ -376,6 +376,7 @@ app.component('prm-search-after', {
           } else {
               self.showDisplay = false;
           };
+
       };
 
       //If global array is empty, makes http request to pull json and updates array if the request is successful
@@ -383,6 +384,7 @@ app.component('prm-search-after', {
       //Then calculate width and use it to dynamically populate display array. 
       //If global array is full, skip request and just update array.
       self.getBooks = function () {
+
           if(books.length == 0 ) {
               $http.get('http://rtod.library.brocku.ca:8080/gtitles.json'
               ).then(
@@ -401,20 +403,25 @@ app.component('prm-search-after', {
               self.nextBooks(~~(screenWidth/150) * 2);
             }, 10);
           };
+
       };
 
       //Incrementally calculates total collective width of valid covers
       //Set scrolling container width to accomodate collective width
       self.showBook = function(img){
+
           contentWidth += img.offsetWidth;
           document.getElementById('bu-nt-cont').style.width = contentWidth + "px"
+
       };
 
       // Scroll Left function
       // Simply scrolls left by dynamically generated amount and increments scrollback counter
       self.scrollLeft = function () {
+
           document.getElementById('bu-nt-cwrap').scrollLeft -= scrollSpeed; 
           scrollBack++;
+
       };
 
       //Scroll Right Function
@@ -422,6 +429,7 @@ app.component('prm-search-after', {
       //is not at rightmost position (scrollback > 0)
       //Scrolls left by dynamically generated amount
       self.scrollRight = function () {
+
           if (loadCursor < books.length && scrollBack == 0) {
               self.nextBooks((Math.ceil(~~(screenWidth/150)) * scrollMultiplier) + 2); 
           } else if (scrollBack > 0) {
@@ -429,12 +437,14 @@ app.component('prm-search-after', {
           }
 
           document.getElementById('bu-nt-cwrap').scrollLeft += scrollSpeed;
+
       };
 
       
       //Obtain width of screen
       //Use width to determine comfortable scrollspeed
       self.findWidth = function () {
+
           screenWidth = document.getElementById('bu-nt-cwrap').offsetWidth;
 
           if (screenWidth < 800) {
@@ -444,10 +454,12 @@ app.component('prm-search-after', {
           }
 
           scrollSpeed = screenWidth * scrollMultiplier;
+
       };
 
       //add books to display array (for lazy loading cover images)
       self.nextBooks = function (n) {
+
           var i = loadCursor;
           n = n + loadCursor;
           
@@ -456,12 +468,15 @@ app.component('prm-search-after', {
                   i++;
                   loadCursor++;
               }
+
       };
 
       //Screen Resize Event
-      //Calls the find width function to update the 
+      //Calls the find width function to update the width
       addEventListener('resize', (Event) => {
+
           self.findWidth();
+
       });
 
       //Custom location change event listener adopted from: 
@@ -492,12 +507,14 @@ app.component('prm-search-after', {
 
       //Removes feature if not on homepage 
       addEventListener('locationchange', function () {
+
         if (!window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_TEST_DAN")) {        
           self.showDisplay = false;
         } else {
           self.showDisplay = true;
         };
       });
+      
     }]
 );
 
