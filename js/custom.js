@@ -362,6 +362,7 @@ app.component('prm-search-after', {
       var loadCursor = 0;
       var contentWidth = 0;
       var scrollMultiplier = 0;
+      var scrollBack = 0;
       self.display = [];
       
       //Initialization function
@@ -410,24 +411,29 @@ app.component('prm-search-after', {
       };
 
       // Scroll Left function
-      // Simply scrolls left by dynamically generated amount
+      // Simply scrolls left by dynamically generated amount and increments scrollback counter
       self.scrollLeft = function () {
           document.getElementById('bu-nt-cwrap').scrollLeft -= scrollSpeed; 
+          scrollBack++;
       };
 
       //Scroll Right Function
-      //Lazy loads next set of books unless all books have been loaded
+      //Lazy loads next set of books unless all books have been loaded or carousel
+      //is not at rightmost position (scrollback > 0)
       //Scrolls left by dynamically generated amount
       self.scrollRight = function () {
-          if (loadCursor < books.length) {
+          if (loadCursor < books.length && scrollBack == 0) {
               self.nextBooks((Math.ceil(~~(screenWidth/150)) * scrollMultiplier) + 2); 
+          } else if (scrollBack > 0) {
+            scrollBack--;
           }
 
           document.getElementById('bu-nt-cwrap').scrollLeft += scrollSpeed;
       };
 
       
-      //Obtain width of screen for scrolling calculations
+      //Obtain width of screen
+      //Use width to determine comfortable scrollspeed
       self.findWidth = function () {
           screenWidth = document.getElementById('bu-nt-cwrap').offsetWidth;
 
@@ -509,7 +515,7 @@ app.component('prm-search-after', {
       <div id="bu-nt-cont">
         <div class="bu-book" 
         ng-repeat="book in $ctrl.display track by $index">
-          <a href="http://10.20.124.65:8003/discovery/fulldisplay?docid=alma{{book.mmsid}}&context=L&vid=01OCUL_BU:BU_TEST_DAN&lang=en">
+          <a href="https://ocul-bu.primo.exlibrisgroup.com/discovery//fulldisplay?docid=alma{{book.mmsid}}&context=L&vid=01OCUL_BU:BU_TEST_DAN&lang=en">
             <img (load)="$ctrl.showBook($event.currentTarget)" src="https://syndetics.com/index.php?client=primo&isbn={{book.isbn}}/mc.jpg"></img>
           </a>
         </div> 
