@@ -299,7 +299,7 @@ app.component('prm-search-after', {
           <div id="bu-form-items"> 
 
             <!--Description Label-->
-            <div class="layout-align-left-center layout-row margin-top-small bu-label-wrap" layout="row" layout-align="left center">
+            <div class="layout-align-left-center layout-row bu-label-wrap" layout="row" layout-align="left center">
               <label class="bu-label-text" name="descerror">What is the problem? </label>
             </div>
 
