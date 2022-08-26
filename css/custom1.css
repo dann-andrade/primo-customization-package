@@ -978,7 +978,7 @@ body {
   width: 100%;
   background-color: #e2e2e2;
   border-radius: 2px;
-  padding: 10px 17px 10px 17px;
+  padding: 10px 0px 10px 0px;
   margin: 0;
 }
 #bu-faq-label{
@@ -989,7 +989,7 @@ body {
 #bu-faq-text{
   font-family: Roboto,Helvetica Neue,sans-serif; 
   margin: 15px;
-  padding: 15px;
+  padding: 15px 0 15px 0;
   background-color: #f3f3f3;
   box-shadow: 0 0 3px #969696;
   line-height: 1.8em;

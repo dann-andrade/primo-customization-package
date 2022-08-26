@@ -280,14 +280,11 @@ app.component('prm-search-after', {
                 <br />
                 <li><b>3. I’ve found the item I need in Omni, but I don’t see options for access.</b></li>
                 <li>Solution: First ensure you are signed into your Omni account, to see all options for requesting the item. Watch a brief 
-                <a href="https://youtu.be/DJZd9vpaKHk" target="_blank">video </a> to learn more. 
-                <br />
-                If there is no option in Omni for either print or online access, you can request the item from another library by submitting an 
-                <a href="https://brocku.ca/library/interlibrary-loan/" target="_blank">interlibrary loan request</a>.</li> 
+                <a href="https://youtu.be/DJZd9vpaKHk" target="_blank">video </a> to learn more. If there is no option in Omni for either print or online access, you can  
+                <a href="https://brocku.ca/library/interlibrary-loan/" target="_blank">request the item from another library</a>.</li> 
                 <br />
                 <li><b>Still have questions?</b>
-                <li>Please contact us at 
-                <a href="mailto:libhelp@brocku.ca" target="_blank">libhelp@brocku.ca</a>, and we’ll get back to you as soon as we can!</li>
+                <li>Please fill in the form below. We’ll get back to you as soon as we can!</li>
               </ul>
           </div>
         
