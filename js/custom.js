@@ -25,6 +25,25 @@ function askus_popout_toggle() {
 // start of ANGULAR CODE
 var app = angular.module('viewCustom', ['angularLoad']);
 
+/*---------- START - Google Analytics -----------*/
+
+var googleAnalyticsUrl = document.createElement('script');
+googleAnalyticsUrl.src = "https://www.googletagmanager.com/gtag/js?id=G-QEMT44XVTJ";
+googleAnalyticsUrl.type = 'text/javascript';
+googleAnalyticsUrl.async = true;
+document.head.appendChild(googleAnalyticsUrl);
+
+var googleAnalyticsCode = document.createElement('script');
+googleAnalyticsCode.innerHTML = `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-QEMT44XVTJ');`;
+document.head.appendChild(googleAnalyticsCode);    
+
+/*---------- END - Google Analytics  -----------*/  
+
+
+
 /*----------below is the code for libraryh3lp on Homepage ONLY -----------*/
 var s=document.createElement('script');
 s.id='localScript';
