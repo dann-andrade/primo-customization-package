@@ -1,5 +1,4 @@
-/************* LibraryH3lp code STARTS here **********/
-
+/************************* LibraryH3lp code STARTS here *********************/
 // create a function to toggle askus popout
 function askus_popout_toggle() {
   var askus = document.getElementById('askus-popout');
@@ -13,19 +12,9 @@ function askus_popout_toggle() {
       askus.setAttribute('data-askus-popout-state', 'collapsed');
   }
 }
+/************************* LibraryH3lp code ends here ***********************/
 
-/************* LibraryH3lp code ends here **********/
-
-
-
-(function(){
-"use strict";
-'use strict';
-
-// start of ANGULAR CODE
-var app = angular.module('viewCustom', ['angularLoad']);
-
-/*---------- START - Google Analytics -----------*/
+/************************* START - Google Analytics *************************/
 
 var googleAnalyticsUrl = document.createElement('script');
 googleAnalyticsUrl.src = "https://www.googletagmanager.com/gtag/js?id=G-QEMT44XVTJ";
@@ -40,23 +29,28 @@ gtag('js', new Date());
 gtag('config', 'G-QEMT44XVTJ');`;
 document.head.appendChild(googleAnalyticsCode);    
 
-/*---------- END - Google Analytics  -----------*/  
+/************************* END - Google Analytics  **************************/
+
+(function(){
+"use strict";
+'use strict';
+
+// start of ANGULAR CODE
+var app = angular.module('viewCustom', ['angularLoad']);
 
 
+/************************* LibraryH3lp code STARTS here *********************/
 
-/*----------below is the code for libraryh3lp on Homepage ONLY -----------*/
-var s=document.createElement('script');
-s.id='localScript';
-s.src= 'https://ca.libraryh3lp.com/js/libraryh3lp.js?526';
-document.body.appendChild(s);
+  /*below is the code for libraryh3lp on Homepage ONLY */
+  var s=document.createElement('script');
+  s.id='localScript';
+  s.src= 'https://ca.libraryh3lp.com/js/libraryh3lp.js?526';
+  document.body.appendChild(s);
 
-app.component('prm-search-after', {
-   template: '<div id="needs-js"></div>'
-});
-/*---------------libraryh3lp code ends here---------------*/
+  app.component('prm-search-after', {
+    template: '<div id="needs-js"></div>'
+  });
 
-  /************* LibraryH3lp code STARTS here **********/
-  
   /* need to import some monitoring code */
   var x = document.createElement("script"); x.type = "text/javascript"; x.async = true;
   x.src = (document.location.protocol === "https:" ? "https://" : "http://") + "ca.libraryh3lp.com/js/libraryh3lp.js?526";
@@ -85,9 +79,11 @@ app.component('prm-search-after', {
   askus_onclick_att.value = "askus_popout_toggle();"; 
   askus_popout.setAttributeNode(askus_onclick_att);
   
-  /************* LibraryH3lp code ends here **********/
+/************************* LibraryH3lp code ends here **********************/
 
-/******************* BrockU Report a Problem ***************************/
+
+
+/************************* BrockU Report a Problem *************************/
 
   app.controller('prmActionContainerAfterController', ['$scope', '$http',
   function ($scope, $http) {
@@ -379,6 +375,6 @@ app.component('prm-search-after', {
     `,
   });
 
-/******************* end - Adding Report a Problem link ***************************/
+/************************* end - Adding Report a Problem link ***************/
 
 })();
