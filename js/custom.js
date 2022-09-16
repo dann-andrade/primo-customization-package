@@ -1,4 +1,4 @@
-/************************* LibraryH3lp code STARTS here *********************/
+/* LibraryH3lp code ---------------------------------------------------------*/
 // create a function to toggle askus popout
 function askus_popout_toggle() {
   var askus = document.getElementById('askus-popout');
@@ -12,9 +12,11 @@ function askus_popout_toggle() {
       askus.setAttribute('data-askus-popout-state', 'collapsed');
   }
 }
-/************************* LibraryH3lp code ends here ***********************/
+/* End LibraryH3lp code -----------------------------------------------------*/
 
-/************************* START - Google Analytics *************************/
+
+
+/* Google Analytics ---------------------------------------------------------*/
 
 var googleAnalyticsUrl = document.createElement('script');
 googleAnalyticsUrl.src = "https://www.googletagmanager.com/gtag/js?id=G-QEMT44XVTJ";
@@ -27,19 +29,20 @@ googleAnalyticsCode.innerHTML = `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-QEMT44XVTJ');`;
-document.head.appendChild(googleAnalyticsCode);    
+document.head.appendChild(googleAnalyticsCode);  
 
-/************************* END - Google Analytics  **************************/
+/* End Google Analytics ------------------------------------------------------*/
+
+
 
 (function(){
 "use strict";
 'use strict';
 
-// start of ANGULAR CODE
-var app = angular.module('viewCustom', ['angularLoad']);
+  // start of ANGULAR CODE
+  var app = angular.module('viewCustom', ['angularLoad']);
 
-
-/************************* LibraryH3lp code STARTS here *********************/
+/* LibraryH3lp code ----------------------------------------------------------*/
 
   /*below is the code for libraryh3lp on Homepage ONLY */
   var s=document.createElement('script');
@@ -79,11 +82,11 @@ var app = angular.module('viewCustom', ['angularLoad']);
   askus_onclick_att.value = "askus_popout_toggle();"; 
   askus_popout.setAttributeNode(askus_onclick_att);
   
-/************************* LibraryH3lp code ends here **********************/
+/* End LibraryH3lp code -----------------------------------------------------*/
 
 
 
-/************************* BrockU Report a Problem *************************/
+/* BrockU Report a Problem --------------------------------------------------*/
 
   app.controller('prmActionContainerAfterController', ['$scope', '$http',
   function ($scope, $http) {
@@ -375,6 +378,7 @@ var app = angular.module('viewCustom', ['angularLoad']);
     `,
   });
 
-/************************* end - Adding Report a Problem link ***************/
+/* End BrockU Report a Problem ----------------------------------------------*/
+
 
 })();
