@@ -996,8 +996,7 @@ body {
 }
 .bu-faq-button {
   margin: 0px !important;
-  box-shadow: 0 0 3px #969696;
-  box-shadow: 0 0 3px #292929;
+  box-shadow: 0 0 5px #969696;
 }
 #bu-faq-button-items {
   position: relative;

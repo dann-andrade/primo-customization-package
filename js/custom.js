@@ -107,7 +107,7 @@ app.component('prm-search-after', {
       self.showForm = false;
       self.submitFlow = false;
       self.submitted = false;
-      self.enableFAQ = false;
+      self.enableFAQ = true;
 
       self.rURL = window.location.href;
     
