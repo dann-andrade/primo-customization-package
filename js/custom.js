@@ -91,7 +91,7 @@ document.head.appendChild(googleAnalyticsCode);
   app.controller('prmActionContainerAfterController', ['$scope', '$http',
   function ($scope, $http) {
 
-    var self = this;
+    var ctrl = this;
 
     //initialize form to hidden
     //initialize invalid flags to initially hide warning icons
@@ -101,73 +101,73 @@ document.head.appendChild(googleAnalyticsCode);
     // - Adds title depending on material type 
     // - Initialize desc to empty string
     // - set submit confirm as default message until wording/email are approved by PWG
-    self.$onInit = function () {  
+    ctrl.$onInit = function () {  
 
-      self.showForm = false;
-      self.submitFlow = false;
-      self.submitted = false;
-      self.enableFAQ = true;
+      ctrl.showForm = false;
+      ctrl.submitFlow = false;
+      ctrl.submitted = false;
+      ctrl.enableFAQ = true;
 
-      self.rURL = window.location.href;
+      ctrl.rURL = window.location.href;
     
-      if (undefined != self.parentCtrl.item.pnx.display.mms) {
-        self.linkID = self.parentCtrl.item.pnx.display.mms[0];
-        self.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
-                      self.linkID +
+      if (undefined != ctrl.parentCtrl.item.pnx.display.mms) {
+        ctrl.linkID = ctrl.parentCtrl.item.pnx.display.mms[0];
+        ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
+                      ctrl.linkID +
                       '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
-        self.itemMMSID = self.parentCtrl.item.pnx.display.mms[0];
-      } else if ((undefined != self.parentCtrl.item.pnx.display.source) && (self.parentCtrl.item.pnx.display.source == 'literatum:achs')) {
-        self.linkID = self.parentCtrl.item.pnx.control.sourcerecordid[0];
-        self.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
-                      self.linkID +
+        ctrl.itemMMSID = ctrl.parentCtrl.item.pnx.display.mms[0];
+      } else if ((undefined != ctrl.parentCtrl.item.pnx.display.source) && (ctrl.parentCtrl.item.pnx.display.source == 'literatum:achs')) {
+        ctrl.linkID = ctrl.parentCtrl.item.pnx.control.sourcerecordid[0];
+        ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
+                      ctrl.linkID +
                       '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
-        self.itemMMSID = self.parentCtrl.item.pnx.control.sourcerecordid[0];
+        ctrl.itemMMSID = ctrl.parentCtrl.item.pnx.control.sourcerecordid[0];
       } else {
-        self.linkID = self.parentCtrl.item.pnx.control.recordid[0];
-        self.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=' + 
-                        self.linkID +
+        ctrl.linkID = ctrl.parentCtrl.item.pnx.control.recordid[0];
+        ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=' + 
+                        ctrl.linkID +
                         '&context=PC&vid=01OCUL_BU:BU_DEFAULT&lang=en';
-        self.itemMMSID = 'n/a';
+        ctrl.itemMMSID = 'n/a';
       };
 
-      if (undefined != self.parentCtrl.item.pnx.display.title) {
-        self.itemTitle = self.parentCtrl.item.pnx.display.title[0];
-      } else if (undefined != self.parentCtrl.item.pnx.addata.btitle) {
-        self.itemTitle = self.parentCtrl.item.pnx.addata.btitle[0];
-      } else if (undefined != self.parentCtrl.item.pnx.addata.jtitle) {
-        self.itemTitle = self.parentCtrl.item.pnx.addata.jtitle[0];
-      } else if (undefined != self.parentCtrl.item.pnx.addata.atitle) {
-        self.itemTitle = self.parentCtrl.item.pnx.addata.atitle[0];
+      if (undefined != ctrl.parentCtrl.item.pnx.display.title) {
+        ctrl.itemTitle = ctrl.parentCtrl.item.pnx.display.title[0];
+      } else if (undefined != ctrl.parentCtrl.item.pnx.addata.btitle) {
+        ctrl.itemTitle = ctrl.parentCtrl.item.pnx.addata.btitle[0];
+      } else if (undefined != ctrl.parentCtrl.item.pnx.addata.jtitle) {
+        ctrl.itemTitle = ctrl.parentCtrl.item.pnx.addata.jtitle[0];
+      } else if (undefined != ctrl.parentCtrl.item.pnx.addata.atitle) {
+        ctrl.itemTitle = ctrl.parentCtrl.item.pnx.addata.atitle[0];
       } else {
-        self.itemTitle = 'PNX TITLE ERROR'
+        ctrl.itemTitle = 'PNX TITLE ERROR'
       };
     };
 
 
     //function for Report Button
     //show form, toggle submission and success flags off
-    //unhide the submit confirm, self is here in case someone double reports without refreshing
+    //unhide the submit confirm, ctrl is here in case someone double reports without refreshing
     //re-initializes the desc to an empty string in case of double report
-    self.showReportForm = function () {
+    ctrl.showReportForm = function () {
 
-      self.showForm = true;
-      self.submitFlow = false;
-      self.submitted = false;
-      self.submitConf = false;
-      self.showFAQ = false;
+      ctrl.showForm = true;
+      ctrl.submitFlow = false;
+      ctrl.submitted = false;
+      ctrl.submitConf = false;
+      ctrl.showFAQ = false;
 
     };
 
     // closing the form simple re-initializes everything (for now)
-    self.closeReportForm = function () {
+    ctrl.closeReportForm = function () {
 
-      self.$onInit();
+      ctrl.$onInit();
 
     };
 
-    self.toggleFAQ = function () {
+    ctrl.toggleFAQ = function () {
 
-      self.showFAQ = !self.showFAQ
+      ctrl.showFAQ = !ctrl.showFAQ
     };
 
     //function for Submit Button
@@ -179,41 +179,41 @@ document.head.appendChild(googleAnalyticsCode);
     // - pull problem description
     // - post data via api lin
     // - Hide submission status report
-    self.submitReport = function (valid, remail, rdesc) {
+    ctrl.submitReport = function (valid, remail, rdesc) {
 
-      self.submitted = true;       
+      ctrl.submitted = true;       
 
       if (valid) {
 
-        self.showForm = false;
+        ctrl.showForm = false;
 
         setTimeout(() => {
 
           let rmessage = {report: 
                             [{ 
-                              title: self.itemTitle, 
+                              title: ctrl.itemTitle, 
                               user: remail, 
                               desc: rdesc, 
-                              url: self.itemURL,
-                              rurl: self.rURL,
-                              mmsid: self.itemMMSID
+                              url: ctrl.itemURL,
+                              rurl: ctrl.rURL,
+                              mmsid: ctrl.itemMMSID
                             }]
                           };
 
           let url = '<insert flow url>';
 
           $http.post(url, rmessage, {headers:{'Content-Type': 'application/json'}}).then(function successCallback(resp) {
-            self.submitSuccess = true;
+            ctrl.submitSuccess = true;
           });
         }, 0);
 
         setTimeout(() => {
-          self.submitFlow = true;
+          ctrl.submitFlow = true;
         }, 150);
 
         setTimeout(() => {
-          self.submitFlow = false;
-          self.submitSuccess = false;
+          ctrl.submitFlow = false;
+          ctrl.submitSuccess = false;
           $scope.$apply();
         }, 5000);
       };
