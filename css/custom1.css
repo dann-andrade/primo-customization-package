@@ -1036,17 +1036,17 @@ body {
 /*CFDUX Omni Improvement and Enhancements R. 1*/
 
 /*Style "Get it from another library" link as button*/
-alma-howovp button.md-button.neutralized-button {
+alma-howovp > div > md-list:nth-child(1) > md-list-item:nth-child(1) > button {
   font-variant: small-caps;
   box-shadow: 0 0 4px #969696;
   background-color: #cc0000;
   color: white;
 }
-alma-howovp button.md-button.neutralized-button:hover {
+alma-howovp > div > md-list:nth-child(1) > md-list-item:nth-child(1) > button:hover {
   background-color: #202020;
   color: #e2e2e2;
 }
-alma-howovp md-list-item[ng-repeat="service in $ctrl.filteredServices() track by $index"] {
+alma-howovp > div > md-list:nth-child(1) > md-list-item:nth-child(1) {
   width: 38%;
   /* margin: auto; */
 }
