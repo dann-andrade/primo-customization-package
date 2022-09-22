@@ -17,7 +17,6 @@ function askus_popout_toggle() {
 
 
 /* Google Analytics ---------------------------------------------------------*/
-
 var googleAnalyticsUrl = document.createElement('script');
 googleAnalyticsUrl.src = "https://www.googletagmanager.com/gtag/js?id=G-QEMT44XVTJ";
 googleAnalyticsUrl.type = 'text/javascript';
@@ -30,10 +29,14 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-QEMT44XVTJ');`;
 document.head.appendChild(googleAnalyticsCode);  
-
 /* End Google Analytics ------------------------------------------------------*/
 
 
+/* Load JQuery ---------------------------------------------------------------*/
+var js = document.createElement('script') ;
+js.src = "//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js";
+document.head.appendChild(js);
+/* End JQuery ----------------------------------------------------------------*/
 
 (function(){
 "use strict";
@@ -380,5 +383,48 @@ document.head.appendChild(googleAnalyticsCode);
 
 /* End BrockU Report a Problem ----------------------------------------------*/
 
+/*CFDUX - Omni Improvement and Enhancements R. 1 */
 
+/*Collapse the list of institutions on the full record. ---------------------*/
+
+/* Collapse "Get It From Other Institutions" 
+dropdown by default in full record display. */
+app.component("prmAlmaOtherMembersAfter", {
+  bindings: {
+    parentCtrl: "<",
+  },
+  controller: [
+    function () {
+      var ctrl = this;
+
+      ctrl.$onInit = function () {
+        ctrl.parentCtrl.isCollapsed = true;
+      }
+    },
+  ],
+}); 
+
+/*----------------------------------------------------------------------------*/
+
+/* Item Location Filter -----------------------------------------------------*/
+
+  //Auto activates the filter for items in full display
+  //written on 2/4/20 by Joe Ferguson from the University of Tennessee, Knoxville
+  app.component('prmLocationItemsAfter', {
+    bindings: {parentCtrl: '<'},
+    controller: function($scope){
+      var myVar = setInterval(activateFilter, 1000);
+      function activateFilter() {
+        if( $("span:contains('Filters')").length ){
+          clearInterval(myVar);
+          return;
+        }
+        if( $("[id^='filter']").length ){
+          $("[id^='filter']").parent().click()
+        }
+      }
+    }
+  });
+
+/* End Item Location Filter -------------------------------------------------*/
 })();

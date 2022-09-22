@@ -1031,10 +1031,47 @@ body {
   color: gray;
   opacity: 80%;
 }
-
-
-
 /* END Report a Problem Button */
+
+/*CFDUX Omni Improvement and Enhancements R. 1*/
+
+/*Style "Get it from another library" link as button*/
+alma-howovp button.md-button.neutralized-button {
+  font-variant: small-caps;
+  box-shadow: 0 0 4px #969696;
+  background-color: #cc0000;
+  color: white;
+}
+alma-howovp button.md-button.neutralized-button:hover {
+  background-color: #202020;
+  color: #e2e2e2;
+}
+alma-howovp md-list-item[ng-repeat="service in $ctrl.filteredServices() track by $index"] {
+  width: 38%;
+  /* margin: auto; */
+}
+/* Hides public note whitespace */
+alma-howovp button span[ng-if^="!"] {
+  display: none;
+}
+/* Hides space between get it and owning library sections */
+alma-howovp md-list:not([ng-if]) {
+  display: none;
+}
+
+/*De-bold and de-capitalize "Omni Libraries that Own this Item*/
+span[translate="nui.brief.results.tabs.getit_other"] {
+  font-weight: normal;
+  text-transform: capitalize;
+  font-family: 'Bliss Light',Source Sans Pro,Trebuchet MS,Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-size: 15px;
+}
+
+/*Unavailable Links in Brief Results*/
+.no_inventory  {
+  color:#e49831 !important;    
+  /* background: #330072 !important; */
+}
 
 /*Hide select Omni locations on the REQUEST FORM in Alma*/
 /*makes sure that external patrons can't see weird locations at other Omni partners to request items to be sent to*/
@@ -1200,3 +1237,4 @@ md-option[value="112036500005156"] { display: none; } /*Wilfrid Laurier Universi
 md-option[value="8188056800005164"] { display: none; } /*Keele Book Lockers*/
 md-option[value="8188104370005164"] { display: none; } /*Glendon Book Lockers*/
 md-option[value="9599265900005164"] { display: none; } /*Osgoode Book Lockers*/
+
