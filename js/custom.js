@@ -251,8 +251,6 @@ document.head.appendChild(js);
         <span class="bu-button-text">error  -  please contact liberm@brocku.ca</span>
       </div>
 
-      
-
       <!--Main Form Element-->
       <div id="bu-report-form" ng-if="$ctrl.showForm">
 
@@ -262,7 +260,7 @@ document.head.appendChild(js);
           <div id="bu-faq-wrap" class="layout-align-center-center layout-row" layout="row" layout-align="center center">
 
             <!-- Main Label -->
-            <label id="bu-faq-label">Please read our FAQ to learn about common problems and solutions</label>
+            <label id="bu-faq-label">Common Problems & Fixes</label>
 
             <!-- FAQ toggle button -->
             <button class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected bu-faq-button" type="button" aria-label="Read FAQ" 
@@ -278,7 +276,7 @@ document.head.appendChild(js);
                 ng-if="!$ctrl.showFAQ"></prm-icon>
                 
                 <span class="bu-button-text"
-                ng-if="!$ctrl.showFAQ">view faq</span>
+                ng-if="!$ctrl.showFAQ">view</span>
               </div>
             </button>
           </div>
@@ -290,14 +288,19 @@ document.head.appendChild(js);
                 <li><b>1. The link is giving an error message.</b></li>
 
                 <li>Solution: Retry the link through a new incognito/private window in your preferred browser, or retry the link in another browser 
-                (<a href="https://library.viu.ca/privacy" target="_blank">instructions for private browsing</a>).
+                (<a href="https://support.google.com/chrome/answer/95464?hl=en&co=GENIE.Platform%3DDesktop" target="_blank">Chrome</a>,
+                <a href="https://support.apple.com/en-ca/guide/safari/ibrw1069/mac" target="_blank">Safari</a>,
+                <a href="https://support.mozilla.org/en-US/kb/private-browsing-use-firefox-without-history" target="_blank">Firefox</a>).
                 <br />  
-                If that fixes the problem, consider clearing your browser cache to avoid this problem in the future 
-                (<a href="https://its.uiowa.edu/support/article/719" target="_blank">tips on clearing your browser cache</a>).</li>
+                If that fixes the problem, consider clearing your browser cache to avoid this problem in the future.
+                Instructions on how to clear your cache in 
+                <a href="https://support.google.com/accounts/answer/32050?hl=en&co=GENIE.Platform%3DDesktop" target="_blank">Chrome</a>,
+                <a href="https://support.apple.com/en-ca/guide/safari/sfri47acf5d6/mac" target="_blank">Safari</a>,
+                <a href="https://support.mozilla.org/en-US/kb/how-clear-firefox-cache" target="_blank">Firefox</a>.</li>
                 <br />
                 <li><b>2. The link should have gone to a journal article, but instead went to an unexpected page.</b></li>
-                <li> Solution: Sometimes publishers don’t provide links directly to the article, but instead send you to the home page for the journal. 
-                In this case, copy and paste the article title in the search box of the publisher homepage, to find the article.</li>
+                <li> Solution: Sometimes publishers don’t link directly to articles and instead direct you to the journal homepage first. 
+                When this happens, use the search box on the journal homepage to search the title of the article.</li>
                 <br />
                 <li><b>3. I’ve found the item I need in Omni, but I don’t see options for access.</b></li>
                 <li>Solution: First ensure you are signed into your Omni account, to see all options for requesting the item. Watch a brief 
@@ -308,10 +311,9 @@ document.head.appendChild(js);
                 <li>Please fill in the form below. We’ll get back to you as soon as we can!</li>
               </ul>
           </div>
-        
-          <hr id="bu-sep">
-        
         </div>
+
+        <hr id="bu-sep">
 
         <form name="mform" class="layout-align-center-center layout-column" novalidate>
           <div id="bu-form-items"> 
