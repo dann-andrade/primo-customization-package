@@ -1047,8 +1047,15 @@ alma-howovp > div > md-list:nth-child(1) > md-list-item:nth-child(1) > button:ho
   color: #e2e2e2;
 }
 alma-howovp > div > md-list:nth-child(1) > md-list-item:nth-child(1) {
-  width: 38%;
-  /* margin: auto; */
+  width: 350px;
+}
+alma-howovp a {
+  color: white;
+}
+alma-howovp a:hover {
+  color: white;
+  box-shadow: none !important;
+  background-color: #202020;
 }
 /* Hides public note whitespace */
 alma-howovp button span[ng-if^="!"] {
