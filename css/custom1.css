@@ -1047,7 +1047,7 @@ alma-howovp > div > md-list:nth-child(1) > md-list-item:nth-child(1) > button:ho
   color: #e2e2e2;
 }
 alma-howovp > div > md-list:nth-child(1) > md-list-item:nth-child(1) {
-  width: 350px;
+  width: fit-content;
 }
 alma-howovp a {
   color: white;
