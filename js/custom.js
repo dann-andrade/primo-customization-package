@@ -251,10 +251,14 @@ document.head.appendChild(js);
         <span class="bu-button-text">error  -  please contact liberm@brocku.ca</span>
       </div>
 
+      <div id="bu-form-title" class="layout-align-center-center layout-row" ng-if="$ctrl.showForm">
+        <label id="bu-title-label">Report Problem</label>
+      </div>
+
       <!--Main Form Element-->
       <div id="bu-report-form" ng-if="$ctrl.showForm">
 
-          <!-- FAQ -->
+        <!-- FAQ -->
         <div id="bu-faq" class="layout-align-center-center layout-column" layout="column" layout-align="center center"
         ng-if="$ctrl.enableFAQ">
           <div id="bu-faq-wrap" class="layout-align-center-center layout-row" layout="row" layout-align="center center">
