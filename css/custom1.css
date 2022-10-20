@@ -1059,24 +1059,37 @@ alma-howovp > div > md-list:nth-child(1) > md-list-item:nth-child(1) > button {
   color: white;
 }
 alma-howovp > div > md-list:nth-child(1) > md-list-item:nth-child(1) > button:hover {
-  background-color: #202020;
-  color: #e2e2e2;
+  background-color: #202020 !important;
+  color: #e2e2e2 !important;
 }
+
+/* Dynamically scale element to fit text */
 alma-howovp > div > md-list:nth-child(1) > md-list-item:nth-child(1) {
   width: fit-content;
 }
-alma-howovp a {
+
+/* Some of the elements are links and so need specific text styling */
+alma-howovp > div > md-list:nth-child(1) > md-list-item:nth-child(1) > button a {
   color: white;
+}
+alma-howovp > div > md-list:nth-child(1) > md-list-item:nth-child(1) > button a:hover {
+  color: white;
+}
+
+/* Get rid of blue underline and background color on hover/focus */
+alma-howovp a:focus {
+  box-shadow: none !important;
 }
 alma-howovp a:hover {
-  color: white;
   box-shadow: none !important;
-  background-color: #202020;
+  background-color: #ffffff00;
 }
+
 /* Hides public note whitespace */
 alma-howovp button span[ng-if^="!"] {
   display: none;
 }
+
 /* Hides space between get it and owning library sections */
 alma-howovp md-list:not([ng-if]) {
   display: none;
