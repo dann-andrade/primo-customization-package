@@ -349,136 +349,105 @@ app.component('prm-search-after', {
 
   /******************* BrockU New Titles ***************************/
 
-  //Initialize main array outside controller so data persists when element is destroyed by ng-if
-  var books = new Array();
+  // Declare full books array outside the controller is the array is not destroyed 
+  // with the component by ng-if
+  var newbooks = new Array();
   
   app.controller('prmSearchBarAfterController', ['$http',
     function ($http) {
 
-      //Init variables and display array
-      var self = this;
-      var screenWidth = 0;
-      var scrollSpeed = 0;
+      const $ctrl = this;
+      var screenWidth = 0;      
       var loadCursor = 0;
-      var contentWidth = 0;
-      var scrollMultiplier = 0;
-      var scrollBack = 0;
-      self.display = [];
+      var dispCursor = 0;      
+      $ctrl.display = [];
       
-      //Initialization function
-      //Displays feature and calls getBooks function to populate carousel if URL is main Omni page
-      //Otherwise hides feature
-      self.$onInit = function () {
-          self.showDisplay = true;
-
+      // On feature initialization, set scroll position to 0 and check if the user is 
+      // on the front page of Omni, if not hide the feature. 
+      $ctrl.$onInit = function () {
+          $ctrl.showDisplay = true;
+          setTimeout(() =>  {  
+            document.getElementById('bu-outer-carousel').scrollLeft = 0;
+          },0 );
           if (window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_TEST_DAN")) {        
-              self.getBooks();
+            getBooks();
           } else {
-              self.showDisplay = false;
+            $ctrl.showDisplay = false;
           };
-
       };
 
-      //If global array is empty, makes http request to pull json and updates array if the request is successful
-      //If request fails, hide feature
-      //Then calculate width and use it to dynamically populate display array. 
-      //If global array is full, skip request and just update array.
-      self.getBooks = function () {
-
-          if(books.length == 0 ) {
-              $http.get('http://rtod.library.brocku.ca:8080/gtitles.json'
+      // Load books from data file if not already loaded. If there is a problem hide the feature. 
+      function getBooks() {
+          if(newbooks.length == 0 ) {
+              $http.get('http://rtod.library.brocku.ca:8080/data/gtitles.json'
               ).then(
                   function successCallback(data) {
-                      books = data.data;
-                      self.findWidth();
-                      self.nextBooks(~~(screenWidth/150) * 2);
+                      newbooks = data.data;
+                      loadBooks(19);
+						          findWidth();
                   },
                   function errorCallback(data){
-                      self.showDisplay = false;
+                      $ctrl.showDisplay = false;
+                      console.log(data);
                   } 
               );
           } else {
             setTimeout(() =>  {
-              self.findWidth();
-              self.nextBooks(~~(screenWidth/150) * 2);
+              loadBooks(19);
+              findWidth();
             }, 10);
           };
-
       };
 
-      //Incrementally calculates total collective width of valid covers
-      //Set scrolling container width to accomodate collective width
-      self.showBook = function(img){
+      // Main book load function, loads n books from full books array into display array so the items 
+      // can be lazy loaded. If we hit the end of the full array, wrap around for infinite scroll. 
+      function loadBooks(n) {
+        let i = 1;
+        while (i <= n && loadCursor < newbooks.length) {
+          $ctrl.display[dispCursor] = newbooks[loadCursor]
+          i++;
+          loadCursor++;
+          dispCursor++;
+          if (loadCursor == newbooks.length) {
+            loadCursor = 0;
+          }
+        }
+      };
 
-        if (img.offsetWidth > 100){
-          contentWidth += img.offsetWidth;
-          document.getElementById('bu-nt-cont').style.width = contentWidth + "px";
+      // Get screenwidth for threshold calculations
+      function findWidth() {
+        screenWidth = document.getElementById('bu-outer-carousel').offsetWidth;
+      };
+
+      // Adds space to inner carousel container to make room for new items
+      function setWidth() {
+        let innerCont = document.getElementById('bu-inner-carousel');
+        innerCont.style.width = String(innerCont.offsetWidth + 1000) + "px";
+      }
+
+      // Scrolls left
+      $ctrl.scrollLeft = function () {
+        document.getElementById('bu-outer-carousel').scrollLeft -= 500; 
+      };
+
+      // Scrolls left, if we are 2 scroll positions from the end of the carousel, extend
+      // by two more positions.  
+      $ctrl.scrollRight = function () {
+        let scrollCont = document.getElementById('bu-outer-carousel');
+        let innerCont = document.getElementById('bu-inner-carousel');
+        if ( scrollCont.scrollLeft + screenWidth >= innerCont.offsetWidth - 1000) {
+          loadBooks(8);
+          setTimeout(() => {
+            setWidth();
+          }, 0);
         };
-          
-      };
-
-      // Scroll Left function
-      // Simply scrolls left by dynamically generated amount and increments scrollback counter
-      self.scrollLeft = function () {
-
-          document.getElementById('bu-nt-cwrap').scrollLeft -= scrollSpeed; 
-          scrollBack++;
-
-      };
-
-      //Scroll Right Function
-      //Lazy loads next set of books unless all books have been loaded or carousel
-      //is not at rightmost position (scrollback > 0)
-      //Scrolls left by dynamically generated amount
-      self.scrollRight = function () {
-
-          if (loadCursor < books.length && scrollBack == 0) {
-              self.nextBooks((Math.ceil(~~(screenWidth/150)) * scrollMultiplier) + 2); 
-          } else if (scrollBack > 0) {
-            scrollBack--;
-          }
-
-          document.getElementById('bu-nt-cwrap').scrollLeft += scrollSpeed;
-
-      };
-
-      
-      //Obtain width of screen
-      //Use width to determine comfortable scrollspeed
-      self.findWidth = function () {
-
-          screenWidth = document.getElementById('bu-nt-cwrap').offsetWidth;
-
-          if (screenWidth < 800) {
-              scrollMultiplier =  0.9;
-          } else {
-              scrollMultiplier =  0.50;
-          }
-
-          scrollSpeed = screenWidth * scrollMultiplier;
-
-      };
-
-      //add books to display array (for lazy loading cover images)
-      self.nextBooks = function (n) {
-
-          var i = loadCursor;
-          n = n + loadCursor;
-          
-              while (i <= n && loadCursor < books.length){
-                  self.display[i] = books[i];
-                  i++;
-                  loadCursor++;
-              }
-
+        scrollCont.scrollLeft += 500;
       };
 
       //Screen Resize Event
       //Calls the find width function to update the width
       addEventListener('resize', (Event) => {
-
-          self.findWidth();
-
+          findWidth();
       });
 
       //Custom location change event listener adopted from: 
@@ -511,9 +480,9 @@ app.component('prm-search-after', {
       addEventListener('locationchange', function () {
 
         if (!window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_TEST_DAN")) {        
-          self.showDisplay = false;
+          $ctrl.showDisplay = false;
         } else {
-          self.showDisplay = true;
+          $ctrl.showDisplay = true;
         };
       });
 
@@ -526,24 +495,33 @@ app.component('prm-search-after', {
   template: `
   <div id="bu-new-titles" class="layout-align-center-center layout-row" layout="row" layout-align="center center" 
   ng-if="$ctrl.showDisplay">
-    <div class="bu-nt-scroll bu-nt-scroll-right" 
-    ng-click="$ctrl.scrollLeft()">
-      <span class="bu-scroll-arrows unselectable">&#9001;</span>
+
+    <div id="bu-scrollbtn-left">
+      <button class="bu-scrollbtn" ng-click="$ctrl.scrollLeft()">
+          <img class="bu-nt-btn-img " src="custom/01OCUL_BU-BU_DEFAULT/img/left.svg">
+      </button>
     </div>
-    <div id="bu-nt-cwrap">
-      <div id="bu-nt-cont">
-        <div class="bu-book" 
+
+    <div id="bu-outer-carousel">
+      <div id="bu-inner-carousel">
+        <div class="bu-book"
+        ng-mouseover="this.hoverTitle = true"
+        ng-mouseleave="this.hoverTitle = false" 
         ng-repeat="book in $ctrl.display track by $index">
           <a href="https://ocul-bu.primo.exlibrisgroup.com/discovery//fulldisplay?docid=alma{{book.mmsid}}&context=L&vid=01OCUL_BU:BU_TEST_DAN&lang=en">
-            <img (load)="$ctrl.showBook($event.currentTarget)" src="https://syndetics.com/index.php?client=primo&isbn={{book.isbn}}/mc.jpg"></img>
+            <img class="bu-book-img" src="https://syndetics.com/index.php?client=primo&isbn={{book.isbn}}/mc.jpg"></img>
           </a>
+          <span class="bu-book-title" ng-if="this.hoverTitle"> {{book.title}} </span>
         </div> 
       </div>
-    </div>   
-    <div class="bu-nt-scroll" 
-    ng-click="$ctrl.scrollRight()">
-      <span class="bu-scroll-arrows unselectable">&#12297;</span>
-    </div> 
+    </div>  
+
+    <div id="bu-scrollbtn-right">
+        <button class="bu-scrollbtn" ng-click="$ctrl.scrollRight()">
+            <img class="bu-nt-btn-img" src="custom/01OCUL_BU-BU_DEFAULT/img/right.svg">
+        </button>
+    </div>
+
   </div>
   `,
   });
