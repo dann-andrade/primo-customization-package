@@ -963,9 +963,6 @@ body {
   float: left;
   padding: 15px 2px 15px 2px;
 }
-.bu-book:hover {
-  
-}
 .bu-book-img:hover {
   position: relative;
   z-index: 1;
