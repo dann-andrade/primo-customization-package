@@ -109,7 +109,6 @@ document.head.appendChild(js);
       ctrl.showForm = false;
       ctrl.submitFlow = false;
       ctrl.submitted = false;
-      ctrl.enableFAQ = true;
 
       ctrl.rURL = window.location.href;
     
@@ -259,8 +258,7 @@ document.head.appendChild(js);
       <div id="bu-report-form" ng-if="$ctrl.showForm">
 
         <!-- FAQ -->
-        <div id="bu-faq" class="layout-align-center-center layout-column" layout="column" layout-align="center center"
-        ng-if="$ctrl.enableFAQ">
+        <div id="bu-faq" class="layout-align-center-center layout-column" layout="column" layout-align="center center">
           <div id="bu-faq-wrap" class="layout-align-center-center layout-row" layout="row" layout-align="center center">
 
             <!-- Main Label -->
