@@ -1017,7 +1017,6 @@ body {
   transform: translate(-50%, 0);
   width: fit-content;
   border-radius: 5px;
-  
   z-index: 5;
 }
 
