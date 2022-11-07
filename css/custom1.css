@@ -944,16 +944,23 @@ body {
 /* New Titles Display */
 
 #bu-new-titles {
-  padding: 20px 0 0 0;
+  /* padding: 20px 0 0 0; */
+  position: absolute;
+  z-index: 1;
+}
+#bu-new-titles-bg {
+  height: 205px;
+  background-color: #e9e9e9;
 }
 #bu-outer-carousel {
-  height: 230px;
+  height: 240px;
   padding: 0px;
   overflow: hidden;
   scroll-behavior: smooth;
 }
 #bu-inner-carousel {
-  height: 230px;
+  padding: 15px 0 15px 0;
+  height: 240px;
   width: 3000px;
 }
 #bu-carousel-items {
@@ -961,7 +968,7 @@ body {
 }
 .bu-book {
   float: left;
-  padding: 15px 2px 15px 2px;
+  padding: 0px 2px 0px 2px;
 }
 .bu-book-img:hover {
   position: relative;
@@ -974,14 +981,14 @@ body {
 /* Scroll Buttons */
 #bu-scrollbtn-left {
   position: absolute;
-  left: 30px;
+  left: 10px;
   z-index: 2;
   border-radius: 0;
   max-width: 60px
 }
 #bu-scrollbtn-right {
   position: absolute;
-  right: 30px;
+  right: 10px;
   z-index: 2;
   border-radius: 0;
   max-width: 60px;
@@ -1017,8 +1024,22 @@ body {
   transform: translate(-50%, 0);
   width: fit-content;
   border-radius: 5px;
-  z-index: 5;
+  z-index: 1;
+  pointer-events: none;
 }
+
+
+/* Adjusted padding to make carousel full width*/
+prm-search-bar {
+  padding:  1.5em 0 0 0 !important;
+}
+prm-search-bar > div {
+  padding: 0 1.5em 0 1.5em;
+}
+prm-search-bar div.layout-fill {
+  padding: 0 1.5em 1.5em 1.5em;
+}
+
 
 /* END New Titles Display */
 
