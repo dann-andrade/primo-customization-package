@@ -415,7 +415,7 @@ app.component('prm-search-after', {
         }
       };
 
-      // Get screenwidth for threshold calculations
+      // Retrieve viewport width, dynamically sets scroll distance
       function findWidth() {
         screenWidth = document.getElementById('bu-outer-carousel').offsetWidth;
         scrollWidth = (screenWidth > 500) ? 500 : screenWidth;
