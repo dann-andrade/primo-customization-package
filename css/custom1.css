@@ -1,6 +1,6 @@
 /* primary color hook */
 /* commenttttt*/
-@font-face{font-family:'Bliss Light';src:url('/wp-content/themes/brocku-mu-base/css/jtt/blsw-lt.eot?x62270');src:url('/wp-content/themes/brocku-mu-base/css/jtt/blsw-lt.eot?#iefix&x62270') format('embedded-opentype'),
+/* @font-face{font-family:'Bliss Light';src:url('/wp-content/themes/brocku-mu-base/css/jtt/blsw-lt.eot?x62270');src:url('/wp-content/themes/brocku-mu-base/css/jtt/blsw-lt.eot?#iefix&x62270') format('embedded-opentype'),
 url('/wp-content/themes/brocku-mu-base/css/jtt/blsw-lt.woff2') format('woff2'),
 url('/wp-content/themes/brocku-mu-base/css/jtt/blsw-lt.woff2') format('woff2'),
 url('/wp-content/themes/brocku-mu-base/css/jtt/blsw-lt.woff?x62270') format('woff'),
@@ -23,7 +23,7 @@ url('/wp-content/themes/brocku-mu-base/css/jtt/blsw-bdit.ttf?x62270') format('tr
 
 @font-face{font-family:'AlfaSlabOne-Regular';src:url('/wp-content/themes/brocku-mu-base/css/jtt/AlfaSlabOne-Regular.eot?x62270');src:url('/wp-content/themes/brocku-mu-base/css/jtt/AlfaSlabOne-Regular.eot?#iefix&x62270') format('embedded-opentype'),
 url('/wp-content/themes/brocku-mu-base/css/jtt/AlfaSlabOne-Regular.woff?x62270') format('woff'),
-url('/wp-content/themes/brocku-mu-base/css/jtt/AlfaSlabOne-Regular.ttf?x62270')  format('truetype');font-weight:normal;font-style:normal}
+url('/wp-content/themes/brocku-mu-base/css/jtt/AlfaSlabOne-Regular.ttf?x62270')  format('truetype');font-weight:normal;font-style:normal} */
 
 .md-button {
   color: #3a3a3a; }
@@ -722,7 +722,7 @@ md-card>:not(md-card-content) img, md-card>img {
 }
 
 body {
-    font-family: 'Bliss Light',Source Sans Pro,Trebuchet MS,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-family: Source Sans Pro,Trebuchet MS,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
 
@@ -738,7 +738,7 @@ body {
   border: 1px solid rgba(185, 185, 185, 0.8);
   background-color: white;
   z-index: 99;
-  font-family: "Bliss Light","Trebuchet MS",sans-serif;
+  font-family: "Trebuchet MS",sans-serif;
 }
 
 @media(max-width: 600px) {
@@ -801,7 +801,7 @@ body {
   border-radius: 0;
   display: flex;
   justify-content: center;
-  font-family: "Bliss Light","Trebuchet MS",sans-serif;
+  font-family: "Trebuchet MS",sans-serif;
   font-size:16px
 }
 

@@ -359,7 +359,8 @@ app.component('prm-search-after', {
       const $ctrl = this;
       var screenWidth = 0;      
       var loadCursor = 0;
-      var dispCursor = 0;      
+      var dispCursor = 0;    
+      var scrollWidth = 0;  
       $ctrl.display = [];
       
       // On feature initialization, set scroll position to 0 and check if the user is 
@@ -417,6 +418,7 @@ app.component('prm-search-after', {
       // Get screenwidth for threshold calculations
       function findWidth() {
         screenWidth = document.getElementById('bu-outer-carousel').offsetWidth;
+        scrollWidth = (screenWidth > 500) ? 500 : screenWidth;
       };
 
       // Adds space to inner carousel container to make room for new items
@@ -427,11 +429,10 @@ app.component('prm-search-after', {
 
       // Scrolls left
       $ctrl.scrollLeft = function () {
-        document.getElementById('bu-outer-carousel').scrollLeft -= 500; 
+        document.getElementById('bu-outer-carousel').scrollLeft -= scrollWidth; 
       };
 
-      // Scrolls left, if we are 2 scroll positions from the end of the carousel, extend
-      // by two more positions.  
+      // Scrolls left, extends if near the end of loaded covers
       $ctrl.scrollRight = function () {
         let scrollCont = document.getElementById('bu-outer-carousel');
         let innerCont = document.getElementById('bu-inner-carousel');
@@ -441,7 +442,7 @@ app.component('prm-search-after', {
             setWidth();
           }, 0);
         };
-        scrollCont.scrollLeft += 500;
+        scrollCont.scrollLeft += scrollWidth;
       };
 
       //Screen Resize Event
