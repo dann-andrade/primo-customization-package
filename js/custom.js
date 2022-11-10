@@ -360,7 +360,12 @@ app.component('prm-search-after', {
       var screenWidth = 0;      
       var loadCursor = 0;
       var dispCursor = 0;    
-      var scrollWidth = 0;  
+      var scrollWidth = 0;
+      
+      var mouseDown = false;
+      var startX = 0;
+      var endX = 0;
+
       $ctrl.display = [];
 
       // On feature initialization, set scroll position to 0 and check if the user is 
@@ -452,6 +457,56 @@ app.component('prm-search-after', {
           findWidth();
           $scope.$apply();
       });
+
+      $ctrl.mouseDown = function (e) {
+        let scrollCont = document.getElementById('bu-outer-carousel');
+        let innerCont = document.getElementById('bu-inner-carousel');
+        mouseDown = true;
+        startX = e.clientX;
+        e.currentTarget.style.cursor = "grabbing";
+        if (scrollCont.scrollLeft + screenWidth >= innerCont.offsetWidth - 2000) {
+          loadBooks(16);
+          setTimeout(() => {
+            setWidth(2000);
+            $scope.$apply();
+          }, 0);
+        };
+      };
+
+      $ctrl.mouseEnter = function(e) {
+        e.currentTarget.style.cursor = "grab"
+      };
+
+      $ctrl.mouseUp = function (e) {
+        e.currentTarget.style.cursor = "grab"
+        mouseDown = false;
+      };
+
+      $ctrl.mouseLeave = function () {
+        mouseDown = false;
+      };
+
+      $ctrl.mouseMove = function (e) {
+        let scrollCont = document.getElementById('bu-outer-carousel');
+        if (mouseDown) {
+            endX = e.clientX;
+            scrollCont.scrollLeft -= (endX - startX)*8.1;
+            startX = endX;
+        }
+      };
+
+      $ctrl.linkMove = function(e) {
+        if (mouseDown){
+          e.currentTarget.children[0].style.pointerEvents = 'none';
+          e.currentTarget.children[0].children[0].hoverTitle = true;
+        }
+      };
+
+      $ctrl.linkRestore = function(e) {				
+        e.currentTarget.children[0].style.pointerEvents = 'initial';
+        e.currentTarget.children[0].children[0].hoverTitle = false;
+      };
+
 
       //Custom location change event listener adopted from: 
       //https://stackoverflow.com/questions/6390341/how-to-detect-if-url-has-changed-after-hash-in-javascript

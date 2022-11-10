@@ -974,6 +974,14 @@ body {
   -ms-user-select: none; 
   user-select: none; 
 }
+.bu-book a:hover {
+  background-color: transparent;
+  box-shadow: none;
+}
+.bu-book a:focus {
+  background-color: transparent;
+  box-shadow: none;
+}
 .bu-book-img:hover {
   position: relative;
   z-index: 1;
