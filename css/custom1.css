@@ -944,7 +944,6 @@ body {
 /* New Titles Display */
 
 #bu-new-titles {
-  /* padding: 20px 0 0 0; */
   position: absolute;
   z-index: 1;
 }
@@ -969,6 +968,11 @@ body {
 .bu-book {
   float: left;
   padding: 0px 2px 0px 2px;
+}
+.bu-book a {
+  -webkit-user-select: none;
+  -ms-user-select: none; 
+  user-select: none; 
 }
 .bu-book-img:hover {
   position: relative;
@@ -1026,6 +1030,9 @@ body {
   border-radius: 5px;
   z-index: 1;
   pointer-events: none;
+  -webkit-user-select: none;
+  -ms-user-select: none; 
+  user-select: none; 
 }
 
 

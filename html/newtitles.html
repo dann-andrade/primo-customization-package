@@ -13,8 +13,8 @@
         ng-mouseover="this.hoverTitle = true"
         ng-mouseleave="this.hoverTitle = false" 
         ng-repeat="book in $ctrl.display track by $index">
-          <a href="https://ocul-bu.primo.exlibrisgroup.com/discovery//fulldisplay?docid=alma{{book.mmsid}}&context=L&vid=01OCUL_BU:BU_TEST_DAN&lang=en">
-            <img class="bu-book-img" src="https://syndetics.com/index.php?client=primo&isbn={{book.isbn}}/mc.jpg"></img>
+          <a href="https://ocul-bu.primo.exlibrisgroup.com/discovery//fulldisplay?docid=alma{{book.mmsid}}&context=L&vid=01OCUL_BU:BU_TEST_DAN&lang=en" draggable="false">
+            <img class="bu-book-img" src="https://syndetics.com/index.php?client=primo&isbn={{book.isbn}}/mc.jpg" draggable="false"></img>
           </a>
           <span class="bu-book-title" ng-if="this.hoverTitle"> {{book.title}} </span>
         </div> 
