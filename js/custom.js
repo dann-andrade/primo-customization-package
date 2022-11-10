@@ -353,8 +353,8 @@ app.component('prm-search-after', {
   // with the component by ng-if
   var newbooks = new Array();
   
-  app.controller('prmSearchBarAfterController', ['$http',
-    function ($http) {
+  app.controller('prmSearchBarAfterController', ['$http', '$scope', 
+    function ($http, $scope) {
 
       const $ctrl = this;
       var screenWidth = 0;      
@@ -362,7 +362,7 @@ app.component('prm-search-after', {
       var dispCursor = 0;    
       var scrollWidth = 0;  
       $ctrl.display = [];
-      
+
       // On feature initialization, set scroll position to 0 and check if the user is 
       // on the front page of Omni, if not hide the feature. 
       $ctrl.$onInit = function () {
@@ -417,8 +417,9 @@ app.component('prm-search-after', {
 
       // Retrieve viewport width, dynamically sets scroll distance
       function findWidth() {
-        screenWidth = document.getElementById('bu-outer-carousel').offsetWidth;
+        screenWidth = document.body.offsetWidth;
         scrollWidth = (screenWidth > 500) ? 500 : screenWidth;
+        $ctrl.showDisplay = (screenWidth >= 700) ? true : false;
       };
 
       // Adds space to inner carousel container to make room for new items
@@ -449,6 +450,7 @@ app.component('prm-search-after', {
       //Calls the find width function to update the width
       addEventListener('resize', (Event) => {
           findWidth();
+          $scope.$apply();
       });
 
       //Custom location change event listener adopted from: 
