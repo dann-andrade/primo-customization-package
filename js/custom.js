@@ -423,9 +423,9 @@ app.component('prm-search-after', {
       };
 
       // Adds space to inner carousel container to make room for new items
-      function setWidth() {
+      function setWidth(w) {
         let innerCont = document.getElementById('bu-inner-carousel');
-        innerCont.style.width = String(innerCont.offsetWidth + 1000) + "px";
+        innerCont.style.width = String(innerCont.offsetWidth + w) + "px";
       }
 
       // Scrolls left
@@ -440,7 +440,7 @@ app.component('prm-search-after', {
         if ( scrollCont.scrollLeft + screenWidth >= innerCont.offsetWidth - 1000) {
           loadBooks(8);
           setTimeout(() => {
-            setWidth();
+            setWidth(1000);
           }, 0);
         };
         scrollCont.scrollLeft += scrollWidth;
