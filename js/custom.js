@@ -507,6 +507,10 @@ app.component('prm-search-after', {
         e.currentTarget.children[0].children[0].hoverTitle = false;
       };
 
+      $ctrl.viewAll = function() {
+        window.location.href = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/search?query=any,contains,%3F%3F&tab=New_Titles&search_scope=New_Books&vid=01OCUL_BU:BU_DEFAULT&lang=en&offset=0';
+      };
+
 
       //Custom location change event listener adopted from: 
       //https://stackoverflow.com/questions/6390341/how-to-detect-if-url-has-changed-after-hash-in-javascript

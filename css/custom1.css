@@ -967,7 +967,7 @@ body {
 }
 .bu-book {
   float: left;
-  padding: 0px 2px 0px 2px;
+  padding: 0px 2px 25px 2px;
 }
 .bu-book a {
   -webkit-user-select: none;
@@ -1007,13 +1007,14 @@ body {
 }
 .bu-scrollbtn {
   padding: 0px;
-  background-color: rgba(0, 0, 0, 0.144);
+  background-color: rgba(0, 0, 0, 0.5
+  );
   border-radius: 5px;
   box-shadow: none;
   border: 0;
 }
 .bu-scrollbtn:hover {
-  background-color: rgba(41, 41, 41, 0.473);
+  background-color: rgba(41, 41, 41, 0.904);
 }
 .bu-scrollbtn:active {
   scale: 98%;
@@ -1023,6 +1024,22 @@ body {
 }
 .bu-nt-btn-img {
   height: 50px;
+}
+
+/* View Button */
+#bu-view {
+  padding: 30px 0 0 0;
+  position: absolute;
+  z-index: 1;
+  right: 10px;
+  top: 0px;
+  border-radius: 0;
+  max-width: 80px;
+}
+#bu-view-btn {
+  color: white;
+  padding: 8px 10px 8px 10px;
+  width: 100%;
 }
 
 /*Book Title Hover*/
