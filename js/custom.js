@@ -152,6 +152,7 @@ document.head.appendChild(js);
     //re-initializes the desc to an empty string in case of double report
     ctrl.showReportForm = function () {
 
+      
       ctrl.showForm = true;
       ctrl.submitFlow = false;
       ctrl.submitted = false;
@@ -230,6 +231,156 @@ document.head.appendChild(js);
   });
 
 /* End BrockU Report a Problem ----------------------------------------------*/
+
+/* BrockU Accessibility Report --------------------------------------------------*/
+
+app.controller('prmBriefResultAfterController', ['$scope', '$http', '$mdDialog',
+function ($scope, $http, $mdDialog) {
+
+  var ctrl = this;
+
+  //initialize form to hidden
+  //initialize invalid flags to initially hide warning icons
+  //initialize submission and success flags off
+  //pull pnx data into scope variable
+  // - Construct url and adds mmsid/recordid depending on what is available in pnx
+  // - Adds title depending on material type 
+  // - Initialize desc to empty string
+  // - set submit confirm as default message until wording/email are approved by PWG
+  ctrl.$onInit = function () {  
+
+    ctrl.showForm = false;
+    ctrl.submitFlow = false;
+    ctrl.submitted = false;
+
+    ctrl.rURL = window.location.href;
+  
+    if (undefined != ctrl.parentCtrl.item.pnx.display.mms) {
+      ctrl.linkID = ctrl.parentCtrl.item.pnx.display.mms[0];
+      ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
+                    ctrl.linkID +
+                    '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
+      ctrl.itemMMSID = ctrl.parentCtrl.item.pnx.display.mms[0];
+    } else if ((undefined != ctrl.parentCtrl.item.pnx.display.source) && (ctrl.parentCtrl.item.pnx.display.source == 'literatum:achs')) {
+      ctrl.linkID = ctrl.parentCtrl.item.pnx.control.sourcerecordid[0];
+      ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
+                    ctrl.linkID +
+                    '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
+      ctrl.itemMMSID = ctrl.parentCtrl.item.pnx.control.sourcerecordid[0];
+    } else {
+      ctrl.linkID = ctrl.parentCtrl.item.pnx.control.recordid[0];
+      ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=' + 
+                      ctrl.linkID +
+                      '&context=PC&vid=01OCUL_BU:BU_DEFAULT&lang=en';
+      ctrl.itemMMSID = 'n/a';
+    };
+
+    if (undefined != ctrl.parentCtrl.item.pnx.display.title) {
+      ctrl.itemTitle = ctrl.parentCtrl.item.pnx.display.title[0];
+    } else if (undefined != ctrl.parentCtrl.item.pnx.addata.btitle) {
+      ctrl.itemTitle = ctrl.parentCtrl.item.pnx.addata.btitle[0];
+    } else if (undefined != ctrl.parentCtrl.item.pnx.addata.jtitle) {
+      ctrl.itemTitle = ctrl.parentCtrl.item.pnx.addata.jtitle[0];
+    } else if (undefined != ctrl.parentCtrl.item.pnx.addata.atitle) {
+      ctrl.itemTitle = ctrl.parentCtrl.item.pnx.addata.atitle[0];
+    } else {
+      ctrl.itemTitle = 'PNX TITLE ERROR'
+    };
+  };
+
+
+  //function for Report Button
+  //show form, toggle submission and success flags off
+  //unhide the submit confirm, ctrl is here in case someone double reports without refreshing
+  //re-initializes the desc to an empty string in case of double report
+  ctrl.showReportForm = function ($event) {
+
+    var parentElement = angular.element(document.body);
+
+    $mdDialog.show ({
+      parent: parentElement,
+      targetEvent: $event,
+      templateUrl: 'custom/BU_DEFAULT/html/accessreportform.html',
+      controllerAs: '$ctrl',
+      controller: DialogController
+    });
+    
+    function DialogController($mdDialog) {
+
+      var ctrld = this;
+
+      ctrld.resourceTitle = ctrl.itemTitle;
+      ctrld.resourceUrl = ctrl.rUrl;
+      ctrld.utype = "student";
+
+      console.log(ctrld.utype);
+
+      ctrld.closeReportForm = function() {
+        $mdDialog.hide();
+      };
+
+    };
+
+  };
+
+  //function for Submit Button
+  //set submittd flag to true
+  //call validation functions
+  //if input is valid
+  // - hide form
+  // - show success popup 
+  // - pull problem description
+  // - post data via api lin
+  // - Hide submission status report
+  ctrl.submitReport = function (valid, remail, rdesc) {
+
+    ctrl.submitted = true;       
+
+    if (valid) {
+
+      ctrl.showForm = false;
+
+      setTimeout(() => {
+
+        let rmessage = {report: 
+                          [{ 
+                            title: ctrl.itemTitle, 
+                            user: remail, 
+                            desc: rdesc, 
+                            url: ctrl.itemURL,
+                            rurl: ctrl.rURL,
+                            mmsid: ctrl.itemMMSID
+                          }]
+                        };
+
+        let url = '<insert flow url>';
+
+        $http.post(url, rmessage, {headers:{'Content-Type': 'application/json'}}).then(function successCallback(resp) {
+          ctrl.submitSuccess = true;
+        });
+      }, 0);
+
+      setTimeout(() => {
+        ctrl.submitFlow = true;
+      }, 150);
+
+      setTimeout(() => {
+        ctrl.submitFlow = false;
+        ctrl.submitSuccess = false;
+        $scope.$apply();
+      }, 5000);
+    };
+  };
+}]
+);
+
+app.component('prmBriefResultAfter', {
+  bindings: { parentCtrl: '<' },
+  controller: 'prmBriefResultAfterController',
+  templateUrl: 'custom/BU_DEFAULT/html/accessreport.html',
+});
+
+/* End BrockU Accessibility Report ----------------------------------------------*/
 
 /*CFDUX - Omni Improvement and Enhancements R. 1 */
 

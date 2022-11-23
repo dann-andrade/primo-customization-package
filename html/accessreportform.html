@@ -1,0 +1,121 @@
+<div id="bu-access">
+
+  <div id="bu-form-title" class="layout-align-center-center layout-row">
+    <label id="bu-title-label">Accessibility Report Form</label>
+  </div>
+
+  <form name="mform" class="layout-align-center-center layout-column" novalidate>
+    <div id="bu-form-items"> 
+
+      <!-- Info Label -->
+      <div class="layout-align-left-center layout-row bu-label-wrap" layout="row" layout-align="left center">
+        <label class="bu-label-text bu-info-label" name="descerror">
+          <b>Please note:</b> This service is for students, faculty, and staff with disabilities. 
+          If you do not have a disability and need help, please chat with library staff or send us an email. 
+          Students requesting accessible formats must first register with Student Accessibility Services. 
+        </label>
+      </div>
+
+      <!-- User Type Selection -->
+      <div class="bu-usertypes">
+        <label class="bu-label-text" name="descerror">
+          <b>Please choose one:</b>
+        </label>
+        <div>
+          <input type="radio" id="bu-usertype-student" name="usertype" value="student" checked>
+          <label for="student">I am a student registered with Student Accessibility Services.</label>
+        </div>
+        <div>
+          <input type="radio" id="bu-usertype-staff" name="usertype" value="staff">
+          <label for="staff" >I am faculty or staff and require this resource in an accessible format.</label>
+        </div>
+      </div>
+
+      <!--Name Label-->
+      <div class="layout-align-left-center layout-row margin-top-medium bu-label-wrap" layout="row" layout-align="left center">
+        <label class="bu-label-text" name="name"><b>Your Name:</b></label>
+      </div>
+
+      <!--Name Field-->
+      <div class="layout-align-center-center" layout="row" layout-align="center center">
+        <input id="fname" autofill="false" name="name" type="text" placeholder="Eg. Jane Doe" aria-label="Enter your name" 
+        ng-model="rname" required>
+      </div>
+
+      <!--Invalid Text-->
+      <div id="bu-access-name-flag" class="layout-align-center-center" layout="row" layout-align="center center"
+      ng-if="mform.name.$invalid && ($ctrl.submitted || mform.name.$touched)">
+        <prm-icon class="bu-special-text-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
+        <span class="bu-special-text" ng-if="mform.name.$error.required">name required</span>
+      </div>
+
+      <!--Email Label-->
+      <div class="layout-align-left-center layout-row margin-top-medium bu-label-wrap" layout="row" layout-align="left center">
+        <label class="bu-label-text" name="emailerror"><b>Your Email:</b></label>
+      </div>
+
+      <!--Email Field-->
+      <div class="layout-align-center-center" layout="row" layout-align="center center">
+        <input id="femail" autofill="false" name="email" type="email" placeholder="Eg. aa00bb@brocku.ca" aria-label="Enter your email" 
+        ng-model="remail" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+      </div>
+
+      <!--Invalid Text-->
+      <div id="bu-access-email-flag" class="layout-align-center-center" layout="row" layout-align="center center"
+      ng-if="mform.email.$invalid && ($ctrl.submitted || mform.email.$touched)">
+        <prm-icon class="bu-special-text-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
+        <span class="bu-special-text" ng-if="!mform.email.$error.required">invalid email</span>
+        <span class="bu-special-text" ng-if="mform.email.$error.required">email required</span>
+      </div>
+
+      <!--Title Label-->
+      <div class="layout-align-left-center layout-row margin-top-medium bu-label-wrap" layout="row" layout-align="left center">
+        <label class="bu-label-text" name="title"><b>Resource Title:</b> <a href="{{$ctrl.resourceUrl}}">{{$ctrl.resourceTitle}}</a></label>
+      </div>
+
+      <!--Description Label-->
+      <div class="layout-align-left-center layout-row bu-label-wrap" layout="row" layout-align="left center">
+        <label class="bu-label-text" name="descerror"><b>How can we help?</b></label>
+      </div>
+
+      <!--Description Field-->
+      <div class="layout-align-center-center" layout="row" layout-align="center center">
+        <textarea id="fdesc" name="fdesc" placeholder="Please provide as much detail as possible to help us understand how we might resolve the problem." 
+        aria-label="Describe your problem" ng-model="rdesc" required></textarea>
+      </div>
+
+      <!--Invalid Text-->
+      <div id="bu-access-description-flag" class="layout-align-center-center" layout="row" layout-align="center center"
+      ng-if="mform.fdesc.$invalid && ($ctrl.submitted || mform.fdesc.$touched)">
+        <div class="warning-bg">
+          <prm-icon class="bu-special-text-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
+        </div>
+        <span class="bu-special-text" >description required</span>
+      </div>
+
+      
+
+      
+
+    </div>
+  </form>
+
+  <!--Form Buttons-->
+  <div id="bu-form-buttons" class="layout-align-center-center margin-top-medium" layout="row" layout-align="center center">
+    
+    <!--Close Button-->
+    <button id="bu-close-button"  class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="button" aria-label="Close form" 
+    ng-click="$ctrl.closeReportForm()">
+      <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"></prm-icon>
+      <span class="bu-button-text">cancel</span>
+    </button>
+    
+
+    <!--Submit Button-->
+    <button id="bu-submit-button" class="_md-nav-button md-accent md-button md-primoExplore-theme md-ink-ripple md-unselected" type="submit" aria-label="Submit report" 
+    ng-click="$ctrl.submitReport(mform.$valid, remail, rdesc); mform.email.$setTouched(); mform.fdesc.$setTouched()">
+      <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="check"></prm-icon>
+      <span class="bu-button-text">submit</span>
+    </button> 
+  </div>
+</div>
