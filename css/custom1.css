@@ -820,17 +820,54 @@ body {
 
 /* END askus popout */
 
-/*Report a Problem Button */
+/* General BrockU styles */
 
-/*General appwide styles*/
-#bu-rap {
-  margin: 30px 0 30px 0;  
+/* Grid */
+
+/* Row */
+.bu-row {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
 }
-#bu-rap label {
+/* Column */
+.bu-col {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+/* Background */
+.bu-background {
+  width: 80%;
+  background-color: #e2e2e2;
+  padding: 5px;
+  border-radius: 0px 0px 2px 2px;
+  box-shadow: 0 0 10px #b3b3b3;
+  padding: 10px;
+} 
+
+/* Labels */
+
+/* Left Alignment */
+.bu-label-wrap {
+  width: 100%;
+  justify-content: left;
+}
+/* Field labels*/
+.bu-label-text {
+  font-family: Roboto,Helvetica Neue,sans-serif; 
+  margin: 5px 0 5px 10px;
   text-shadow: 0 0 5px #b6b6b6;
 }
-/* Title styles */
-#bu-rap #bu-title-label {
+/* Title Lable */
+.bu-title-label {
   font-family: Roboto,Helvetica Neue,sans-serif; 
   margin: 10px 0 10px 0px;
   padding: 0 9px 0 0;
@@ -838,21 +875,52 @@ body {
   color: white;
   text-shadow: 0 0 5px #525252;
 }
-#bu-form-title {
+.bu-title-bar {
   background-color: #585858;
   width: 80%;
   box-shadow: 0px 0px 10px #b3b3b3;
   border-radius: 2px 2px 0px 0px;
   z-index: 1;
 }
-/* General Button Styling*/
-#bu-rap button {
+/* Info/warning labels */
+.bu-info-label {
+  background-color: #f8efc2;
+  padding: 10px;
+  width: 680px;
+}
+/* Confirmation notification */
+.bu-conf-label {
+  width: 90%;
+  background-color: #e2e2e2;
+  padding: 10px;
+  border-radius: 2px;
+  margin: 10px;
+}
+.bu-conf-text {
+  font-weight: 600px;
+  padding: 0px 0px 2px 0px;
+}
+.bu-success-conf {
+  color: #0f7d00;
+}
+.bu-fail-conf {
+  color: #cc0000;
+}
+
+/* Buttons */
+.bu-button {
   background-color: #cc0000;
   color: #f3f3f3;
   border-radius: 2px;
+  border: 0px;
   padding: 0;
   min-width: 105px;
   min-height: 37px;
+  font-family: inherit;
+  font-size: 14px;
+  transition: background-color .35s cubic-bezier(.35,0,.25,1);
+  margin: 0 4px;
+  box-shadow: 0 0 5px #969696;
 }
 .bu-button-icon{
   display: inline-block;
@@ -864,55 +932,15 @@ body {
   position: relative;
   top: 1px;
 }
-/*Animations*/
-#bu-rap button:hover {
-  background-color: #202020;
-  color: #e2e2e2;
-}
-#bu-rap button:active {
-  transform: scale(0.97);
-}
-/*Main Button*/
-#bu-report-button {
-  width: 155px;
-  height: 35px;
-  box-shadow: 0 0 5px #969696;
-}
-/*Cancel and Submit buttons*/
-#bu-form-buttons {
+
+/* Forms */
+.bu-form-buttons {
   margin: 15px 0 15px 0;
 }
-#bu-form-buttons button {
-  height: 30px;
-  border-radius: 2px;
-  box-shadow: 0 0 5px #969696;
-}
-/*Disabled button styles*/
-#bu-submit-button:disabled {
-  background: gray;
-}
-/*form bg*/
-#bu-report-form {
-  width: 80%;
-  background-color: #e2e2e2;
-  padding: 5px;
-  border-radius: 0px 0px 2px 2px;
-  box-shadow: 0 0 10px #b3b3b3;
-  padding: 10px;
-} 
-#bu-form-items {
+.bu-form-items {
   width: 100%;
 }
-/*field labels*/
-#bu-rap .bu-label-text {
-  font-family: Roboto,Helvetica Neue,sans-serif; 
-  margin: 5px 0 5px 10px;
-}
-.bu-label-wrap {
-  width: 100%;
-}
-/*email field*/
-#femail {
+.bu-form-field {
   width: 100%;
   padding: 10px 10px;
   margin: 5px 0;
@@ -922,47 +950,35 @@ body {
   font-family: Roboto,Helvetica Neue,sans-serif;
   box-shadow: 0 0 5px #b3b3b3 inset;
 }
-/*Send me a copy*/
-#bu-send-label {
-  font-family: Roboto,Helvetica Neue,sans-serif;
-  color: gray
-}
-/*input focus outline to red*/
-#femail.ng-invalid.ng-touched, #fdesc.ng-invalid.ng-touched {
+
+/* Inputs */
+
+/* Focus outline to red */
+.bu-form-field.ng-invalid.ng-touched {
   outline: 2px solid #f78e8e;
   outline-offset: -1px;
 }
-/*input elements clear outline before focused element is touched or after element is valid*/
-#femail:focus, #fdesc:focus {
+/* Clear outline before focused element is touched or after element is valid */
+.bu-form-field:focus {
   outline: none;
 }
-/*description field*/
-#fdesc {
-  width: 100%;
-  padding: 10px 10px;
-  margin: 5px 0;
-  box-sizing: border-box;
-  border-radius: 2px;
-  background-color: #f3f3f3;
+/* Wrapping (for invalid text position) */
+.bu-form-input {
+  position: relative;
+}
+/* Extra height for multi line input */
+.bu-input-extra {
   height: 150px;
   border: none;
-  box-shadow: 0 0 5px #b3b3b3 inset;
 }
-/*submit confirmation notification*/
-.bu-submit-conf {
-  width: 90%;
-  background-color: #e2e2e2;
-  padding: 10px;
-  border-radius: 2px;
-  margin: 10px;
+/* Invalid flags */
+.bu-invalid-flag {
+  float: right;
+  z-index: 5;
+  position:absolute;
+  bottom: 12px;
+  right: 2%;
 }
-#bu-submit-success {
-  color: #0f7d00;
-}
-#bu-submit-fail {
-  color: #cc0000;
-}
-/*invalid input warnings*/
 .bu-special-text {
   color: #cc0000;
   padding: 2px 0 2px 0;
@@ -970,26 +986,53 @@ body {
   float: right;
   border-radius: 2px; 
 }
-#bu-description-flag {
-  float: right;
-  z-index: 5;
-  position:absolute;
-  bottom: 217px;
-  right: 11%;
-}
-#bu-email-flag {
-  float: right;
-  z-index: 5;
-  position:absolute;
-  bottom: 125px;
-  right: 11%;
-}
 .bu-special-text-icon{
   color: #cc0000;
   scale: 85%; 
   padding: 0 3px 0 0;
 }
-/* Faq/Common Problem styles*/
+
+/* Separators */
+.bu-sep {
+  width: 95%;
+  color: #ffffff;
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Animations */
+.bu-button:hover {
+  background-color: #202020;
+  color: #e2e2e2;
+}
+.bu-button:active {
+  transform: scale(0.97);
+}
+
+/* END General BrockU styles */
+
+/* Report a Problem Button */
+
+/* Main element */
+#bu-rap {
+  margin: 30px 0 30px 0; 
+}
+
+/* Form and Title */
+#bu-rap .bu-title-bar, #bu-rap .bu-background {
+  max-width: 600px;
+}
+
+/* Report Button */
+#bu-report-button {
+  width: 155px;
+  height: 35px;
+  box-shadow: 0 0 5px #969696;
+}
+
+/* Faq/Common Problem styles */
 #bu-faq {
   width: 100%;
   background-color: #e2e2e2;
@@ -1022,140 +1065,47 @@ body {
   list-style-type: none;
   padding: 0 25px 0 25px;
 }
-#bu-sep{
-  width: 95%;
-  color: #ffffff;
-  border: 0;
-  height: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-/* Mobile Width Styles*/
+
+/* Mobile Width Styles */
 @media (max-width: 800px) {
   #bu-description-flag,  #bu-email-flag {
     float:none;
     position: static;
   }
 }
-/*Send copy styles*/
-#bu-sendcopy {
-  margin: 0 5px 0 10px;
-  accent-color:rgb(133, 133, 133);
-  opacity: 60%;
-}
-#bu-sendcopy-text {
-  color: gray;
-  opacity: 80%;
-}
+
 /* END Report a Problem Button */
 
 /* Brocku Accessibility Issue Form */
 
+/* General */
 #bu-access {
-  width: 700px;
-  height: 660px;
+  height: fit-content;
+  padding: 0px 0px 10px 0px;
 }
-
-#bu-access form {
+#bu-access-form {
   margin: 15px 15px 0 15px;
 }
 
-/*Button styling*/
-#bu-access button {
-  background-color: #cc0000;
-  color: #f3f3f3;
-  border-radius: 2px;
-  padding: 0;
-  min-width: 105px;
-  min-height: 37px;
-}
-
-/*Animations*/
-#bu-access button:hover {
-  background-color: #202020;
-  color: #e2e2e2;
-}
-#bu-access button:active {
-  transform: scale(0.97);
-}
-
-/* Info/warning labels */
-.bu-info-label {
-  background-color: #f8efc2;
-  padding: 10px;
-  width: 680px;
+/* Form Labels */
+#bu-access .bu-label-text {
+  font-weight: 600;
+  margin: 5px 0px 0px 10px;
 }
 
 /* User type radio */
-.bu-usertypes{
+.bu-usertypes {
   padding: 10px 0 10px 0;
 }
 
-/* Name field */
-#fname {
+/* Title Bar */
+#bu-access .bu-title-bar {
   width: 100%;
-  padding: 10px 10px;
-  margin: 5px 0;
-  box-sizing: border-box;
-  border-radius: 2px;
-  background-color: #f3f3f3;
-  font-family: Roboto,Helvetica Neue,sans-serif;
-  box-shadow: 0 0 5px #b3b3b3 inset;
-}
-/*input focus outline to red*/
-#fname.ng-invalid.ng-touched, #fdesc.ng-invalid.ng-touched {
-  outline: 2px solid #f78e8e;
-  outline-offset: -1px;
-}
-/*input elements clear outline before focused element is touched or after element is valid*/
-#fname:focus, #fdesc:focus {
-  outline: none;
 }
 
 /* Brief Results Link */
 #bu-access-button {
   color: #44707b;
-}
-
-/* Invalid Flags */
-#bu-access-name-flag {
-  float: right;
-  z-index: 5;
-  position:absolute;
-  top: 231px;
-  right: 3%;
-}
-#bu-access-email-flag {
-  float: right;
-  z-index: 5;
-  position:absolute;
-  top: 320px;
-  right: 3%;
-}
-#bu-access-description-flag {
-  float: right;
-  z-index: 5;
-  position:absolute;
-  bottom: 90px;
-  right: 3%;
-}
-
-/* Title Bar */
-/* Title styles */
-#bu-access #bu-title-label {
-  font-family: Roboto,Helvetica Neue,sans-serif; 
-  margin: 10px 0 10px 0px;
-  padding: 0 9px 0 0;
-  font-size: 100%;
-  color: white;
-  text-shadow: 0 0 5px #525252;
-}
-#bu-access #bu-form-title {
-  background-color: #585858;
-  width: 100%;
-  box-shadow: 0px 0px 10px #b3b3b3;
-  border-radius: 2px 2px 0px 0px;
-  z-index: 1;
 }
 
 /* END Brocku Accessibility Issue Form */
