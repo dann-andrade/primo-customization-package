@@ -454,8 +454,16 @@ app.component('prm-search-after', {
       //Screen Resize Event
       //Calls the find width function to update the width
       addEventListener('resize', (Event) => {
+        
+        if ((window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_TEST_DAN"))
+             && (window.location.href.indexOf("&mode=advanced") == -1)) {        
           findWidth();
-          $scope.$apply();
+        } else {
+          $ctrl.showDisplay = false;
+        };
+        
+        $scope.$apply();
+
       });
 
       $ctrl.mouseDown = function (e) {
