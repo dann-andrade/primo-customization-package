@@ -4,9 +4,9 @@
     <label class="bu-title-label">Accessibility Issue Report Form</label>
   </div>
 
-  <div class="bu-background">
+  <div class="bu-form-bg">
 
-    <div id="bu-access-form">
+    <div id="bu-access-form" ng-hide="$ctrl.submitFlow">
       <form name="mform" class="bu-col" novalidate>
         <div class="bu-form-items"> 
 
@@ -19,11 +19,13 @@
             </label>
           </div>
 
-          <!-- User Type Selection -->
-          <div class="bu-usertypes margin-top-medium">
-            <label class="bu-label-text" name="descerror">
-              <b>Please choose one:</b>
-            </label>
+          <!--User Type Label-->
+          <div class="bu-row margin-top-medium bu-label-wrap">
+            <label class="bu-label-text" name="utypes">Please choose one:</label>
+          </div>
+
+          <!--User Type Selection-->
+          <div class="bu-usertypes">
             <div>
               <input type="radio" id="bu-usertype-student" name="usertype" value="student" ng-model="$ctrl.usertype.value">
               <label for="student">I am a student registered with Student Accessibility Services.</label>
@@ -73,7 +75,7 @@
 
           <!--Title Label-->
           <div class="bu-row margin-top-medium bu-label-wrap">
-            <label class="bu-label-text" name="title">Resource Title: <a href="{{$ctrl.resourceUrl}}">{{$ctrl.resourceTitle}}</a></label>
+            <label class="bu-label-text" name="title">Resource Title: <a class="bu-link" href="{{$ctrl.resourceUrl}}">{{$ctrl.resourceTitle}}</a></label>
           </div>
 
           <!--Description Label-->
@@ -128,11 +130,11 @@
       </div>
 
     <!--Form Buttons-->
-    <div class="bu-form-buttons bu-row margin-top-medium" ng-hide="$ctrl.submitFlow">
+    <div class="bu-form-buttons bu-row" ng-hide="$ctrl.submitFlow">
           
       <!--Submit Button-->
       <button class="bu-button" type="submit" aria-label="Submit report" 
-      ng-click="$ctrl.submitReport(mform.$valid, remail, rdesc); mform.email.$setTouched(); mform.desc.$setTouched(); mform.fname">
+      ng-click="$ctrl.submitReport(mform.$valid, remail, rdesc, rname, $ctrl.usertype.value); mform.email.$setTouched(); mform.desc.$setTouched(); mform.fname">
         <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="check"></prm-icon>
         <span class="bu-button-text">submit</span>
       </button>

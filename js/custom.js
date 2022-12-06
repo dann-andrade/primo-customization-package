@@ -91,7 +91,7 @@ document.head.appendChild(js);
 
 /* BrockU Report a Problem --------------------------------------------------*/
 
-  app.controller('prmActionContainerAfterController', ['$scope', '$http',
+app.controller('prmActionContainerAfterController', ['$scope', '$http',
   function ($scope, $http) {
 
     var $ctrl = this;
@@ -218,142 +218,140 @@ document.head.appendChild(js);
   }]
 );
 
-  app.component('prmActionContainerAfter', {
-    bindings: { parentCtrl: '<' },
-    controller: 'prmActionContainerAfterController',
-    templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
-  });
+app.component('prmActionContainerAfter', {
+  bindings: { parentCtrl: '<' },
+  controller: 'prmActionContainerAfterController',
+  templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
+});
 
 /* End BrockU Report a Problem ----------------------------------------------*/
 
 /* BrockU Accessibility Report --------------------------------------------------*/
 
 app.controller('prmBriefResultAfterController', ['$scope', '$http', '$mdDialog',
-function ($scope, $http, $mdDialog) {
+  function ($scope, $http, $mdDialog) {
 
-  var ctrl = this;
+    var $ctrl = this;
 
-  //initialize form to hidden
-  //initialize invalid flags to initially hide warning icons
-  //initialize submission and success flags off
-  //pull pnx data into scope variable
-  // - Construct url and adds mmsid/recordid depending on what is available in pnx
-  // - Adds title depending on material type 
-  // - Initialize desc to empty string
-  // - set submit confirm as default message until wording/email are approved by PWG
-  ctrl.$onInit = function () {  
+    //initialize form to hidden
+    //initialize invalid flags to initially hide warning icons
+    //initialize submission and success flags off
+    //pull pnx data into scope variable
+    // - Construct url and adds mmsid/recordid depending on what is available in pnx
+    // - Adds title depending on material type 
+    // - Initialize desc to empty string
+    // - set submit confirm as default message until wording/email are approved by PWG
+    $ctrl.$onInit = function () {  
 
-    ctrl.submitFlow = false;
-    ctrl.submitted = false;
-
-    ctrl.rURL = window.location.href;
-  
-    if (undefined != ctrl.parentCtrl.item.pnx.display.mms) {
-      ctrl.linkID = ctrl.parentCtrl.item.pnx.display.mms[0];
-      ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
-                    ctrl.linkID +
-                    '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
-      ctrl.itemMMSID = ctrl.parentCtrl.item.pnx.display.mms[0];
-    } else if ((undefined != ctrl.parentCtrl.item.pnx.display.source) && (ctrl.parentCtrl.item.pnx.display.source == 'literatum:achs')) {
-      ctrl.linkID = ctrl.parentCtrl.item.pnx.control.sourcerecordid[0];
-      ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
-                    ctrl.linkID +
-                    '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
-      ctrl.itemMMSID = ctrl.parentCtrl.item.pnx.control.sourcerecordid[0];
-    } else {
-      ctrl.linkID = ctrl.parentCtrl.item.pnx.control.recordid[0];
-      ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=' + 
-                      ctrl.linkID +
-                      '&context=PC&vid=01OCUL_BU:BU_DEFAULT&lang=en';
-      ctrl.itemMMSID = 'n/a';
-    };
-
-    if (undefined != ctrl.parentCtrl.item.pnx.display.title) {
-      ctrl.itemTitle = ctrl.parentCtrl.item.pnx.display.title[0];
-    } else if (undefined != ctrl.parentCtrl.item.pnx.addata.btitle) {
-      ctrl.itemTitle = ctrl.parentCtrl.item.pnx.addata.btitle[0];
-    } else if (undefined != ctrl.parentCtrl.item.pnx.addata.jtitle) {
-      ctrl.itemTitle = ctrl.parentCtrl.item.pnx.addata.jtitle[0];
-    } else if (undefined != ctrl.parentCtrl.item.pnx.addata.atitle) {
-      ctrl.itemTitle = ctrl.parentCtrl.item.pnx.addata.atitle[0];
-    } else {
-      ctrl.itemTitle = 'PNX TITLE ERROR'
-    };
-  };
-
-
-  //function for Report Button
-  //show form, toggle submission and success flags off
-  //unhide the submit confirm, ctrl is here in case someone double reports without refreshing
-  //re-initializes the desc to an empty string in case of double report
-  ctrl.showReportForm = function ($event) {
-
-    var parentElement = angular.element(document.body);
-
-    $mdDialog.show ({
-      parent: parentElement,
-      targetEvent: $event,
-      templateUrl: 'custom/BU_DEFAULT/html/accessreportform.html',
-      controllerAs: '$ctrl',
-      controller: DialogController
-    });
+      $ctrl.rURL = window.location.href;
     
-    function DialogController($mdDialog) {
-
-      var ctrld = this;
-
-      ctrld.resourceTitle = ctrl.itemTitle;
-      ctrld.resourceUrl = ctrl.itemURL;
-      ctrld.usertype = {
-        value: "student"
+      if (undefined != $ctrl.parentCtrl.item.pnx.display.mms) {
+        $ctrl.linkID = $ctrl.parentCtrl.item.pnx.display.mms[0];
+        $ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
+                      $ctrl.linkID +
+                      '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
+        $ctrl.itemMMSID = $ctrl.parentCtrl.item.pnx.display.mms[0];
+      } else if ((undefined != $ctrl.parentCtrl.item.pnx.display.source) && (ctrl.parentCtrl.item.pnx.display.source == 'literatum:achs')) {
+        $ctrl.linkID = $ctrl.parentCtrl.item.pnx.control.sourcerecordid[0];
+        $ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
+                      $ctrl.linkID +
+                      '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
+        $ctrl.itemMMSID = $ctrl.parentCtrl.item.pnx.control.sourcerecordid[0];
+      } else {
+        $ctrl.linkID = $ctrl.parentCtrl.item.pnx.control.recordid[0];
+        $ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=' + 
+                        $ctrl.linkID +
+                        '&context=PC&vid=01OCUL_BU:BU_DEFAULT&lang=en';
+        $ctrl.itemMMSID = 'n/a';
       };
 
-      ctrld.closeReportForm = function() {
-        $mdDialog.hide();
+      if (undefined != $ctrl.parentCtrl.item.pnx.display.title) {
+        $ctrl.itemTitle = $ctrl.parentCtrl.item.pnx.display.title[0];
+      } else if (undefined != $ctrl.parentCtrl.item.pnx.addata.btitle) {
+        $ctrl.itemTitle = $ctrl.parentCtrl.item.pnx.addata.btitle[0];
+      } else if (undefined != $ctrl.parentCtrl.item.pnx.addata.jtitle) {
+        $ctrl.itemTitle = $ctrl.parentCtrl.item.pnx.addata.jtitle[0];
+      } else if (undefined != $ctrl.parentCtrl.item.pnx.addata.atitle) {
+        $ctrl.itemTitle = $ctrl.parentCtrl.item.pnx.addata.atitle[0];
+      } else {
+        $ctrl.itemTitle = 'PNX TITLE ERROR'
       };
+    };
 
-      ctrld.submitReport = function (valid, remail, rdesc, rname, ruser) {
 
-        if (valid) {
-    
-          setTimeout(() => {
-    
+    //function for Report Button
+    //show form, toggle submission and success flags off
+    //unhide the submit confirm
+    //re-initializes the desc to an empty string in case of double report
+    $ctrl.showReportForm = function ($event) {
+
+      var parentElement = angular.element(document.body);
+
+      $mdDialog.show ({
+        parent: parentElement,
+        targetEvent: $event,
+        templateUrl: 'custom/BU_DEFAULT/html/accessreportform.html',
+        controllerAs: '$ctrl',
+        controller: DialogController
+      });
+      
+      function DialogController($mdDialog) {
+
+        var $ctrld = this;
+        $ctrld.submitFlow = false;
+        $ctrld.submitted = false;
+
+        $ctrld.resourceTitle = $ctrl.itemTitle;
+        $ctrld.resourceUrl = $ctrl.itemURL;
+        $ctrld.usertype = {
+          value: "student"
+        };
+
+        $ctrld.closeReportForm = function() {
+          $mdDialog.hide();
+        };
+
+        $ctrld.submitReport = function (valid, remail, rdesc, rname, ruser) {
+
+          if (valid) {
+      
             let rmessage = {report: 
                               [{ 
-                                title: ctrl.itemTitle, 
+                                title: $ctrl.itemTitle, 
                                 name: rname,
                                 usertype: ruser,
                                 user: remail, 
                                 desc: rdesc, 
-                                url: ctrl.itemURL,
-                                rurl: ctrl.rURL,
-                                mmsid: ctrl.itemMMSID
+                                url: $ctrl.itemURL,
+                                rurl: $ctrl.rURL,
+                                mmsid: $ctrl.itemMMSID
                               }]
                             };
     
             let url = 'https://prod-21.westus.logic.azure.com:443/workflows/5e02c46c6114414fb324559e0f7d3265/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=uYSyv2XrZUb5XJyxNfV33Y9d6ONEY8HJ9QvtzaX8lN0';
 
-            $http.post(url, rmessage, {headers:{'Content-Type': 'application/json'}}).then(function successCallback(resp) {
-              ctrl.submitSuccess = true;
-            });
-          }, 0);
-    
-          // setTimeout(() => {
-          //   ctrl.submitFlow = true;
-          // }, 150);
-    
-          // setTimeout(() => {
-          //   ctrl.submitFlow = false;
-          //   ctrl.submitSuccess = false;
-          //   $scope.$apply();
-          // }, 5000);
+            $http.post(url, rmessage, {headers:{'Content-Type': 'application/json'}})
+            .then(  
+              function successCallback(response) {   
+                $ctrld.submitSuccess = true;
+              }, 
+              function errorCallback(response){
+                $ctrld.submitSuccess = false;
+              })
+            .then(
+              function submitted(){
+                setTimeout(() => {
+                  $ctrld.submitFlow = true;
+                  $scope.$apply();
+                }, 20);
+              });
+      
+          };
         };
+
       };
-
     };
-
-  };
-}]
+  }]
 );
 
 app.component('prmBriefResultAfter', {
@@ -376,10 +374,10 @@ app.component("prmAlmaOtherMembersAfter", {
   },
   controller: [
     function () {
-      var ctrl = this;
+      var $ctrl = this;
 
-      ctrl.$onInit = function () {
-        ctrl.parentCtrl.isCollapsed = true;
+      $ctrl.$onInit = function () {
+        $ctrl.parentCtrl.isCollapsed = true;
       }
     },
   ],

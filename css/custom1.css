@@ -843,16 +843,6 @@ body {
   justify-content: center;
 }
 
-/* Background */
-.bu-background {
-  width: 80%;
-  background-color: #e2e2e2;
-  padding: 5px;
-  border-radius: 0px 0px 2px 2px;
-  box-shadow: 0 0 10px #b3b3b3;
-  padding: 10px;
-} 
-
 /* Labels */
 
 /* Left Alignment */
@@ -877,10 +867,10 @@ body {
 }
 .bu-title-bar {
   background-color: #585858;
-  width: 80%;
-  box-shadow: 0px 0px 10px #b3b3b3;
+  font-weight: 600;
   border-radius: 2px 2px 0px 0px;
   z-index: 1;
+  box-shadow: 0 0 10px #b3b3b3;
 }
 /* Info/warning labels */
 .bu-info-label {
@@ -934,6 +924,13 @@ body {
 }
 
 /* Forms */
+.bu-form-bg {
+  width: 100%;
+  background-color: #e2e2e2;
+  border-radius: 0px 0px 2px 2px;
+  box-shadow: 0 0 10px #b3b3b3;
+  padding: 15px;
+}
 .bu-form-buttons {
   margin: 15px 0 15px 0;
 }
@@ -1002,6 +999,17 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+/* Links */
+.bu-link {
+  box-shadow: none;
+}
+.bu-link:hover {
+  color:#cc0000;
+  background-color: transparent;
+  box-shadow: none;
+  font-weight: 600;
+}
+
 /* Animations */
 .bu-button:hover {
   background-color: #202020;
@@ -1021,7 +1029,8 @@ body {
 }
 
 /* Form and Title */
-#bu-rap .bu-title-bar, #bu-rap .bu-background {
+#bu-rap .bu-title-bar, #bu-rap .bu-form-bg {
+  width: 80%;
   max-width: 600px;
 }
 
@@ -1081,26 +1090,28 @@ body {
 /* General */
 #bu-access {
   height: fit-content;
-  padding: 0px 0px 10px 0px;
+  min-width: 600px;
 }
-#bu-access-form {
-  margin: 15px 15px 0 15px;
-}
+
 
 /* Form Labels */
 #bu-access .bu-label-text {
-  font-weight: 600;
   margin: 5px 0px 0px 10px;
 }
 
 /* User type radio */
 .bu-usertypes {
-  padding: 10px 0 10px 0;
+  padding: 5px 0px 0px 0px;
 }
 
 /* Title Bar */
 #bu-access .bu-title-bar {
-  width: 100%;
+  box-shadow: none;
+  border-radius: 0px;
+}
+
+#bu-access .bu-form-bg {
+  box-shadow: none;
 }
 
 /* Brief Results Link */

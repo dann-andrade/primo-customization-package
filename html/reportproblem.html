@@ -13,8 +13,8 @@
     <label class="bu-title-label">Report Problem</label>
   </div>
 
-  <!-- Feature Background -->
-  <div class="bu-background" ng-if="$ctrl.showForm">
+  <!-- Embedded Form Background -->
+  <div class="bu-form-bg" ng-if="$ctrl.showForm">
 
     <!-- Main Form -->
     <div id="bu-report-form" ng-hide="$ctrl.submitFlow">
@@ -152,7 +152,7 @@
     </div>
 
     <!--Form Buttons-->
-    <div class="bu-form-buttons bu-row margin-top-medium" ng-hide="$ctrl.submitFlow">
+    <div class="bu-form-buttons bu-row" ng-hide="$ctrl.submitFlow">
         
       <!--Submit Button-->
       <button class="bu-button" type="submit" aria-label="Submit report" 
