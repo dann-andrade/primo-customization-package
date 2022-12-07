@@ -451,6 +451,10 @@ app.component('prm-search-after', {
         scrollCont.scrollLeft += scrollWidth;
       };
 
+      $ctrl.viewAll = function() {
+        window.location.href = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/search?query=any,contains,%3F%3F&tab=New_Titles&search_scope=New_Books&vid=01OCUL_BU:BU_DEFAULT&lang=en&offset=0';
+      };
+
       //Screen Resize Event
       //Calls the find width function to update the width
       addEventListener('resize', (Event) => {
@@ -465,60 +469,6 @@ app.component('prm-search-after', {
         $scope.$apply();
 
       });
-
-      $ctrl.mouseDown = function (e) {
-        let scrollCont = document.getElementById('bu-outer-carousel');
-        let innerCont = document.getElementById('bu-inner-carousel');
-        mouseDown = true;
-        startX = e.clientX;
-        e.currentTarget.style.cursor = "grabbing";
-        if (scrollCont.scrollLeft + screenWidth >= innerCont.offsetWidth - 2000) {
-          loadBooks(16);
-          setTimeout(() => {
-            setWidth(2000);
-            $scope.$apply();
-          }, 0);
-        };
-      };
-
-      $ctrl.mouseEnter = function(e) {
-        e.currentTarget.style.cursor = "grab"
-      };
-
-      $ctrl.mouseUp = function (e) {
-        e.currentTarget.style.cursor = "grab"
-        mouseDown = false;
-      };
-
-      $ctrl.mouseLeave = function () {
-        mouseDown = false;
-      };
-
-      $ctrl.mouseMove = function (e) {
-        let scrollCont = document.getElementById('bu-outer-carousel');
-        if (mouseDown) {
-            endX = e.clientX;
-            scrollCont.scrollLeft -= (endX - startX)*8.1;
-            startX = endX;
-        }
-      };
-
-      $ctrl.linkMove = function(e) {
-        if (mouseDown){
-          e.currentTarget.children[0].style.pointerEvents = 'none';
-          e.currentTarget.children[0].children[0].hoverTitle = true;
-        }
-      };
-
-      $ctrl.linkRestore = function(e) {				
-        e.currentTarget.children[0].style.pointerEvents = 'initial';
-        e.currentTarget.children[0].children[0].hoverTitle = false;
-      };
-
-      $ctrl.viewAll = function() {
-        window.location.href = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/search?query=any,contains,%3F%3F&tab=New_Titles&search_scope=New_Books&vid=01OCUL_BU:BU_DEFAULT&lang=en&offset=0';
-      };
-
 
       //Custom location change event listener adopted from: 
       //https://stackoverflow.com/questions/6390341/how-to-detect-if-url-has-changed-after-hash-in-javascript
