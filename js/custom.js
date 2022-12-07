@@ -375,7 +375,8 @@ app.component('prm-search-after', {
           setTimeout(() =>  {  
             document.getElementById('bu-outer-carousel').scrollLeft = 0;
           },0 );
-          if (window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_TEST_DAN")) {        
+          if ((window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_TEST_DAN")) 
+              && (window.location.href.indexOf("&mode=advanced") == -1)) {        
             getBooks();
           } else {
             $ctrl.showDisplay = false;
@@ -500,6 +501,8 @@ app.component('prm-search-after', {
       addEventListener('locationchange', function () {
 
         if (!window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_TEST_DAN")) {        
+          $ctrl.showDisplay = false;
+        } else if (window.location.href.indexOf("&mode=advanced") != -1) {
           $ctrl.showDisplay = false;
         } else {
           $ctrl.showDisplay = true;
