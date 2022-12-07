@@ -823,7 +823,10 @@ body {
 
 /* General Brocku Styles */
 
-/* Adjust Search Bar */
+
+
+
+/* Adjust Main Search Bar */
 
 /* Top and Bottom Padding */
 prm-search-bar {
@@ -864,6 +867,12 @@ prm-search-bar .switch-to-simple span {
 /* Alert Bar Padding*/
 prm-alert-bar .bar{
   margin: 1.5em 0 0 0;
+}
+
+/* Adjust Journal and Browse Search bars */
+
+prm-browse-search-bar, prm-atoz-search-bar {
+  background-color: transparent;
 }
 
 /* END General Brocku Styles */
