@@ -1,9 +1,21 @@
-<div id="bu-new-titles-bg" ng-if="$ctrl.showDisplay">
+<div id="bu-new-titles-bg" ng-if="$ctrl.showDisplay" aria-label="new books carousel">
   <div id="bu-new-titles" class="layout-align-center-center layout-row" layout="row" layout-align="center center">
 
     <div id="bu-scrollbtn-left">
-      <button class="bu-scrollbtn" ng-click="$ctrl.scrollLeft()">
-          <img class="bu-nt-btn-img " src="custom/01OCUL_BU-BU_DEFAULT/img/left.svg">
+      <button class="bu-scrollbtn" ng-click="$ctrl.scrollLeft()" >
+          <img class="bu-nt-btn-img " src="custom/01OCUL_BU-BU_DEFAULT/img/left.svg" alt="back">
+      </button>
+    </div>
+
+    <div id="bu-scrollbtn-right">
+      <button class="bu-scrollbtn" ng-click="$ctrl.scrollRight()">
+          <img class="bu-nt-btn-img" src="custom/01OCUL_BU-BU_DEFAULT/img/right.svg" alt="forward">
+      </button>
+    </div>
+
+    <div id="bu-view" class="col d-flex align-items-center">
+      <button id="bu-view-btn" class="bu-scrollbtn" ng-click="$ctrl.viewAll()">
+          View All
       </button>
     </div>
 
@@ -12,26 +24,19 @@
         <div class="bu-book"
         ng-repeat="book in $ctrl.display track by $index"
         ng-mouseover="this.hoverTitle = true"
-        ng-mouseleave="this.hoverTitle = false"        >
-          <a href="https://ocul-bu.primo.exlibrisgroup.com/discovery//fulldisplay?docid=alma{{book.mmsid}}&context=L&vid=01OCUL_BU:BU_TEST_DAN&lang=en" draggable="false">
-            <img class="bu-book-img" src="https://syndetics.com/index.php?client=primo&isbn={{book.isbn}}/mc.jpg" draggable="false"></img>
+        ng-mouseleave="this.hoverTitle = false">
+          <a class="bu-book-link" 
+          ng-focus="this.hoverTitle = true"
+          ng-blur="this.hoverTitle = false"
+          href="https://ocul-bu.primo.exlibrisgroup.com/discovery//fulldisplay?docid=alma{{book.mmsid}}&context=L&vid=01OCUL_BU:BU_TEST_DAN&lang=en" draggable="false">
+            <img class="bu-book-img" src="https://syndetics.com/index.php?client=primo&isbn={{book.isbn}}/mc.jpg" draggable="false" alt="{{book.title}}"></img>
           </a>
           <span class="bu-book-title" ng-if="this.hoverTitle"> {{book.title}} </span>
         </div> 
       </div>
     </div>  
 
-    <div id="bu-scrollbtn-right">
-        <button class="bu-scrollbtn" ng-click="$ctrl.scrollRight()">
-            <img class="bu-nt-btn-img" src="custom/01OCUL_BU-BU_DEFAULT/img/right.svg">
-        </button>
-    </div>
-
-    <div id="bu-view" class="col d-flex align-items-center">
-      <button id="bu-view-btn" class="bu-scrollbtn" ng-click="$ctrl.viewAll()">
-          View All
-      </button>
-    </div>
+    
 
   </div>
 </div>

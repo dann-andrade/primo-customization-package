@@ -1029,6 +1029,7 @@ prm-alert-bar .bar{
 .bu-book a:focus {
   background-color: transparent;
   box-shadow: none;
+  background: #CC0000;
 }
 .bu-book-img:hover {
   position: relative;
@@ -1037,6 +1038,7 @@ prm-alert-bar .bar{
   rotate: 1deg;
   box-shadow: 0px 0px 5px black;
 }
+
 
 /* Scroll Buttons */
 #bu-scrollbtn-left {
@@ -1055,20 +1057,19 @@ prm-alert-bar .bar{
 }
 .bu-scrollbtn {
   padding: 0px;
-  background-color: rgba(0, 0, 0, 0.5
-  );
+  background-color: rgba(0, 0, 0, 0.904);
   border-radius: 5px;
   box-shadow: none;
   border: 0;
 }
 .bu-scrollbtn:hover {
-  background-color: rgba(41, 41, 41, 0.904);
+  background-color: rgba(204, 0, 0, 0.904);
 }
 .bu-scrollbtn:active {
   scale: 98%;
 }
 .bu-scrollbtn:focus {
-  box-shadow: none;
+  background-color: rgba(204, 0, 0, 0.904);
 }
 .bu-nt-btn-img {
   height: 50px;
@@ -1078,7 +1079,7 @@ prm-alert-bar .bar{
 #bu-view {
   padding: 30px 4px 0 0;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   right: 10px;
   top: 0px;
   border-radius: 0;
