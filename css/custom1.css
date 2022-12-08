@@ -1015,7 +1015,7 @@ prm-browse-search-bar, prm-atoz-search-bar {
   scroll-behavior: smooth;
 }
 #bu-inner-carousel {
-  padding: 15px 0 15px 0;
+  padding: 20px 0 15px 0;
   height: 240px;
   width: 3000px;
 }
@@ -1109,6 +1109,7 @@ prm-browse-search-bar, prm-atoz-search-bar {
   color: white;
   padding: 5px 10px 5px 10px;
   left: 50%;
+  top: 96%;
   transform: translate(-50%, 0);
   width: fit-content;
   border-radius: 5px;
