@@ -1109,6 +1109,17 @@ span[translate="nui.brief.results.tabs.getit_other"] {
   /* background: #330072 !important; */
 }
 
+/*End CFDUX Omni Improvement and Enhancements R. 1*/
+
+/*Hide 'Photocopy' option in Resource Sharing Request form*/
+div#getit_link1_0.full-view-section md-radio-button[value="PHYSICAL_NON_RETURNABLE"] {
+  display: none;
+}
+
+form[name="requestForm"] md-radio-button[value="PHYSICAL_NON_RETURNABLE"] {
+  display: none;
+}
+  
 /*Hide select Omni locations on the REQUEST FORM in Alma*/
 /*makes sure that external patrons can't see weird locations at other Omni partners to request items to be sent to*/
 /*remove the section for your own institution from this set below so that these locations show up for your LOCAL patrons*/
