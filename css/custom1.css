@@ -830,7 +830,7 @@ body {
 
 /* Top and Bottom Padding */
 prm-search-bar {
-  padding:  1.5em 0 0 0 !important;
+  padding:  1.5em 0 1.5em 0 !important;
   background-color: transparent;
 }
 
@@ -862,11 +862,6 @@ prm-search-bar .search-switch-buttons button span {
 }
 prm-search-bar .switch-to-simple span {
   color: white;
-}
-
-/* Alert Bar Padding*/
-prm-alert-bar .bar{
-  margin: 1.5em 0 0 0;
 }
 
 /* Adjust Journal and Browse Search bars */
@@ -1005,7 +1000,7 @@ prm-browse-search-bar, prm-atoz-search-bar {
   z-index: 1;
 }
 #bu-new-titles-bg {
-  height: 215px;
+  height: 200px;
   background-color: #e9e9e9;
 }
 #bu-outer-carousel {
