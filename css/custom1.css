@@ -820,11 +820,235 @@ body {
 
 /* END askus popout */
 
+/* General BrockU styles */
 
-/* General Brocku Styles */
+/* Grid */
 
+/* Row */
+.bu-row {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+/* Column */
+.bu-col {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
 
+/* Labels */
 
+/* Left Alignment */
+.bu-label-wrap {
+  width: 100%;
+  justify-content: left;
+}
+/* Field labels*/
+.bu-label-text {
+  font-family: Roboto,Helvetica Neue,sans-serif; 
+  margin: 5px 0 5px 10px;
+  text-shadow: 0 0 5px #b6b6b6;
+}
+/* Title Lable */
+.bu-title-label {
+  font-family: Roboto,Helvetica Neue,sans-serif; 
+  margin: 10px 0 10px 0px;
+  padding: 0 9px 0 0;
+  font-size: 100%;
+  color: white;
+  text-shadow: 0 0 5px #525252;
+}
+.bu-title-bar {
+  background-color: #585858;
+  /* font-weight: 600; */
+  border-radius: 2px 2px 0px 0px;
+  z-index: 1;
+  box-shadow: 0 0 10px #b3b3b3;
+}
+/* Info/warning labels */
+.bu-info-label {
+  background-color: #f8efc2;
+  padding: 10px;
+  width: 680px;
+}
+
+/* Confirmation notification */
+.bu-notify-bg {
+  width: 50%;
+  min-width: 400px;
+  background-color: #e2e2e2;
+  /* background-color: #ffd4d4; */
+  border-radius: 0px 0px 2px 2px;
+  box-shadow: 0 0 10px #b3b3b3;
+  padding: 10px;
+  /* border-radius: 10px;
+  border: 2px solid #f85f5f; */
+}
+.bu-notify {
+  width: 100%;
+}
+.bu-notify-label {
+  width: 90%;
+  background-color: inherit;
+  padding: 5px 0 5px 10px;
+  border-radius: 2px;
+  margin: 0;
+  display:flex;
+  align-items: flex-start;
+}
+.bu-conf-title {
+  margin: 0 0 2px 0;
+  font-weight: 600;
+}
+.bu-success-conf{
+  color: #0f7d00;
+}
+.bu-fail-conf{
+  color: #cc0000;
+}
+.bu-notify-icon {
+  width: 45px;
+  height: 45px;
+  margin: 0 10px 0 0;
+}
+.bu-button.bu-notify-button {
+  min-width: 40px;
+  background-color: #e2e2e2;
+  color: #727272;
+  box-shadow: none;
+}
+.bu-notify-button>.bu-button-icon {
+  scale: 100%;
+}
+
+/* Buttons */
+.bu-button {
+  background-color: #cc0000;
+  color: #f3f3f3;
+  border-radius: 2px;
+  border: 0px;
+  padding: 0;
+  min-width: 105px;
+  min-height: 37px;
+  font-family: inherit;
+  font-size: 14px;
+  transition: background-color .35s cubic-bezier(.35,0,.25,1);
+  margin: 0 4px;
+  box-shadow: 0 0 5px #969696;
+}
+.bu-button-icon{
+  display: inline-block;
+  scale: 75%; 
+}
+.bu-button-text {
+  font-variant: small-caps;
+  text-transform: none;
+  position: relative;
+  top: 1px;
+}
+
+/* Forms */
+.bu-form-bg {
+  width: 100%;
+  background-color: #e2e2e2;
+  border-radius: 0px 0px 2px 2px;
+  box-shadow: 0 0 10px #b3b3b3;
+  padding: 10px;
+}
+.bu-form-buttons {
+  margin: 15px 0 15px 0;
+}
+.bu-form-items {
+  width: 100%;
+}
+.bu-form-field {
+  width: 100%;
+  padding: 10px 10px;
+  margin: 5px 0;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background-color: #f3f3f3;
+  font-family: Roboto,Helvetica Neue,sans-serif;
+  box-shadow: 0 0 5px #b3b3b3 inset;
+}
+
+/* Inputs */
+
+/* Focus outline to red */
+.bu-form-field.ng-invalid.ng-touched {
+  outline: 2px solid #f78e8e;
+  outline-offset: -1px;
+}
+/* Clear outline before focused element is touched or after element is valid */
+.bu-form-field:focus {
+  outline: none;
+}
+/* Wrapping (for invalid text position) */
+.bu-form-input {
+  position: relative;
+}
+/* Extra height for multi line input */
+.bu-input-extra {
+  height: 150px;
+  border: none;
+}
+/* Invalid flags */
+.bu-invalid-flag {
+  float: right;
+  z-index: 5;
+  position:absolute;
+  bottom: 12px;
+  right: 2%;
+}
+.bu-special-text {
+  color: #cc0000;
+  padding: 2px 0 2px 0;
+  font-variant: small-caps;
+  float: right;
+  border-radius: 2px; 
+}
+.bu-special-text-icon{
+  color: #cc0000;
+  scale: 85%; 
+  padding: 0 3px 0 0;
+}
+
+/* Separators */
+.bu-sep {
+  width: 95%;
+  color: #ffffff;
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Links */
+.bu-link {
+  box-shadow: none;
+}
+.bu-link:hover {
+  color:#cc0000;
+  background-color: transparent;
+  box-shadow: none;
+  font-weight: 600;
+}
+
+/* Animations */
+.bu-button:hover {
+  background-color: #202020;
+  color: #e2e2e2;
+}
+.bu-button:active {
+  transform: scale(0.97);
+}
 
 /* Adjust Main Search Bar */
 
@@ -870,124 +1094,68 @@ prm-browse-search-bar, prm-atoz-search-bar {
   background-color: transparent;
 }
 
-/* END General Brocku Styles */
+/* END General BrockU styles */
 
-/*Report a Problem Button */
+/* Report a Problem Button */
 
-/*General appwide styles*/
+/* Main element */
 #bu-rap {
-  margin: 30px 0 30px 0;  
-}
-#bu-rap label {
-  text-shadow: 0 0 5px #b6b6b6;
-}
-.bu-special-text {
-  color:#cc0000; 
-  margin: 0 0 0 5px; 
-  font-variant: small-caps;
-  float: right;
+  margin: 30px 0 30px 0; 
 }
 
-/* General Button Sytling*/
-#bu-rap button {
-  background-color: #cc0000;
-  color: #f3f3f3;
-  border-radius: 2px;
-  padding: 0;
-}
-.bu-button-text {
-  font-variant: small-caps;
-  text-transform: none;
-}
-
-
-/*Animations*/
-#bu-rap button:hover {
-  background-color: #202020;
-  color: #e2e2e2;
-}
-#bu-rap button:active {
-  transform: scale(0.97);
-}
-
-/*Main Button*/
-#bu-report-button {
-  width: 145px;
-  height: 35px;
-  box-shadow: 0 0 5px #969696;
-}
-
-/*Cancel and Submit buttons*/
-#bu-form-buttons button {
-  width: 80px;
-  height: 35px;
-  border-radius: 2px;
-  box-shadow: 0 0 5px #969696;
-}
-
-/*form bg*/
-#bu-report-form {
+/* Form and Title */
+#bu-rap .bu-title-bar, #bu-rap .bu-form-bg {
   width: 80%;
+  /* max-width: 600px; */
+}
+
+/* Report Button */
+#bu-report-button {
+  width: 155px;
+  height: 35px;
+  box-shadow: 0 0 5px #969696;
+}
+
+/* Faq/Common Problem styles */
+#bu-faq {
+  width: 100%;
   background-color: #e2e2e2;
-  padding: 5px;
   border-radius: 2px;
-  box-shadow: 0 0 10px #b3b3b3;
-  padding: 10px;
-} 
-#bu-form-items {
-  width: 100%;
+  padding: 5px 0px 5px 0px;
+  margin: 0;
 }
-
-/*email field*/
-#femail {
-  width: 100%;
-  padding: 10px 10px;
-  margin: 5px 0;
-  box-sizing: border-box;
-  border-radius: 2px;
+#bu-faq-label{
+  font-family: Roboto,Helvetica Neue,sans-serif; 
+  margin: 5px 0 5px 0px;
+  padding: 0 9px 0 0;
+}
+#bu-faq-text{
+  font-family: Roboto,Helvetica Neue,sans-serif; 
+  margin: 15px;
+  padding: 15px 0 15px 0;
   background-color: #f3f3f3;
-  font-family: Roboto,Helvetica Neue,sans-serif;
-  box-shadow: 0 0 5px #b3b3b3 inset;
+  box-shadow: 0 0 3px #969696;
+  line-height: 1.8em;
+}
+.bu-faq-button {
+  margin: 0px !important;
+  box-shadow: 0 0 5px #969696;
+}
+#bu-faq-button-items {
+  position: relative;
+  right: 5px;
+}
+#faq-list {
+  list-style-type: none;
+  padding: 0 25px 0 25px;
 }
 
-/*input focus outline to red*/
-#femail:focus, #fdesc:focus {
-  outline: 2px solid #cc0000;
-}
-
-/*description field*/
-#fdesc {
-  width: 100%;
-  padding: 10px 10px;
-  margin: 5px 0;
-  box-sizing: border-box;
-  border-radius: 2px;
-  background-color: #f3f3f3;
-  height: 150px;
-  border: none;
-  box-shadow: 0 0 5px #b3b3b3 inset;
-}
-
-/*submit confirmation notification*/
-#bu-submit-status {
-  width: 90%;
-  background-color: #e2e2e2;
-  padding: 10px;
-  border-radius: 2px;
-  margin: 10px;
-}
-
-/*invalid flag icons*/
-.warning-icon {
-  color: #e2e2e2;
-}
-.warning-bg {
-  margin-left: 8px;
-  height: 24px;
-  width: 24px;
-  background-color: #cc0000;
-  border-radius: 11px;
-  box-shadow: 0 0 5px #9c9c9c;
+/* Mobile Width Styles */
+@media (max-width: 800px) {
+  #bu-description-flag,  #bu-email-flag {
+    float:none;
+    position: static;
+  }
 }
 
 /* END Report a Problem Button */

@@ -1,0 +1,186 @@
+<div id="bu-rap" class="bu-col margin-bottom-medium margin-top-medium">
+
+  <!--Initial Report Button-->
+  <div ng-hide="$ctrl.showForm">
+    <button id="bu-report-button" class="bu-button" type="button" aria-label="Report problem" 
+    ng-click="$ctrl.showReportForm()">
+      <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
+      <span class="bu-button-text">report problem</span>
+    </button>
+  </div>
+
+  <!--Main Form Title-->
+  <div class="bu-row bu-title-bar" ng-if="$ctrl.showForm && !$ctrl.submitFlow">
+    <label class="bu-title-label">Report Problem</label>
+  </div>
+
+  <!--Main Form Background -->
+  <div class="bu-form-bg" ng-if="$ctrl.showForm && !$ctrl.submitFlow">
+
+    <!-- Main Form -->
+    <div id="bu-report-form" ng-hide="$ctrl.submitFlow">
+
+      <!-- FAQ -->
+      <div id="bu-faq">
+        <div id="bu-faq-wrap" class="bu-row">
+
+          <!-- Main Label -->
+          <label id="bu-faq-label">Common Problems & Fixes</label>
+
+          <!-- FAQ toggle button -->
+          <button class="bu-faq-button bu-button" type="button" aria-label="Read FAQ" 
+          ng-click="$ctrl.toggleFAQ()">
+            <div id="bu-faq-button-items">
+              <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"
+              ng-if="$ctrl.showFAQ"></prm-icon>
+
+              <span class="bu-button-text"
+              ng-if="$ctrl.showFAQ">close</span>
+
+              <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="chevron-down"
+              ng-if="!$ctrl.showFAQ"></prm-icon>
+              
+              <span class="bu-button-text"
+              ng-if="!$ctrl.showFAQ">view</span>
+            </div>
+          </button>
+        </div>
+
+        <!-- FAQ text -->
+        <div id="bu-faq-text" class="bu-row"
+          ng-show="$ctrl.showFAQ"> 
+            <ul id="faq-list">
+              <li><b>1. The link is giving an error message.</b></li>
+
+              <li>Solution: Retry the link through a new incognito/private window in your preferred browser, or retry the link in another browser 
+              (<a href="https://support.google.com/chrome/answer/95464?hl=en&co=GENIE.Platform%3DDesktop" target="_blank">Chrome</a>,
+              <a href="https://support.apple.com/en-ca/guide/safari/ibrw1069/mac" target="_blank">Safari</a>,
+              <a href="https://support.mozilla.org/en-US/kb/private-browsing-use-firefox-without-history" target="_blank">Firefox</a>).
+              <br />  
+              If that fixes the problem, consider clearing your browser cache to avoid this problem in the future.
+              Instructions on how to clear your cache in 
+              <a href="https://support.google.com/accounts/answer/32050?hl=en&co=GENIE.Platform%3DDesktop" target="_blank">Chrome</a>,
+              <a href="https://support.apple.com/en-ca/guide/safari/sfri47acf5d6/mac" target="_blank">Safari</a>,
+              <a href="https://support.mozilla.org/en-US/kb/how-clear-firefox-cache" target="_blank">Firefox</a>.</li>
+              <br />
+              <li><b>2. The link should have gone to a journal article, but instead went to an unexpected page.</b></li>
+              <li> Solution: Sometimes publishers don’t link directly to articles and instead direct you to the journal homepage first. 
+              When this happens, use the search box on the journal homepage to search the title of the article.</li>
+              <br />
+              <li><b>3. I’ve found the item I need in Omni, but I don’t see options for access.</b></li>
+              <li>Solution: First ensure you are signed into your Omni account, to see all options for requesting the item. Watch a brief 
+              <a href="https://youtu.be/DJZd9vpaKHk" target="_blank">video </a> to learn more. If there is no option in Omni for either print or online access, you can  
+              <a href="https://brocku.ca/library/interlibrary-loan/" target="_blank">request the item from another library</a>.</li> 
+              <br />
+              <li><b>Still have questions?</b>
+              <li>Please fill in the form below. We’ll get back to you as soon as we can!</li>
+            </ul>
+        </div>
+      </div>
+
+      <hr class="bu-sep">
+
+      <form name="mform" class="bu-row" novalidate>
+        <div class="bu-form-items"> 
+
+          <!--Description Label-->
+          <div class="bu-row bu-label-wrap">
+            <label class="bu-label-text" name="descerror">What is the problem? </label>
+          </div>
+
+          <!--Description Field-->
+          <div class="bu-row bu-form-input">
+            <textarea class="bu-form-field bu-input-extra" name="desc" placeholder="Please provide as much detail as possible to help us understand how we might resolve the problem." 
+            aria-label="Describe your problem" ng-model="rdesc" required></textarea>
+          
+            <!--Invalid Text-->
+            <div class="bu-row bu-invalid-flag"
+            ng-if="mform.desc.$invalid && mform.desc.$touched">
+              <div class="warning-bg">
+                <prm-icon class="bu-special-text-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
+              </div>
+              <span class="bu-special-text" >description required</span>
+            </div>
+          </div>
+
+          <!--Email Label-->
+          <div class="bu-row margin-top-medium bu-label-wrap">
+            <label class="bu-label-text" name="emailerror">Please provide your email address so we can follow up with you. </label>
+          </div>
+
+          <!--Email Field-->
+          <div class="bu-row bu-form-input">
+            <input id="femail" class="bu-form-field" autofill="false" name="email" type="email" placeholder="Eg. aa00bb@brocku.ca" aria-label="Enter your email" 
+            ng-model="remail" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+          
+            <!--Invalid Text-->
+            <div class="bu-row bu-invalid-flag"
+            ng-if="mform.email.$invalid && mform.email.$touched">
+              <prm-icon class="bu-special-text-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="error"></prm-icon>
+              <span class="bu-special-text" ng-if="!mform.email.$error.required">invalid email</span>
+              <span class="bu-special-text" ng-if="mform.email.$error.required">email required</span>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+    <!--Form Buttons-->
+    <div class="bu-form-buttons bu-row" ng-hide="$ctrl.submitFlow">
+        
+      <!--Submit Button-->
+      <button class="bu-button" type="submit" aria-label="Submit report" 
+      ng-click="$ctrl.submitReport(mform.$valid, remail, rdesc); mform.email.$setTouched(); mform.desc.$setTouched()">
+        <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="check"></prm-icon>
+        <span class="bu-button-text">submit</span>
+      </button>
+
+      <!--Close Button-->
+      <button id="bu-cancel-button"  class="bu-button" type="button" aria-label="Close form" 
+      ng-click="$ctrl.closeReportForm()">
+        <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"></prm-icon>
+        <span class="bu-button-text">cancel</span>
+      </button>
+
+    </div>
+
+  </div>
+
+  <!--Submission Notifications-->
+  <div class="bu-row bu-notify-bg" ng-if="$ctrl.submitFlow">
+
+    <!-- Submission Success Notification -->
+    <div class="bu-row bu-notify" ng-if="$ctrl.submitSuccess">
+
+      <img class="bu-notify-icon" src="custom/01OCUL_BU-BU_DEFAULT/img/bu-success.png">
+
+      <!--Success Title and Text-->
+      <div class="bu-col bu-notify-label">
+        <span class="bu-success-conf bu-conf-title">SUCCESS</span>
+        <span class="bu-conf-text">Report Submitted</span>    
+      </div>
+    </div>
+
+    <!-- Submission Failure Notification -->
+    <div class="bu-row bu-notify" ng-if="!$ctrl.submitSuccess">
+
+      <img class="bu-notify-icon" src="custom/01OCUL_BU-BU_DEFAULT/img/bu-error.png">
+
+      <!--Error Title and Text-->
+      <div class="bu-col bu-notify-label">
+        <span class="bu-fail-conf bu-conf-title">ERROR</span>
+        <span class="bu-conf-text">Please contact liberm@brocku.ca</span>    
+      </div>
+    </div>
+
+    <!--Close Button-->
+    <div class="bu-notify-buttons">
+      <button class="bu-button bu-notify-button" type="button" aria-label="Close form" 
+      ng-click="$ctrl.closeReportForm()">
+        <prm-icon class="bu-button-icon" icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"></prm-icon>
+      </button>
+    </div>
+
+  </div>
+</div>
