@@ -91,10 +91,10 @@ document.head.appendChild(js);
 
 /* BrockU Report a Problem --------------------------------------------------*/
 
-  app.controller('prmActionContainerAfterController', ['$scope', '$http',
+app.controller('prmActionContainerAfterController', ['$scope', '$http',
   function ($scope, $http) {
 
-    var ctrl = this;
+    var $ctrl = this;
 
     //initialize form to hidden
     //initialize invalid flags to initially hide warning icons
@@ -104,72 +104,71 @@ document.head.appendChild(js);
     // - Adds title depending on material type 
     // - Initialize desc to empty string
     // - set submit confirm as default message until wording/email are approved by PWG
-    ctrl.$onInit = function () {  
+    $ctrl.$onInit = function () {  
 
-      ctrl.showForm = false;
-      ctrl.submitFlow = false;
-      ctrl.submitted = false;
+      $ctrl.showForm = false;
+      $ctrl.submitFlow = false;
+      $ctrl.submitted = false;
 
-      ctrl.rURL = window.location.href;
+      $ctrl.rURL = window.location.href;
     
-      if (undefined != ctrl.parentCtrl.item.pnx.display.mms) {
-        ctrl.linkID = ctrl.parentCtrl.item.pnx.display.mms[0];
-        ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
-                      ctrl.linkID +
+      if (undefined != $ctrl.parentCtrl.item.pnx.display.mms) {
+        $ctrl.linkID = $ctrl.parentCtrl.item.pnx.display.mms[0];
+        $ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
+                      $ctrl.linkID +
                       '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
-        ctrl.itemMMSID = ctrl.parentCtrl.item.pnx.display.mms[0];
-      } else if ((undefined != ctrl.parentCtrl.item.pnx.display.source) && (ctrl.parentCtrl.item.pnx.display.source == 'literatum:achs')) {
-        ctrl.linkID = ctrl.parentCtrl.item.pnx.control.sourcerecordid[0];
-        ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
-                      ctrl.linkID +
+        $ctrl.itemMMSID = $ctrl.parentCtrl.item.pnx.display.mms[0];
+      } else if ((undefined != $ctrl.parentCtrl.item.pnx.display.source) && ($ctrl.parentCtrl.item.pnx.display.source == 'literatum:achs')) {
+        $ctrl.linkID = $ctrl.parentCtrl.item.pnx.control.sourcerecordid[0];
+        $ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
+                      $ctrl.linkID +
                       '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
-        ctrl.itemMMSID = ctrl.parentCtrl.item.pnx.control.sourcerecordid[0];
+        $ctrl.itemMMSID = $ctrl.parentCtrl.item.pnx.control.sourcerecordid[0];
       } else {
-        ctrl.linkID = ctrl.parentCtrl.item.pnx.control.recordid[0];
-        ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=' + 
-                        ctrl.linkID +
+        $ctrl.linkID = $ctrl.parentCtrl.item.pnx.control.recordid[0];
+        $ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=' + 
+                        $ctrl.linkID +
                         '&context=PC&vid=01OCUL_BU:BU_DEFAULT&lang=en';
-        ctrl.itemMMSID = 'n/a';
+        $ctrl.itemMMSID = 'n/a';
       };
 
-      if (undefined != ctrl.parentCtrl.item.pnx.display.title) {
-        ctrl.itemTitle = ctrl.parentCtrl.item.pnx.display.title[0];
-      } else if (undefined != ctrl.parentCtrl.item.pnx.addata.btitle) {
-        ctrl.itemTitle = ctrl.parentCtrl.item.pnx.addata.btitle[0];
-      } else if (undefined != ctrl.parentCtrl.item.pnx.addata.jtitle) {
-        ctrl.itemTitle = ctrl.parentCtrl.item.pnx.addata.jtitle[0];
-      } else if (undefined != ctrl.parentCtrl.item.pnx.addata.atitle) {
-        ctrl.itemTitle = ctrl.parentCtrl.item.pnx.addata.atitle[0];
+      if (undefined != $ctrl.parentCtrl.item.pnx.display.title) {
+        $ctrl.itemTitle = $ctrl.parentCtrl.item.pnx.display.title[0];
+      } else if (undefined != $ctrl.parentCtrl.item.pnx.addata.btitle) {
+        $ctrl.itemTitle = $ctrl.parentCtrl.item.pnx.addata.btitle[0];
+      } else if (undefined != $ctrl.parentCtrl.item.pnx.addata.jtitle) {
+        $ctrl.itemTitle = $ctrl.parentCtrl.item.pnx.addata.jtitle[0];
+      } else if (undefined != $ctrl.parentCtrl.item.pnx.addata.atitle) {
+        $ctrl.itemTitle = $ctrl.parentCtrl.item.pnx.addata.atitle[0];
       } else {
-        ctrl.itemTitle = 'PNX TITLE ERROR'
+        $ctrl.itemTitle = 'PNX TITLE ERROR'
       };
     };
 
 
     //function for Report Button
     //show form, toggle submission and success flags off
-    //unhide the submit confirm, ctrl is here in case someone double reports without refreshing
+    //unhide the submit confirm, $ctrl is here in case someone double reports without refreshing
     //re-initializes the desc to an empty string in case of double report
-    ctrl.showReportForm = function () {
+    $ctrl.showReportForm = function () {
 
-      ctrl.showForm = true;
-      ctrl.submitFlow = false;
-      ctrl.submitted = false;
-      ctrl.submitConf = false;
-      ctrl.showFAQ = false;
+      $ctrl.showForm = true;
+      $ctrl.submitFlow = false;
+      $ctrl.submitConf = false;
+      $ctrl.showFAQ = false;
 
     };
 
     // closing the form simple re-initializes everything (for now)
-    ctrl.closeReportForm = function () {
+    $ctrl.closeReportForm = function () {
 
-      ctrl.$onInit();
+      $ctrl.$onInit();
 
     };
 
-    ctrl.toggleFAQ = function () {
+    $ctrl.toggleFAQ = function () {
 
-      ctrl.showFAQ = !ctrl.showFAQ
+      $ctrl.showFAQ = !$ctrl.showFAQ
     };
 
     //function for Submit Button
@@ -181,53 +180,49 @@ document.head.appendChild(js);
     // - pull problem description
     // - post data via api lin
     // - Hide submission status report
-    ctrl.submitReport = function (valid, remail, rdesc) {
-
-      ctrl.submitted = true;       
+    $ctrl.submitReport = function (valid, remail, rdesc) {
 
       if (valid) {
 
-        ctrl.showForm = false;
+        let rmessage = {report: 
+                          [{ 
+                            title: $ctrl.itemTitle, 
+                            user: remail, 
+                            desc: rdesc, 
+                            url: $ctrl.itemURL,
+                            rurl: $ctrl.rURL,
+                            mmsid: $ctrl.itemMMSID
+                          }]
+                        };
 
-        setTimeout(() => {
+        let url = '<insert flow url>';
 
-          let rmessage = {report: 
-                            [{ 
-                              title: ctrl.itemTitle, 
-                              user: remail, 
-                              desc: rdesc, 
-                              url: ctrl.itemURL,
-                              rurl: ctrl.rURL,
-                              mmsid: ctrl.itemMMSID
-                            }]
-                          };
-
-          let url = '<insert flow url>';
-
-          $http.post(url, rmessage, {headers:{'Content-Type': 'application/json'}}).then(function successCallback(resp) {
-            ctrl.submitSuccess = true;
+        $http.post(url, rmessage, {headers:{'Content-Type': 'application/json'}})
+        .then(  
+          function successCallback(response) {   
+            $ctrl.submitSuccess = true;
+          }, 
+          function errorCallback(response){
+            $ctrl.submitSuccess = false;
+          })
+        .then(
+          function submitted(){
+            setTimeout(() => {
+              $ctrl.submitFlow = true;
+              $scope.$apply();
+            }, 20);
           });
-        }, 0);
 
-        setTimeout(() => {
-          ctrl.submitFlow = true;
-        }, 150);
-
-        setTimeout(() => {
-          ctrl.submitFlow = false;
-          ctrl.submitSuccess = false;
-          $scope.$apply();
-        }, 5000);
       };
     };
   }]
 );
 
-  app.component('prmActionContainerAfter', {
-    bindings: { parentCtrl: '<' },
-    controller: 'prmActionContainerAfterController',
-    templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
-  });
+app.component('prmActionContainerAfter', {
+  bindings: { parentCtrl: '<' },
+  controller: 'prmActionContainerAfterController',
+  templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
+});
 
 /* End BrockU Report a Problem ----------------------------------------------*/
 
