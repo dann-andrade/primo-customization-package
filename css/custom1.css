@@ -1056,7 +1056,7 @@ body {
 
 /* Main element */
 #bu-rap {
-  margin: 30px 0 30px 0; 
+  margin: 30px 0 0 0; 
 }
 
 /* Form and Title */
@@ -1116,33 +1116,38 @@ body {
 
 /* END Report a Problem Button */
 
-/*CFDUX Omni Improvement and Enhancements R. 1*/
+/*Convert delivery service links to buttons*/
 
-/*Style "Get it from another library" link as button*/
-alma-howovp > div > md-list:nth-child(1) > md-list-item:nth-child(1) > button {
-  font-variant: small-caps;
-  box-shadow: 0 0 4px #969696;
-  background-color: #cc0000;
-  color: white;
+/*Style How to Get it links as buttons*/
+alma-howovp button {
+  font-variant: small-caps !important;
+  box-shadow: 0 0 4px #969696 !important;
+  background-color: #cc0000 !important;
+  color: white !important;
+  transition: background-color .35s cubic-bezier(.35,0,.25,1);
 }
-alma-howovp > div > md-list:nth-child(1) > md-list-item:nth-child(1) > button:hover {
+alma-howovp div button:hover {
   background-color: #202020 !important;
   color: #e2e2e2 !important;
 }
-
+/* Some of the elements are links and so need specific text styling */
+alma-howovp button a {
+  color: white !important;
+}
+alma-howovp button a:hover {
+  color: white !important;
+}
 /* Dynamically scale element to fit text */
-alma-howovp > div > md-list:nth-child(1) > md-list-item:nth-child(1) {
+alma-howovp > div > md-list {
   width: fit-content;
 }
-
-/* Some of the elements are links and so need specific text styling */
-alma-howovp > div > md-list:nth-child(1) > md-list-item:nth-child(1) > button a {
-  color: white;
+alma-howovp > div > md-list > md-list-item {
+  width: 300px;
 }
-alma-howovp > div > md-list:nth-child(1) > md-list-item:nth-child(1) > button a:hover {
-  color: white;
+/* Reduce size of 'In new window' icon*/
+alma-howovp prm-icon[icon-definition="ic_open_in_new_24px"] {
+  scale:80%;
 }
-
 /* Get rid of blue underline and background color on hover/focus */
 alma-howovp a:focus {
   box-shadow: none !important;
@@ -1151,16 +1156,91 @@ alma-howovp a:hover {
   box-shadow: none !important;
   background-color: #ffffff00;
 }
-
 /* Hides public note whitespace */
 alma-howovp button span[ng-if^="!"] {
   display: none;
 }
-
 /* Hides space between get it and owning library sections */
 alma-howovp md-list:not([ng-if]) {
   display: none;
 }
+
+/*Style View it links as buttons*/
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"] {
+  font-variant: small-caps !important;
+  box-shadow: 0 0 4px #969696 !important;
+  background-color: #cc0000 !important;
+  color: white !important;
+  margin: 5px 0 0 0;
+  transition: background-color .35s cubic-bezier(.35,0,.25,1);
+}
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"]:hover {
+  background-color: #202020 !important;
+  color: #e2e2e2 !important;
+}
+/* Some of the elements are links and so need specific text styling */
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"] a {
+  color: white !important;
+}
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"] a:hover {
+  color: white !important;
+}
+/* Dynamically scale element to fit text */
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"]{
+  width: fit-content;
+}
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"] {
+  width: 300px;
+}
+/* Resize and vertically center 'In new window' icon*/
+prm-alma-viewit-items prm-icon[icon-definition="open-in-new"] {
+  height: 100%;
+  display: block;
+}
+/* Get rid of blue underline and background color on hover/focus */
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"] a:focus {
+  box-shadow: none !important;
+}
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"] a:hover {
+  box-shadow: none !important;
+  background-color: #ffffff00;
+}
+/* Hides public note whitespace */
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"] button span[ng-if^="!"] {
+  display: none;
+}
+/* Hides space between get it and owning library sections */
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"] md-list:not([ng-if]) {
+  display: none;
+}
+
+/*Style Get it links as buttons*/
+prm-request-services prm-service-button button {
+  box-shadow: 0 0 4px #969696 !important;
+  background-color: #cc0000 !important;
+  border-radius: 0px !important;
+  color: white !important;
+  transition: background-color .35s cubic-bezier(.35,0,.25,1);
+  padding: 5px 15px !important;
+  min-height: 30px !important
+}
+prm-request-services button:hover {
+  background-color: #202020 !important;
+  color: #e2e2e2 !important;
+}
+/* Reduce size of 'In new window' icon*/
+prm-request-services prm-icon {
+  color: white !important;
+  padding: 0px 5px;
+}
+/* Get rid of slashes */
+prm-request-services .separated-block-item::after {
+  display:none;
+}
+
+/*End Convert delivery service links to buttons*/
+
+/*CFDUX Omni Improvement and Enhancements R. 1*/
 
 /*De-bold and de-capitalize "Omni Libraries that Own this Item*/
 span[translate="nui.brief.results.tabs.getit_other"] {
