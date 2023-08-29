@@ -1211,14 +1211,13 @@ prm-browse-search-bar, prm-atoz-search-bar {
   box-shadow: 0px 0px 5px black;
 }
 
-
 /* Scroll Buttons */
 #bu-scrollbtn-left {
   position: absolute;
   left: 10px;
   z-index: 2;
   border-radius: 0;
-  max-width: 60px
+  max-width: 60px;
 }
 #bu-scrollbtn-right {
   position: absolute;
@@ -1230,8 +1229,9 @@ prm-browse-search-bar, prm-atoz-search-bar {
 .bu-scrollbtn {
   padding: 0px;
   background-color: rgba(0, 0, 0, 0.904);
-  border-radius: 5px;
+  transition: background-color .35s cubic-bezier(.35,0,.25,1);
   box-shadow: none;
+  border-radius: 2px;
   border: 0;
 }
 .bu-scrollbtn:hover {
@@ -1249,19 +1249,33 @@ prm-browse-search-bar, prm-atoz-search-bar {
 
 /* View Button */
 #bu-view {
-  padding: 30px 4px 0 0;
+  margin: 30px 14px 0 0;
   position: absolute;
   z-index: 2;
-  right: 10px;
+  right: 0px;
   top: 0px;
-  border-radius: 0;
   max-width: 80px;
 }
 #bu-view-btn {
   color: white;
-  padding: 8px 10px 8px 10px;
+  padding: 5px 10px;
   width: 100%;
-  scale: 110%;
+}
+
+/*Start Button*/
+#bu-start {
+  margin: 30px 0 0 10px;
+  padding: 0px;
+  position: absolute;
+  z-index: 2;
+  left: 0px;
+  top: 0px;
+  max-width: 80px;
+}
+#bu-start-btn {
+  color: white;
+  padding: 5px 10px;
+  width: 100%;
 }
 
 /*Book Title Hover*/
