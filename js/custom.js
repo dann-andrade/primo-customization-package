@@ -578,7 +578,7 @@ templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
       //Calls the find width function to update the width
       addEventListener('resize', (Event) => {
         
-        if ((window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_TEST_DAN"))
+        if ((window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_NEW_TITLES"))
              && (window.location.href.indexOf("&mode=advanced") == -1)) {        
           findWidth();
         } else {
@@ -618,7 +618,7 @@ templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
       //Removes feature if not on homepage 
       addEventListener('locationchange', function () {
 
-        if (!window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_TEST_DAN")) {        
+        if (!window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_NEW_TITLES")) {        
           $ctrl.showDisplay = false;
         } else if (window.location.href.indexOf("&mode=advanced") != -1) {
           $ctrl.showDisplay = false;
