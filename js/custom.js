@@ -213,255 +213,256 @@ templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
 
   newbooks = [
     {
-      "isbn": "9781773630366",
-      "mmsid": "991009415524405152",
-      "title": "Sick and tired: health and safety inequalities"
+      "isbn": "0345808002",
+      "mmsid": "991006627299705152",
+      "title": "All my puny sorrows"
     },
     {
-      "isbn": "0369103858",
-      "mmsid": "991009416423005152",
-      "title": "Bluebirds"
+      "isbn": "0123819806",
+      "mmsid": "991006835489705152",
+      "title": "The vitamins"
     },
     {
-      "isbn": "0369103734",
-      "mmsid": "991009416423105152",
-      "title": "Is my microphone on?"
+      "isbn": "9781550461428",
+      "mmsid": "991009439025605152",
+      "title": "Soldiers of the king : the Upper Canadian militia, 1812-1815 : a reference guide"
     },
     {
-      "isbn": "0369103386",
-      "mmsid": "991009416423205152",
-      "title": "Every day she rose"
+      "isbn": "0143192957",
+      "mmsid": "991009499925605152",
+      "title": "Organized mind"
     },
     {
-      "isbn": "0369103416",
-      "mmsid": "991009416423305152",
-      "title": "Let's run away : four stories and a message for the world written in response to an unpublished memoir"
+      "isbn": "1101147113",
+      "mmsid": "991009500225505152",
+      "title": "The brain that changes itself : stories of personal triumph from the frontiers of brain science"
     },
     {
-      "isbn": "0369103637",
-      "mmsid": "991009416423405152",
-      "title": "Blow wind"
+      "isbn": "0231526695",
+      "mmsid": "991009500225605152",
+      "title": "The animal rights debate : abolition or regulation?"
     },
     {
-      "isbn": "0369103505",
-      "mmsid": "991009416423505152",
-      "title": "Women of the fur trade"
+      "isbn": "1788210360",
+      "mmsid": "991009500282505152",
+      "title": "Capitalism, socialism and property rights : why market socialism cannot substitute the market"
     },
     {
-      "isbn": "0369103572",
-      "mmsid": "991009416423605152",
-      "title": "Public enemy"
+      "isbn": "1788210263",
+      "mmsid": "991009500282705152",
+      "title": "Populocracy : the tyranny of authenticity and the rise of populism"
     },
     {
-      "isbn": "0369103548",
-      "mmsid": "991009416423705152",
-      "title": "Lady sunrise"
+      "isbn": "1911116347",
+      "mmsid": "991009500282905152",
+      "title": "Flawed capitalism : the Anglo-American condition and its resolution"
     },
     {
-      "isbn": "0369103475",
-      "mmsid": "991009416423805152",
-      "title": "Everybody just c@lm the f#ck down"
+      "isbn": "1911116568",
+      "mmsid": "991009500283405152",
+      "title": "ANALYSING CORRUPTION : an introduction."
     },
     {
-      "isbn": "036910157X",
-      "mmsid": "991009416423905152",
-      "title": "Forget me not"
+      "isbn": "1911116657",
+      "mmsid": "991009500283605152",
+      "title": "The political economy of Brexit"
     },
     {
-      "isbn": "9781773635545",
-      "mmsid": "991009416424005152",
-      "title": "Country of poxes : three germs and the taking of territory"
+      "isbn": "1788210131",
+      "mmsid": "991009500283805152",
+      "title": "The sex economy"
     },
     {
-      "isbn": "1773635522",
-      "mmsid": "991009416424105152",
-      "title": "Abolitionist intimacies"
+      "isbn": "1668466473",
+      "mmsid": "991009500283905152",
+      "title": "Cyber trafficking, threat behavior, and malicious activity monitoring for healthcare organizations"
     },
     {
-      "isbn": "9781773635613",
-      "mmsid": "991009416424205152",
-      "title": "Solidarity beyond bars : unionizing prison labour"
+      "isbn": "1668482258",
+      "mmsid": "991009500284005152",
+      "title": "Multidisciplinary approaches to sustainable human development"
     },
     {
-      "isbn": "3110275686",
-      "mmsid": "991009089272105152",
-      "title": "Methods in contemporary linguistics"
+      "isbn": "1668473100",
+      "mmsid": "991009500284105152",
+      "title": "Policies, protocols, and standards for professionalism in a diverse work environment"
     },
     {
-      "isbn": "311046408X",
-      "mmsid": "991009090584005152",
-      "title": "Public History and School : International Perspectives"
+      "isbn": "1668489449",
+      "mmsid": "991009500284205152",
+      "title": "HR analytics in an era of rapid automation"
     },
     {
-      "isbn": "3110461285",
-      "mmsid": "991009091193105152",
-      "title": "Coolies of capitalism : Assam tea and the making of Coolie labour"
+      "isbn": "1668492741",
+      "mmsid": "991009500284305152",
+      "title": "Governance quality, fiscal policy, and the path to a low-carbon future : perspectives from developing economies"
     },
     {
-      "isbn": "348698960X",
-      "mmsid": "991009093667805152",
-      "title": "Auf dem Weg zur Normalit\u00e4t : Konflikt und Verst\u00e4ndigung in den deutsch-franz\u00f6sischen Beziehungen der 1970er Jahre"
+      "isbn": "166848353X",
+      "mmsid": "991009500284405152",
+      "title": "The role of brands in an era of over-information"
     },
     {
-      "isbn": "3110478129",
-      "mmsid": "991009096192605152",
-      "title": "Katechismus-Andachten (1656)"
+      "isbn": "1668472449",
+      "mmsid": "991009500284505152",
+      "title": "Exploring niche tourism business models, marketing, and consumer experience"
     },
     {
-      "isbn": "3110579170",
-      "mmsid": "991009097033905152",
-      "title": "The Civilising Offensive : Social and educational reform in 19th century Belgium"
+      "isbn": "1668486261",
+      "mmsid": "991009500284605152",
+      "title": "Revolutionizing financial services and markets through fintech and blockchain"
     },
     {
-      "isbn": "3110579200",
-      "mmsid": "991009098808705152",
-      "title": "Victimhood and acknowledgment : the other side of terrorism"
+      "isbn": "1668488841",
+      "mmsid": "991009500284705152",
+      "title": "Principles of financial control in the public sector"
     },
     {
-      "isbn": "3110518015",
-      "mmsid": "991009099102505152",
-      "title": "Jeux de mots et cr\u00e9ativit\u00e9 : Langue(s), discours et litt\u00e9rature"
+      "isbn": "1788211340",
+      "mmsid": "991009500421205152",
+      "title": "The Federal Reserve and its founders : money politics and power"
     },
     {
-      "isbn": "3110322501",
-      "mmsid": "991009100798105152",
-      "title": "Johanssonian investigations essays in honour of Ingvar Johansson on his seventieth birthday"
+      "isbn": "178821031X",
+      "mmsid": "991009500421305152",
+      "title": "Europe and Northern Ireland's future : negotiating Brexit's unique case"
     },
     {
-      "isbn": "3110610477",
-      "mmsid": "991009102807905152",
-      "title": "Global histories of work"
+      "isbn": "1911116126",
+      "mmsid": "991009500421705152",
+      "title": "The contradictions of capital in the twenty-first century : the Piketty opportunity"
     },
     {
-      "isbn": "3110262444",
-      "mmsid": "991009103625605152",
-      "title": "Our Neighbours, Ourselves : Contemporary Reflections on Survival"
+      "isbn": "9781788211734",
+      "mmsid": "991009500421805152",
+      "title": "Alarums & excursions : improvising politics on the European stage"
     },
     {
-      "isbn": "3662488477",
-      "mmsid": "991009240251705152",
-      "title": "Autonomous Driving Technical, Legal and Social Aspects"
+      "isbn": "1911116843",
+      "mmsid": "991009500421905152",
+      "title": "The Doreen Massey reader"
     },
     {
-      "isbn": "3110541572",
-      "mmsid": "991009240799405152",
-      "title": "Manuscripts and Archives : Comparative Views on Record-Keeping"
+      "isbn": "1793627134",
+      "mmsid": "991009499925705152",
+      "title": "Authenticity in the music of video games"
     },
     {
-      "isbn": "3110350548",
-      "mmsid": "991009240808905152",
-      "title": "150 Jahre deutsche Verwaltungsgerichtsbarkeit : Vortrag, gehalten vor der Juristischen Gesellschaft zu Berlin am 9. Oktober 2013 im OVG Berlin-Brandenburg"
+      "isbn": "051162476X",
+      "mmsid": "991009500225705152",
+      "title": "Kant and the claims of knowledge"
     },
     {
-      "isbn": "1283166240",
-      "mmsid": "991009240945405152",
-      "title": "Heinrich Heine - ein deutscher Europ\u00e4er im franz\u00f6sischen Exil : Vortrag, gehalten vor der Juristischen Gesellschaft zu Berlin am 9. Dezember 2009"
+      "isbn": "9780520393196",
+      "mmsid": "991009500287505152",
+      "title": "Sounding the Indian Ocean: Musical Circulations in the Afro-Asiatic Seascape"
     },
     {
-      "isbn": "1283629232",
-      "mmsid": "991009240964805152",
-      "title": "Grundrechtsschutz zwischen Karlsruhe und Stra\u00dfburg : Vortrag, gehalten vor der Juristischen Gesellschaft zu Berlin am 13. Juli 2011"
+      "isbn": "0593542231",
+      "mmsid": "991009500423605152",
+      "title": "Look : how to pay attention in a distracted world"
     },
     {
-      "isbn": "3110397315",
-      "mmsid": "991009241244205152",
-      "title": "Inszenierte Moderne : Popul\u00e4res Theater in Berlin und London, 1880-1930"
+      "isbn": "0306923319",
+      "mmsid": "991009500423805152",
+      "title": "Outrage machine : how tech is amplifying discontent, undermining democracy, and pushing us towards chaos"
     },
     {
-      "isbn": "3110341387",
-      "mmsid": "991009241253105152",
-      "title": "Zukunftsgestaltung durch \u00d6ffentliches Recht : Referate und Diskussionen auf der Tagung der Vereinigung der Deutschen Staatsrechtslehrer in Greifswald vom 2. bis 5. Oktober 2013"
+      "isbn": "1685711383",
+      "mmsid": "991009494371305152",
+      "title": "Open Book in Ways of Water"
     },
     {
-      "isbn": "3110216949",
-      "mmsid": "991009241269305152",
-      "title": "Von Kant zu Schelling : Die beiden Wege des Deutschen Idealismus"
+      "isbn": "1685710905",
+      "mmsid": "991009494790605152",
+      "title": "Tales"
     },
     {
-      "isbn": "3110466643",
-      "mmsid": "991009241305605152",
-      "title": "Okkultismus im Geha\u0308use : Institutionalisierungen der Parapsychologie im 20. Jahrhundert im internationalen Vergleich"
+      "isbn": "0525620796",
+      "mmsid": "991009498625605152",
+      "title": "Mexican Gothic"
     },
     {
-      "isbn": "311040785X",
-      "mmsid": "991009241334405152",
-      "title": "Menschen z\u00e4hlen : Wissensproduktion durch britische Volksz\u00e4hlungen und Umfragen vom 19. Jahrhundert bis ins digitale Zeitalter"
+      "isbn": "1455521329",
+      "mmsid": "991009498725405152",
+      "title": "Bless me, Ultima"
     },
     {
-      "isbn": "3110424711",
-      "mmsid": "991009241346905152",
-      "title": "50 Jahre Aktiengesetz"
+      "isbn": "029275762X",
+      "mmsid": "991009498725705152",
+      "title": "[Un]framing the \"bad woman\" : Sor Juana, Malinche, Coyolxauhqui, and other rebels with a cause"
     },
     {
-      "isbn": "311043346X",
-      "mmsid": "991009241366105152",
-      "title": "Brauchen wir ein drittes Geschlecht? : Reformbedarf im deutschen (Familien-)Recht nach Einf\u00fchrung des \u00a7 22 Abs. 3 PStG"
+      "isbn": "0345808002",
+      "mmsid": "991006627299705152",
+      "title": "All my puny sorrows"
     },
     {
-      "isbn": "3110466961",
-      "mmsid": "991009241412305152",
-      "title": "Genre und Gemeinsinn : Hollywood zwischen Krieg und Demokratie"
+      "isbn": "0123819806",
+      "mmsid": "991006835489705152",
+      "title": "The vitamins"
     },
     {
-      "isbn": "3110479435",
-      "mmsid": "991009241441205152",
-      "title": "Der Prozess Jesu- aus ro\u0308misch-rechtlicher Perspektive"
+      "isbn": "9781550461428",
+      "mmsid": "991009439025605152",
+      "title": "Soldiers of the king : the Upper Canadian militia, 1812-1815 : a reference guide"
     },
     {
-      "isbn": "3110435217",
-      "mmsid": "991009241446205152",
-      "title": "Verfassung als Ordnungskonzept : Berichte und Diskussionen auf der Tagung der Vereinigung der Deutschen Staatsrechtslehrer in Speyer vom 7.-10. Oktober 2015"
+      "isbn": "1929572204",
+      "mmsid": "991006590559705152",
+      "title": "Beaded earrings : techniques & designs"
     },
     {
-      "isbn": "3110405555",
-      "mmsid": "991009241447405152",
-      "title": "Monastische Kultur als transkonfessionelles Ph\u00e4nomen : Beitr\u00e4ge einer deutsch-russischen interdisziplin\u00e4ren Tagung in Vladimir und Suzdal\u2019"
+      "isbn": "9780774827225",
+      "mmsid": "991006606769705152",
+      "title": "\"Métis\" : race, recognition, and the struggle for indigenous peoplehood"
     },
     {
-      "isbn": "3110399474",
-      "mmsid": "991009241473105152",
-      "title": "Von der D\u00e4monologie zum Unbewussten : Die Transformation der Anthropologie um 1800"
+      "isbn": "9798544671213",
+      "mmsid": "991009499023605152",
+      "title": "Leather crafting book for beginners : introduction to leather crafting"
     },
     {
-      "isbn": "1283430282",
-      "mmsid": "991009241488905152",
-      "title": "Figuren des Messianischen in Schriften deutsch-j\u00fcdischer Intellektueller 1900-1933"
+      "isbn": "0228011051",
+      "mmsid": "991009499023805152",
+      "title": "Atiqput : Inuit oral history and project naming"
     },
     {
-      "isbn": "3110431149",
-      "mmsid": "991009241707905152",
-      "title": "NICHTS NEUES SCHAFFEN : Perspektiven auf die treue Kopie 1300-1900"
+      "isbn": "0735278865",
+      "mmsid": "991009499023905152",
+      "title": "Making love with the land : essays"
     },
     {
-      "isbn": "3110579758",
-      "mmsid": "991009241729805152",
-      "title": "Disruption in the Arts : Textual, Visual, and Performative Strategies for Analyzing Societal Self-Descriptions"
+      "isbn": "1039000657",
+      "mmsid": "991009499024005152",
+      "title": "Rehearsals for living"
     },
     {
-      "isbn": "3110543893",
-      "mmsid": "991009241763705152",
-      "title": "Kant on love"
+      "isbn": "0735277214",
+      "mmsid": "991009499024105152",
+      "title": "VenCo : a novel"
     },
     {
-      "isbn": "3110620359",
-      "mmsid": "991009241829605152",
-      "title": "Nietzsche, Religion, and Mood"
+      "isbn": "0143192957",
+      "mmsid": "991009499925605152",
+      "title": "Organized mind"
     },
     {
-      "isbn": "3110424703",
-      "mmsid": "991009241898805152",
-      "title": "Handbook the global history of work"
+      "isbn": "1101147113",
+      "mmsid": "991009500225505152",
+      "title": "The brain that changes itself : stories of personal triumph from the frontiers of brain science"
     },
     {
-      "isbn": "3110575590",
-      "mmsid": "991009241925905152",
-      "title": "Studies on Greek and Coptic Majuscule Scripts and Books"
+      "isbn": "0231526695",
+      "mmsid": "991009500225605152",
+      "title": "The animal rights debate : abolition or regulation?"
     },
     {
-      "isbn": "3110645629",
-      "mmsid": "991009241955005152",
-      "title": "Infrastrukturen"
-    }]
+      "isbn": "1788210360",
+      "mmsid": "991009500282505152",
+      "title": "Capitalism, socialism and property rights : why market socialism cannot substitute the market"
+    }
+  ]
   
   app.controller('prmSearchBarAfterController', ['$http', '$scope', 
     function ($http, $scope) {
