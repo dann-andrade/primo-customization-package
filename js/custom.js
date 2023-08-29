@@ -570,6 +570,7 @@ templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
       };
 
       $ctrl.toStart = function() {
+        let scrollCont = document.getElementById('bu-outer-carousel');
         scrollCont.scrollLeft = 0;
       }
 
