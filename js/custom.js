@@ -210,259 +210,6 @@ templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
   // Declare full books array outside the controller is the array is not destroyed 
   // with the component by ng-if
   var newbooks = new Array();
-
-  newbooks = [
-    {
-      "isbn": "0345808002",
-      "mmsid": "991006627299705152",
-      "title": "All my puny sorrows"
-    },
-    {
-      "isbn": "0123819806",
-      "mmsid": "991006835489705152",
-      "title": "The vitamins"
-    },
-    {
-      "isbn": "9781550461428",
-      "mmsid": "991009439025605152",
-      "title": "Soldiers of the king : the Upper Canadian militia, 1812-1815 : a reference guide"
-    },
-    {
-      "isbn": "0143192957",
-      "mmsid": "991009499925605152",
-      "title": "Organized mind"
-    },
-    {
-      "isbn": "1101147113",
-      "mmsid": "991009500225505152",
-      "title": "The brain that changes itself : stories of personal triumph from the frontiers of brain science"
-    },
-    {
-      "isbn": "0231526695",
-      "mmsid": "991009500225605152",
-      "title": "The animal rights debate : abolition or regulation?"
-    },
-    {
-      "isbn": "1788210360",
-      "mmsid": "991009500282505152",
-      "title": "Capitalism, socialism and property rights : why market socialism cannot substitute the market"
-    },
-    {
-      "isbn": "1788210263",
-      "mmsid": "991009500282705152",
-      "title": "Populocracy : the tyranny of authenticity and the rise of populism"
-    },
-    {
-      "isbn": "1911116347",
-      "mmsid": "991009500282905152",
-      "title": "Flawed capitalism : the Anglo-American condition and its resolution"
-    },
-    {
-      "isbn": "1911116568",
-      "mmsid": "991009500283405152",
-      "title": "ANALYSING CORRUPTION : an introduction."
-    },
-    {
-      "isbn": "1911116657",
-      "mmsid": "991009500283605152",
-      "title": "The political economy of Brexit"
-    },
-    {
-      "isbn": "1788210131",
-      "mmsid": "991009500283805152",
-      "title": "The sex economy"
-    },
-    {
-      "isbn": "1668466473",
-      "mmsid": "991009500283905152",
-      "title": "Cyber trafficking, threat behavior, and malicious activity monitoring for healthcare organizations"
-    },
-    {
-      "isbn": "1668482258",
-      "mmsid": "991009500284005152",
-      "title": "Multidisciplinary approaches to sustainable human development"
-    },
-    {
-      "isbn": "1668473100",
-      "mmsid": "991009500284105152",
-      "title": "Policies, protocols, and standards for professionalism in a diverse work environment"
-    },
-    {
-      "isbn": "1668489449",
-      "mmsid": "991009500284205152",
-      "title": "HR analytics in an era of rapid automation"
-    },
-    {
-      "isbn": "1668492741",
-      "mmsid": "991009500284305152",
-      "title": "Governance quality, fiscal policy, and the path to a low-carbon future : perspectives from developing economies"
-    },
-    {
-      "isbn": "166848353X",
-      "mmsid": "991009500284405152",
-      "title": "The role of brands in an era of over-information"
-    },
-    {
-      "isbn": "1668472449",
-      "mmsid": "991009500284505152",
-      "title": "Exploring niche tourism business models, marketing, and consumer experience"
-    },
-    {
-      "isbn": "1668486261",
-      "mmsid": "991009500284605152",
-      "title": "Revolutionizing financial services and markets through fintech and blockchain"
-    },
-    {
-      "isbn": "1668488841",
-      "mmsid": "991009500284705152",
-      "title": "Principles of financial control in the public sector"
-    },
-    {
-      "isbn": "1788211340",
-      "mmsid": "991009500421205152",
-      "title": "The Federal Reserve and its founders : money politics and power"
-    },
-    {
-      "isbn": "178821031X",
-      "mmsid": "991009500421305152",
-      "title": "Europe and Northern Ireland's future : negotiating Brexit's unique case"
-    },
-    {
-      "isbn": "1911116126",
-      "mmsid": "991009500421705152",
-      "title": "The contradictions of capital in the twenty-first century : the Piketty opportunity"
-    },
-    {
-      "isbn": "9781788211734",
-      "mmsid": "991009500421805152",
-      "title": "Alarums & excursions : improvising politics on the European stage"
-    },
-    {
-      "isbn": "1911116843",
-      "mmsid": "991009500421905152",
-      "title": "The Doreen Massey reader"
-    },
-    {
-      "isbn": "1793627134",
-      "mmsid": "991009499925705152",
-      "title": "Authenticity in the music of video games"
-    },
-    {
-      "isbn": "051162476X",
-      "mmsid": "991009500225705152",
-      "title": "Kant and the claims of knowledge"
-    },
-    {
-      "isbn": "9780520393196",
-      "mmsid": "991009500287505152",
-      "title": "Sounding the Indian Ocean: Musical Circulations in the Afro-Asiatic Seascape"
-    },
-    {
-      "isbn": "0593542231",
-      "mmsid": "991009500423605152",
-      "title": "Look : how to pay attention in a distracted world"
-    },
-    {
-      "isbn": "0306923319",
-      "mmsid": "991009500423805152",
-      "title": "Outrage machine : how tech is amplifying discontent, undermining democracy, and pushing us towards chaos"
-    },
-    {
-      "isbn": "1685711383",
-      "mmsid": "991009494371305152",
-      "title": "Open Book in Ways of Water"
-    },
-    {
-      "isbn": "1685710905",
-      "mmsid": "991009494790605152",
-      "title": "Tales"
-    },
-    {
-      "isbn": "0525620796",
-      "mmsid": "991009498625605152",
-      "title": "Mexican Gothic"
-    },
-    {
-      "isbn": "1455521329",
-      "mmsid": "991009498725405152",
-      "title": "Bless me, Ultima"
-    },
-    {
-      "isbn": "029275762X",
-      "mmsid": "991009498725705152",
-      "title": "[Un]framing the \"bad woman\" : Sor Juana, Malinche, Coyolxauhqui, and other rebels with a cause"
-    },
-    {
-      "isbn": "0345808002",
-      "mmsid": "991006627299705152",
-      "title": "All my puny sorrows"
-    },
-    {
-      "isbn": "0123819806",
-      "mmsid": "991006835489705152",
-      "title": "The vitamins"
-    },
-    {
-      "isbn": "9781550461428",
-      "mmsid": "991009439025605152",
-      "title": "Soldiers of the king : the Upper Canadian militia, 1812-1815 : a reference guide"
-    },
-    {
-      "isbn": "1929572204",
-      "mmsid": "991006590559705152",
-      "title": "Beaded earrings : techniques & designs"
-    },
-    {
-      "isbn": "9780774827225",
-      "mmsid": "991006606769705152",
-      "title": "\"Métis\" : race, recognition, and the struggle for indigenous peoplehood"
-    },
-    {
-      "isbn": "9798544671213",
-      "mmsid": "991009499023605152",
-      "title": "Leather crafting book for beginners : introduction to leather crafting"
-    },
-    {
-      "isbn": "0228011051",
-      "mmsid": "991009499023805152",
-      "title": "Atiqput : Inuit oral history and project naming"
-    },
-    {
-      "isbn": "0735278865",
-      "mmsid": "991009499023905152",
-      "title": "Making love with the land : essays"
-    },
-    {
-      "isbn": "1039000657",
-      "mmsid": "991009499024005152",
-      "title": "Rehearsals for living"
-    },
-    {
-      "isbn": "0735277214",
-      "mmsid": "991009499024105152",
-      "title": "VenCo : a novel"
-    },
-    {
-      "isbn": "0143192957",
-      "mmsid": "991009499925605152",
-      "title": "Organized mind"
-    },
-    {
-      "isbn": "1101147113",
-      "mmsid": "991009500225505152",
-      "title": "The brain that changes itself : stories of personal triumph from the frontiers of brain science"
-    },
-    {
-      "isbn": "0231526695",
-      "mmsid": "991009500225605152",
-      "title": "The animal rights debate : abolition or regulation?"
-    },
-    {
-      "isbn": "1788210360",
-      "mmsid": "991009500282505152",
-      "title": "Capitalism, socialism and property rights : why market socialism cannot substitute the market"
-    }
-  ]
   
   app.controller('prmSearchBarAfterController', ['$http', '$scope', 
     function ($http, $scope) {
@@ -496,25 +243,25 @@ templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
 
       //Load books from data file if not already loaded. If there is a problem hide the feature. 
       function getBooks() {
-      //     if(newbooks.length == 0 ) {
-      //         $http.get('https://library.brocku.ca/phpmyadmin/newtitles/gtitles.json'
-      //         ).then(
-      //             function successCallback(data) {
-      //                 newbooks = data.data;
-      //                 loadBooks(19);
-			// 			          findWidth();
-      //             },
-      //             function errorCallback(data){
-      //                 $ctrl.showDisplay = false;
-      //                 console.log(data);
-      //             } 
-      //         );
-      //     } else {
-      //       setTimeout(() =>  {
-      //         loadBooks(19);
-      //         findWidth();
-      //       }, 10);
-      //     };
+          if(newbooks.length == 0 ) {
+              $http.get('http://rtod.library.brocku.ca:8080/data/gtitles.json'
+              ).then(
+                  function successCallback(data) {
+                      newbooks = data.data;
+                      loadBooks(19);
+						          findWidth();
+                  },
+                  function errorCallback(data){
+                      $ctrl.showDisplay = false;
+                      console.log(data);
+                  } 
+              );
+          } else {
+            setTimeout(() =>  {
+              loadBooks(19);
+              findWidth();
+            }, 10);
+          };
           loadBooks(19);
           findWidth();
       };
