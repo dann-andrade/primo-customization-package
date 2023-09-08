@@ -244,7 +244,7 @@ templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
       //Load books from data file if not already loaded. If there is a problem hide the feature. 
       function getBooks() {
           if(newbooks.length == 0 ) {
-              $http.get('http://rtod.library.brocku.ca:8080/data/gtitles.json'
+              $http.get('http://rtod.library.brocku.ca:8080/data/gtitles1.json'
               ).then(
                   function successCallback(data) {
                       newbooks = data.data;
@@ -323,6 +323,7 @@ templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
 
       //Screen Resize Event
       //Calls the find width function to update the width
+      //Hides feature if not on homepage or book array is empty
       addEventListener('resize', (Event) => {
         
         if (((window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_NEW_TITLES"))
@@ -363,11 +364,12 @@ templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
         });
       })();
 
-      //Removes feature if not on homepage 
+      //Removes feature if not on homepage or if book array is empty 
       addEventListener('locationchange', function () {
 
-        if ((!window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_NEW_TITLES"))         
-            || (window.location.href.indexOf("&mode=advanced")) != -1) {
+        if (((!window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_NEW_TITLES"))         
+            || (window.location.href.indexOf("&mode=advanced")) != -1)
+            || newbooks.length == 0) {
           $ctrl.showDisplay = false;
         } else {
           $ctrl.showDisplay = true;
