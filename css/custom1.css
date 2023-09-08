@@ -1267,6 +1267,21 @@ form[name="requestForm"] md-radio-button[value="PHYSICAL_NON_RETURNABLE"] {
   display: none;
 }
   
+/*Reorder local request pickup options*/
+md-optgroup[label="Brock University"] {
+  display:flex;
+  flex-direction:column;
+}
+md-optgroup[label="Brock University"] :nth-child(2) {
+  order:3;
+}
+md-optgroup[label="Brock University"] :nth-child(3) {
+  order:4;
+}
+md-optgroup[label="Brock University"] :nth-child(4) {
+  order:2;
+}
+
 /*Hide select Omni locations on the REQUEST FORM in Alma*/
 /*makes sure that external patrons can't see weird locations at other Omni partners to request items to be sent to*/
 /*remove the section for your own institution from this set below so that these locations show up for your LOCAL patrons*/
