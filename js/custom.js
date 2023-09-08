@@ -224,6 +224,9 @@ templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
       var startX = 0;
       var endX = 0;
 
+      var homepage = 'http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_NEW_TITLES';
+      var viewall = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/search?query=any,contains,%3F%3F&tab=New_Titles&search_scope=New_Books&vid=01OCUL_BU:BU_DEFAULT&lang=en&offset=0'
+
       $ctrl.display = [];
 
       // On feature initialization, set scroll position to 0 and check if the user is 
@@ -233,7 +236,7 @@ templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
           setTimeout(() =>  {  
             document.getElementById('bu-outer-carousel').scrollLeft = 0;
           },0 );
-          if ((window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_NEW_TITLES")) 
+          if ((window.location.href.startsWith(homepage)) 
               && (window.location.href.indexOf("&mode=advanced") == -1)) {        
             getBooks();
           } else {
@@ -244,7 +247,7 @@ templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
       //Load books from data file if not already loaded. If there is a problem hide the feature. 
       function getBooks() {
           if(newbooks.length == 0 ) {
-              $http.get('http://rtod.library.brocku.ca:8080/data/gtitles1.json'
+              $http.get('http://rtod.library.brocku.ca:8080/data/gtitles.json'
               ).then(
                   function successCallback(data) {
                       newbooks = data.data;
@@ -313,7 +316,7 @@ templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
       };
 
       $ctrl.viewAll = function() {
-        window.location.href = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/search?query=any,contains,%3F%3F&tab=New_Titles&search_scope=New_Books&vid=01OCUL_BU:BU_DEFAULT&lang=en&offset=0';
+        window.location.href = viewall;
       };
 
       $ctrl.toStart = function() {
@@ -326,7 +329,7 @@ templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
       //Hides feature if not on homepage or book array is empty
       addEventListener('resize', (Event) => {
         
-        if (((window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_NEW_TITLES"))
+        if (((window.location.href.startsWith(homepage))
              && (window.location.href.indexOf("&mode=advanced") == -1))
              && newbooks.length != 0) {        
           findWidth();
@@ -367,7 +370,7 @@ templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
       //Removes feature if not on homepage or if book array is empty 
       addEventListener('locationchange', function () {
 
-        if (((!window.location.href.startsWith("http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_NEW_TITLES"))         
+        if (((!window.location.href.startsWith(homepage))         
             || (window.location.href.indexOf("&mode=advanced")) != -1)
             || newbooks.length == 0) {
           $ctrl.showDisplay = false;
