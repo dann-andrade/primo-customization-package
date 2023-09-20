@@ -1240,6 +1240,19 @@ prm-request-services .separated-block-item::after {
 
 /*End Convert delivery service links to buttons*/
 
+
+/* Fix for partial request checkbox text change Sept 2023 */
+md-checkbox[aria-label="I only need a specific chapter or pages"] span {
+  font-size:0px;
+}
+md-checkbox[aria-label="I only need a specific chapter or pages"] div.md-label:after {
+  content:'I only need a specific chapter or pages';
+  position: absolute;
+  top: 0px;
+  width:300px;
+}
+
+
 /*CFDUX Omni Improvement and Enhancements R. 1*/
 
 /*De-bold and de-capitalize "Omni Libraries that Own this Item*/
