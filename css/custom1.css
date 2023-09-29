@@ -1254,7 +1254,7 @@ prm-browse-search-bar, prm-atoz-search-bar {
   z-index: 2;
   right: 0px;
   top: 0px;
-  max-width: 80px;
+  max-width: 110px;
 }
 #bu-view-btn {
   color: white;
@@ -1282,19 +1282,35 @@ prm-browse-search-bar, prm-atoz-search-bar {
 .bu-book-title {
   position: absolute;
   display: inline-block;
-  background-color: rgb(41, 41, 41);
+  background-color: rgba(0, 0, 0, 0.904);
   color: white;
   padding: 5px 10px 5px 10px;
   left: 50%;
-  top: 96%;
+  top: 4%;
   transform: translate(-50%, 0);
   width: fit-content;
-  border-radius: 5px;
+  border-radius: 2px;
   z-index: 1;
   pointer-events: none;
   -webkit-user-select: none;
   -ms-user-select: none; 
   user-select: none; 
+}
+
+/*Titles*/
+#title-bg {
+  position:absolute;
+  z-index: 5;
+  bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.904);
+  padding: 0px 5px;
+  border-radius: 2px;
+  height: 35px;
+}
+
+#title {
+  font-size: 28px;
+  color: white;
 }
 
 /* END New Titles Display */
