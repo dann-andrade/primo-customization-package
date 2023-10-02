@@ -195,7 +195,7 @@ app.controller('prmActionContainerAfterController', ['$scope', '$http',
                           }]
                         };
 
-        let url = 'https://prod-38.westus.logic.azure.com:443/workflows/8d36d7d4bd034615bb5cc1c3b0fee268/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=nse5QpflC-OuYyGDeChf3lp2fU_WhODKi3xyAcSVZWI';
+        let url = '<insert flow url>';
 
         $http.post(url, rmessage, {headers:{'Content-Type': 'application/json'}})
         .then(  
@@ -221,7 +221,7 @@ app.controller('prmActionContainerAfterController', ['$scope', '$http',
 app.component('prmActionContainerAfter', {
   bindings: { parentCtrl: '<' },
   controller: 'prmActionContainerAfterController',
-  templateUrl: 'custom/01OCUL_BU-BU_DEFAULT/html/reportproblem.html',
+  templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
 });
 
 /* End BrockU Report a Problem ----------------------------------------------*/
