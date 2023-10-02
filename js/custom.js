@@ -245,7 +245,7 @@ app.component('prmActionContainerAfter', {
       var startX = 0;
       var endX = 0;
 
-      var homepage = 'http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_NEW_TITLES';
+      var homepage = 'http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_DEFAULT';
       var viewall = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/search?query=any,contains,%3F%3F&tab=New_Titles&search_scope=New_Books&vid=01OCUL_BU:BU_DEFAULT&lang=en&offset=0'
 
       $ctrl.display = [];
