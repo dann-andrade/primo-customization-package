@@ -226,6 +226,191 @@ app.component('prmActionContainerAfter', {
 
 /* End BrockU Report a Problem ----------------------------------------------*/
 
+/* BrockU New Titles --------------------------------------------------------*/
+
+  // Declare full books array outside the controller is the array is not destroyed 
+  // with the component by ng-if
+  var newbooks = new Array();
+  
+  app.controller('prmSearchBarAfterController', ['$http', '$scope', 
+    function ($http, $scope) {
+
+      const $ctrl = this;
+      var screenWidth = 0;      
+      var loadCursor = 0;
+      var dispCursor = 0;    
+      var scrollWidth = 0;
+      
+      var mouseDown = false;
+      var startX = 0;
+      var endX = 0;
+
+      var homepage = 'http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_NEW_TITLES';
+      var viewall = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/search?query=any,contains,%3F%3F&tab=New_Titles&search_scope=New_Books&vid=01OCUL_BU:BU_DEFAULT&lang=en&offset=0'
+
+      $ctrl.display = [];
+
+      // On feature initialization, set scroll position to 0 and check if the user is 
+      // on the front page of Omni, if not hide the feature. 
+      $ctrl.$onInit = function () {
+          $ctrl.showDisplay = true;
+          setTimeout(() =>  {  
+            document.getElementById('bu-outer-carousel').scrollLeft = 0;
+          },0 );
+          if ((window.location.href.startsWith(homepage)) 
+              && (window.location.href.indexOf("&mode=advanced") == -1)) {        
+            getBooks();
+          } else {
+            $ctrl.showDisplay = false;
+          };
+      };
+
+      //Load books from data file if not already loaded. If there is a problem hide the feature. 
+      function getBooks() {
+          if(newbooks.length == 0 ) {
+              $http.get('http://rtod.library.brocku.ca:8080/data/gtitles.json'
+              ).then(
+                  function successCallback(data) {
+                      newbooks = data.data;
+                      loadBooks(19);
+						          findWidth();
+                  },
+                  function errorCallback(data){
+                      $ctrl.showDisplay = false;
+                      console.log(data);
+                  } 
+              );
+          } else {
+            setTimeout(() =>  {
+              loadBooks(19);
+              findWidth();
+            }, 10);
+          };
+          loadBooks(19);
+          findWidth();
+      };
+
+      // Main book load function, loads n books from full books array into display array so the items 
+      // can be lazy loaded. If we hit the end of the full array, wrap around for infinite scroll. 
+      function loadBooks(n) {
+        let i = 1;
+        while (i <= n && loadCursor < newbooks.length) {
+          $ctrl.display[dispCursor] = newbooks[loadCursor]
+          i++;
+          loadCursor++;
+          dispCursor++;
+          if (loadCursor == newbooks.length) {
+            loadCursor = 0;
+          }
+        }
+      };
+
+      // Retrieve viewport width, dynamically sets scroll distance
+      function findWidth() {
+        screenWidth = document.body.offsetWidth;
+        scrollWidth = (screenWidth > 500) ? 500 : screenWidth;
+        $ctrl.showDisplay = (screenWidth >= 700) ? true : false;
+      };
+
+      // Adds space to inner carousel container to make room for new items
+      function setWidth(w) {
+        let innerCont = document.getElementById('bu-inner-carousel');
+        innerCont.style.width = String(innerCont.offsetWidth + w) + "px";
+      }
+
+      // Scrolls left
+      $ctrl.scrollLeft = function () {
+        document.getElementById('bu-outer-carousel').scrollLeft -= scrollWidth; 
+      };
+
+      // Scrolls left, extends if near the end of loaded covers
+      $ctrl.scrollRight = function () {
+        let scrollCont = document.getElementById('bu-outer-carousel');
+        let innerCont = document.getElementById('bu-inner-carousel');
+        if ( scrollCont.scrollLeft + screenWidth >= innerCont.offsetWidth - 1000) {
+          loadBooks(8);
+          setTimeout(() => {
+            setWidth(1000);
+          }, 0);
+        };
+        scrollCont.scrollLeft += scrollWidth;
+      };
+
+      $ctrl.viewAll = function() {
+        window.location.href = viewall;
+      };
+
+      $ctrl.toStart = function() {
+        let scrollCont = document.getElementById('bu-outer-carousel');
+        scrollCont.scrollLeft = 0;
+      }
+
+      //Screen Resize Event
+      //Calls the find width function to update the width
+      //Hides feature if not on homepage or book array is empty
+      addEventListener('resize', (Event) => {
+        
+        if (((window.location.href.startsWith(homepage))
+             && (window.location.href.indexOf("&mode=advanced") == -1))
+             && newbooks.length != 0) {        
+          findWidth();
+        } else {
+          $ctrl.showDisplay = false;
+        };
+        
+        $scope.$apply();
+
+      });
+
+      //Custom location change event listener adopted from: 
+      //https://stackoverflow.com/questions/6390341/how-to-detect-if-url-has-changed-after-hash-in-javascript
+      //Question by: AJ00200 [https://stackoverflow.com/users/375569/aj00200]
+      //Answer by: aljgom [https://stackoverflow.com/users/3577695/aljgom]
+      (() => {
+        let oldPushState = history.pushState;
+        history.pushState = function pushState() {
+            let ret = oldPushState.apply(this, arguments);
+            window.dispatchEvent(new Event('pushstate'));
+            window.dispatchEvent(new Event('locationchange'));
+            return ret;
+        };
+    
+        let oldReplaceState = history.replaceState;
+        history.replaceState = function replaceState() {
+            let ret = oldReplaceState.apply(this, arguments);
+            window.dispatchEvent(new Event('replacestate'));
+            window.dispatchEvent(new Event('locationchange'));
+            return ret;
+        };
+    
+        window.addEventListener('popstate', () => {
+            window.dispatchEvent(new Event('locationchange'));
+        });
+      })();
+
+      //Removes feature if not on homepage or if book array is empty 
+      addEventListener('locationchange', function () {
+
+        if (((!window.location.href.startsWith(homepage))         
+            || (window.location.href.indexOf("&mode=advanced")) != -1)
+            || newbooks.length == 0) {
+          $ctrl.showDisplay = false;
+        } else {
+          $ctrl.showDisplay = true;
+        };
+      });
+
+    }]
+);
+
+  app.component('prmSearchBarAfter', {
+  bindings: { parentCtrl: '<' },
+  controller: 'prmSearchBarAfterController',
+  templateUrl: 'custom/BU_DEFAULT/html/newtitles.html',
+  });
+
+/* End BrockU New Titles ----------------------------------------------------*/
+
 /*CFDUX - Omni Improvement and Enhancements R. 1 */
 
 /*Collapse the list of institutions on the full record. ---------------------*/
