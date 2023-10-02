@@ -1,30 +1,30 @@
 <div id="bu-new-titles-bg" ng-if="$ctrl.showDisplay" aria-label="new books carousel">
   <div id="bu-new-titles" class="layout-align-center-center layout-row" layout="row" layout-align="center center">
 
-    <div id="title-bg">
+    <div id="title-bg" aria-label="new titles">
       <p id="title">New Titles</p>
     </div>
 
     <div id="bu-scrollbtn-left">
       <button class="bu-scrollbtn" ng-click="$ctrl.scrollLeft()" >
-          <img class="bu-nt-btn-img " src="custom/BU_DEFAULT/img/left.svg" alt="back">
+          <img class="bu-nt-btn-img " src="custom/BU_DEFAULT/img/left.svg" alt="back" aria-label="scroll back">
       </button>
     </div>
 
     <div id="bu-scrollbtn-right">
       <button class="bu-scrollbtn" ng-click="$ctrl.scrollRight()">
-          <img class="bu-nt-btn-img" src="custom/BU_DEFAULT/img/right.svg" alt="forward">
+          <img class="bu-nt-btn-img" src="custom/BU_DEFAULT/img/right.svg" alt="forward" aria-label="scroll forward">
       </button>
     </div>
 
     <div id="bu-view" class="col d-flex align-items-center">
-      <button id="bu-view-btn" class="bu-scrollbtn" ng-click="$ctrl.viewAll()">
+      <button id="bu-view-btn" class="bu-scrollbtn" ng-click="$ctrl.viewAll()" aria-label="view all new titles">
           View All
       </button>
     </div>
 
     <div id="bu-start" class="col d-flex align-items-center">
-      <button id="bu-start-btn" class="bu-scrollbtn" ng-click="$ctrl.toStart()">
+      <button id="bu-start-btn" class="bu-scrollbtn" ng-click="$ctrl.toStart()" aria-label="back to start of carousel">
           Start
       </button>
   </div>
@@ -34,7 +34,8 @@
         <div class="bu-book"
         ng-repeat="book in $ctrl.display track by $index"
         ng-mouseover="this.hoverTitle = true"
-        ng-mouseleave="this.hoverTitle = false">
+        ng-mouseleave="this.hoverTitle = false"
+        aria-label={{book.title}}>
           <a class="bu-book-link" 
           ng-focus="this.hoverTitle = true"
           ng-blur="this.hoverTitle = false"

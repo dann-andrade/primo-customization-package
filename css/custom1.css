@@ -1305,11 +1305,11 @@ prm-browse-search-bar, prm-atoz-search-bar {
   background-color: rgba(0, 0, 0, 0.904);
   padding: 0px 5px;
   border-radius: 2px;
-  height: 35px;
+  height: 30px;
 }
 
 #title {
-  font-size: 28px;
+  font-size: 24px;
   color: white;
 }
 
