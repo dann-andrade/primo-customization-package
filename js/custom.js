@@ -1,5 +1,4 @@
-/************* LibraryH3lp code STARTS here **********/
-
+/* LibraryH3lp code ---------------------------------------------------------*/
 // create a function to toggle askus popout
 function askus_popout_toggle() {
   var askus = document.getElementById('askus-popout');
@@ -13,31 +12,51 @@ function askus_popout_toggle() {
       askus.setAttribute('data-askus-popout-state', 'collapsed');
   }
 }
+/* End LibraryH3lp code -----------------------------------------------------*/
 
-/************* LibraryH3lp code ends here **********/
 
 
+/* Google Analytics ---------------------------------------------------------*/
+var googleAnalyticsUrl = document.createElement('script');
+googleAnalyticsUrl.src = "https://www.googletagmanager.com/gtag/js?id=G-QEMT44XVTJ";
+googleAnalyticsUrl.type = 'text/javascript';
+googleAnalyticsUrl.async = true;
+document.head.appendChild(googleAnalyticsUrl);
+
+var googleAnalyticsCode = document.createElement('script');
+googleAnalyticsCode.innerHTML = `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-QEMT44XVTJ');`;
+document.head.appendChild(googleAnalyticsCode);  
+/* End Google Analytics ------------------------------------------------------*/
+
+
+/* Load JQuery ---------------------------------------------------------------*/
+var js = document.createElement('script') ;
+js.src = "//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js";
+document.head.appendChild(js);
+/* End JQuery ----------------------------------------------------------------*/
 
 (function(){
 "use strict";
 'use strict';
 
-// start of ANGULAR CODE
-var app = angular.module('viewCustom', ['angularLoad']);
+  // start of ANGULAR CODE
+  var app = angular.module('viewCustom', ['angularLoad']);
 
-/*----------below is the code for libraryh3lp on Homepage ONLY -----------*/
-var s=document.createElement('script');
-s.id='localScript';
-s.src= 'https://ca.libraryh3lp.com/js/libraryh3lp.js?526';
-document.body.appendChild(s);
+/* LibraryH3lp code ----------------------------------------------------------*/
 
-app.component('prm-search-after', {
-   template: '<div id="needs-js"></div>'
-});
-/*---------------libraryh3lp code ends here---------------*/
+  /*below is the code for libraryh3lp on Homepage ONLY */
+  var s=document.createElement('script');
+  s.id='localScript';
+  s.src= 'https://ca.libraryh3lp.com/js/libraryh3lp.js?526';
+  document.body.appendChild(s);
 
-  /************* LibraryH3lp code STARTS here **********/
-  
+  app.component('prm-search-after', {
+    template: '<div id="needs-js"></div>'
+  });
+
   /* need to import some monitoring code */
   var x = document.createElement("script"); x.type = "text/javascript"; x.async = true;
   x.src = (document.location.protocol === "https:" ? "https://" : "http://") + "ca.libraryh3lp.com/js/libraryh3lp.js?526";
@@ -66,146 +85,148 @@ app.component('prm-search-after', {
   askus_onclick_att.value = "askus_popout_toggle();"; 
   askus_popout.setAttributeNode(askus_onclick_att);
   
-  /************* LibraryH3lp code ends here **********/
+/* End LibraryH3lp code -----------------------------------------------------*/
 
-  /* BrockU Report a Problem --------------------------------------------------*/
+
+
+/* BrockU Report a Problem --------------------------------------------------*/
 
 app.controller('prmActionContainerAfterController', ['$scope', '$http',
-function ($scope, $http) {
+  function ($scope, $http) {
 
-  var $ctrl = this;
+    var $ctrl = this;
 
-  //initialize form to hidden
-  //initialize invalid flags to initially hide warning icons
-  //initialize submission and success flags off
-  //pull pnx data into scope variable
-  // - Construct url and adds mmsid/recordid depending on what is available in pnx
-  // - Adds title depending on material type 
-  // - Initialize desc to empty string
-  // - set submit confirm as default message until wording/email are approved by PWG
-  $ctrl.$onInit = function () {  
+    //initialize form to hidden
+    //initialize invalid flags to initially hide warning icons
+    //initialize submission and success flags off
+    //pull pnx data into scope variable
+    // - Construct url and adds mmsid/recordid depending on what is available in pnx
+    // - Adds title depending on material type 
+    // - Initialize desc to empty string
+    // - set submit confirm as default message until wording/email are approved by PWG
+    $ctrl.$onInit = function () {  
 
-    $ctrl.showForm = false;
-    $ctrl.submitFlow = false;
-    $ctrl.submitted = false;
+      $ctrl.showForm = false;
+      $ctrl.submitFlow = false;
+      $ctrl.submitted = false;
 
-    $ctrl.rURL = window.location.href;
-  
-    if (undefined != $ctrl.parentCtrl.item.pnx.display.mms) {
-      $ctrl.linkID = $ctrl.parentCtrl.item.pnx.display.mms[0];
-      $ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
-                    $ctrl.linkID +
-                    '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
-      $ctrl.itemMMSID = $ctrl.parentCtrl.item.pnx.display.mms[0];
-    } else if ((undefined != $ctrl.parentCtrl.item.pnx.display.source) && ($ctrl.parentCtrl.item.pnx.display.source == 'literatum:achs')) {
-      $ctrl.linkID = $ctrl.parentCtrl.item.pnx.control.sourcerecordid[0];
-      $ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
-                    $ctrl.linkID +
-                    '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
-      $ctrl.itemMMSID = $ctrl.parentCtrl.item.pnx.control.sourcerecordid[0];
-    } else {
-      $ctrl.linkID = $ctrl.parentCtrl.item.pnx.control.recordid[0];
-      $ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=' + 
+      $ctrl.rURL = window.location.href;
+    
+      if (undefined != $ctrl.parentCtrl.item.pnx.display.mms) {
+        $ctrl.linkID = $ctrl.parentCtrl.item.pnx.display.mms[0];
+        $ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
                       $ctrl.linkID +
-                      '&context=PC&vid=01OCUL_BU:BU_DEFAULT&lang=en';
-      $ctrl.itemMMSID = 'n/a';
+                      '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
+        $ctrl.itemMMSID = $ctrl.parentCtrl.item.pnx.display.mms[0];
+      } else if ((undefined != $ctrl.parentCtrl.item.pnx.display.source) && ($ctrl.parentCtrl.item.pnx.display.source == 'literatum:achs')) {
+        $ctrl.linkID = $ctrl.parentCtrl.item.pnx.control.sourcerecordid[0];
+        $ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma' + 
+                      $ctrl.linkID +
+                      '&context=L&vid=01OCUL_BU:BU_DEFAULT&lang=en';
+        $ctrl.itemMMSID = $ctrl.parentCtrl.item.pnx.control.sourcerecordid[0];
+      } else {
+        $ctrl.linkID = $ctrl.parentCtrl.item.pnx.control.recordid[0];
+        $ctrl.itemURL = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=' + 
+                        $ctrl.linkID +
+                        '&context=PC&vid=01OCUL_BU:BU_DEFAULT&lang=en';
+        $ctrl.itemMMSID = 'n/a';
+      };
+
+      if (undefined != $ctrl.parentCtrl.item.pnx.display.title) {
+        $ctrl.itemTitle = $ctrl.parentCtrl.item.pnx.display.title[0];
+      } else if (undefined != $ctrl.parentCtrl.item.pnx.addata.btitle) {
+        $ctrl.itemTitle = $ctrl.parentCtrl.item.pnx.addata.btitle[0];
+      } else if (undefined != $ctrl.parentCtrl.item.pnx.addata.jtitle) {
+        $ctrl.itemTitle = $ctrl.parentCtrl.item.pnx.addata.jtitle[0];
+      } else if (undefined != $ctrl.parentCtrl.item.pnx.addata.atitle) {
+        $ctrl.itemTitle = $ctrl.parentCtrl.item.pnx.addata.atitle[0];
+      } else {
+        $ctrl.itemTitle = 'PNX TITLE ERROR'
+      };
     };
 
-    if (undefined != $ctrl.parentCtrl.item.pnx.display.title) {
-      $ctrl.itemTitle = $ctrl.parentCtrl.item.pnx.display.title[0];
-    } else if (undefined != $ctrl.parentCtrl.item.pnx.addata.btitle) {
-      $ctrl.itemTitle = $ctrl.parentCtrl.item.pnx.addata.btitle[0];
-    } else if (undefined != $ctrl.parentCtrl.item.pnx.addata.jtitle) {
-      $ctrl.itemTitle = $ctrl.parentCtrl.item.pnx.addata.jtitle[0];
-    } else if (undefined != $ctrl.parentCtrl.item.pnx.addata.atitle) {
-      $ctrl.itemTitle = $ctrl.parentCtrl.item.pnx.addata.atitle[0];
-    } else {
-      $ctrl.itemTitle = 'PNX TITLE ERROR'
-    };
-  };
 
+    //function for Report Button
+    //show form, toggle submission and success flags off
+    //unhide the submit confirm, $ctrl is here in case someone double reports without refreshing
+    //re-initializes the desc to an empty string in case of double report
+    $ctrl.showReportForm = function () {
 
-  //function for Report Button
-  //show form, toggle submission and success flags off
-  //unhide the submit confirm, $ctrl is here in case someone double reports without refreshing
-  //re-initializes the desc to an empty string in case of double report
-  $ctrl.showReportForm = function () {
-
-    $ctrl.showForm = true;
-    $ctrl.submitFlow = false;
-    $ctrl.submitConf = false;
-    $ctrl.showFAQ = false;
-
-  };
-
-  // closing the form simple re-initializes everything (for now)
-  $ctrl.closeReportForm = function () {
-
-    $ctrl.$onInit();
-
-  };
-
-  $ctrl.toggleFAQ = function () {
-
-    $ctrl.showFAQ = !$ctrl.showFAQ
-  };
-
-  //function for Submit Button
-  //set submittd flag to true
-  //call validation functions
-  //if input is valid
-  // - hide form
-  // - show success popup 
-  // - pull problem description
-  // - post data via api lin
-  // - Hide submission status report
-  $ctrl.submitReport = function (valid, remail, rdesc) {
-
-    if (valid) {
-
-      let rmessage = {report: 
-                        [{ 
-                          title: $ctrl.itemTitle, 
-                          user: remail, 
-                          desc: rdesc, 
-                          url: $ctrl.itemURL,
-                          rurl: $ctrl.rURL,
-                          mmsid: $ctrl.itemMMSID
-                        }]
-                      };
-
-      let url = '<insert flow url>';
-
-      $http.post(url, rmessage, {headers:{'Content-Type': 'application/json'}})
-      .then(  
-        function successCallback(response) {   
-          $ctrl.submitSuccess = true;
-        }, 
-        function errorCallback(response){
-          $ctrl.submitSuccess = false;
-        })
-      .then(
-        function submitted(){
-          setTimeout(() => {
-            $ctrl.submitFlow = true;
-            $scope.$apply();
-          }, 20);
-        });
+      $ctrl.showForm = true;
+      $ctrl.submitFlow = false;
+      $ctrl.submitConf = false;
+      $ctrl.showFAQ = false;
 
     };
-  };
-}]
+
+    // closing the form simple re-initializes everything (for now)
+    $ctrl.closeReportForm = function () {
+
+      $ctrl.$onInit();
+
+    };
+
+    $ctrl.toggleFAQ = function () {
+
+      $ctrl.showFAQ = !$ctrl.showFAQ
+    };
+
+    //function for Submit Button
+    //set submittd flag to true
+    //call validation functions
+    //if input is valid
+    // - hide form
+    // - show success popup 
+    // - pull problem description
+    // - post data via api lin
+    // - Hide submission status report
+    $ctrl.submitReport = function (valid, remail, rdesc) {
+
+      if (valid) {
+
+        let rmessage = {report: 
+                          [{ 
+                            title: $ctrl.itemTitle, 
+                            user: remail, 
+                            desc: rdesc, 
+                            url: $ctrl.itemURL,
+                            rurl: $ctrl.rURL,
+                            mmsid: $ctrl.itemMMSID
+                          }]
+                        };
+
+        let url = 'https://prod-38.westus.logic.azure.com:443/workflows/8d36d7d4bd034615bb5cc1c3b0fee268/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=nse5QpflC-OuYyGDeChf3lp2fU_WhODKi3xyAcSVZWI';
+
+        $http.post(url, rmessage, {headers:{'Content-Type': 'application/json'}})
+        .then(  
+          function successCallback(response) {   
+            $ctrl.submitSuccess = true;
+          }, 
+          function errorCallback(response){
+            $ctrl.submitSuccess = false;
+          })
+        .then(
+          function submitted(){
+            setTimeout(() => {
+              $ctrl.submitFlow = true;
+              $scope.$apply();
+            }, 20);
+          });
+
+      };
+    };
+  }]
 );
 
 app.component('prmActionContainerAfter', {
-bindings: { parentCtrl: '<' },
-controller: 'prmActionContainerAfterController',
-templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
+  bindings: { parentCtrl: '<' },
+  controller: 'prmActionContainerAfterController',
+  templateUrl: 'custom/01OCUL_BU-BU_DEFAULT/html/reportproblem.html',
 });
 
 /* End BrockU Report a Problem ----------------------------------------------*/
 
-  /******************* BrockU New Titles ***************************/
+/* BrockU New Titles --------------------------------------------------------*/
 
   // Declare full books array outside the controller is the array is not destroyed 
   // with the component by ng-if
@@ -388,7 +409,50 @@ templateUrl: 'custom/BU_DEFAULT/html/reportproblem.html',
   templateUrl: 'custom/BU_DEFAULT/html/newtitles.html',
   });
 
-  /******************* end - BrockU New Titles Display***************************/
+/* End BrockU New Titles ----------------------------------------------------*/
 
+/*CFDUX - Omni Improvement and Enhancements R. 1 */
+
+/*Collapse the list of institutions on the full record. ---------------------*/
+
+/* Collapse "Get It From Other Institutions" 
+dropdown by default in full record display. */
+app.component("prmAlmaOtherMembersAfter", {
+  bindings: {
+    parentCtrl: "<",
+  },
+  controller: [
+    function () {
+      var ctrl = this;
+
+      ctrl.$onInit = function () {
+        ctrl.parentCtrl.isCollapsed = true;
+      }
+    },
+  ],
+}); 
+
+/*----------------------------------------------------------------------------*/
+
+/* Item Location Filter -----------------------------------------------------*/
+
+  //Auto activates the filter for items in full display
+  //written on 2/4/20 by Joe Ferguson from the University of Tennessee, Knoxville
+  app.component('prmLocationItemsAfter', {
+    bindings: {parentCtrl: '<'},
+    controller: function($scope){
+      var myVar = setInterval(activateFilter, 1000);
+      function activateFilter() {
+        if( $("span:contains('Filters')").length ){
+          clearInterval(myVar);
+          return;
+        }
+        if( $("[id^='filter']").length ){
+          $("[id^='filter']").parent().click()
+        }
+      }
+    }
+  });
+
+/* End Item Location Filter -------------------------------------------------*/
 })();
-

@@ -1100,7 +1100,7 @@ prm-browse-search-bar, prm-atoz-search-bar {
 
 /* Main element */
 #bu-rap {
-  margin: 30px 0 30px 0; 
+  margin: 30px 0 0 0; 
 }
 
 /* Form and Title */
@@ -1159,7 +1159,6 @@ prm-browse-search-bar, prm-atoz-search-bar {
 }
 
 /* END Report a Problem Button */
-
 
 /* New Titles Display */
 
@@ -1315,6 +1314,177 @@ prm-browse-search-bar, prm-atoz-search-bar {
 
 /* END New Titles Display */
 
+/*Convert delivery service links to buttons*/
+
+/*Style How to Get it links as buttons*/
+alma-howovp button {
+  font-variant: small-caps !important;
+  box-shadow: 0 0 4px #969696 !important;
+  background-color: #cc0000 !important;
+  color: white !important;
+  transition: background-color .35s cubic-bezier(.35,0,.25,1);
+}
+alma-howovp div button:hover {
+  background-color: #202020 !important;
+  color: #e2e2e2 !important;
+}
+/* Some of the elements are links and so need specific text styling */
+alma-howovp button a {
+  color: white !important;
+}
+alma-howovp button a:hover {
+  color: white !important;
+}
+/* Dynamically scale element to fit text */
+alma-howovp > div > md-list {
+  width: fit-content;
+}
+alma-howovp > div > md-list > md-list-item {
+  width: 300px;
+}
+/* Reduce size of 'In new window' icon*/
+alma-howovp prm-icon[icon-definition="ic_open_in_new_24px"] {
+  scale:80%;
+}
+/* Get rid of blue underline and background color on hover/focus */
+alma-howovp a:focus {
+  box-shadow: none !important;
+}
+alma-howovp a:hover {
+  box-shadow: none !important;
+  background-color: #ffffff00;
+}
+/* Hides public note whitespace */
+alma-howovp button span[ng-if^="!"] {
+  display: none;
+}
+/* Hides space between get it and owning library sections */
+alma-howovp md-list:not([ng-if]) {
+  display: none;
+}
+
+/*Style View it links as buttons*/
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"] {
+  font-variant: small-caps !important;
+  box-shadow: 0 0 4px #969696 !important;
+  background-color: #cc0000 !important;
+  color: white !important;
+  margin: 5px 0 0 0;
+  transition: background-color .35s cubic-bezier(.35,0,.25,1);
+}
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"]:hover {
+  background-color: #202020 !important;
+  color: #e2e2e2 !important;
+}
+/* Some of the elements are links and so need specific text styling */
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"] a {
+  color: white !important;
+}
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"] a:hover {
+  color: white !important;
+}
+/* Dynamically scale element to fit text */
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"]{
+  width: fit-content;
+}
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"] {
+  width: 300px;
+}
+/* Resize and vertically center 'In new window' icon*/
+prm-alma-viewit-items prm-icon[icon-definition="open-in-new"] {
+  height: 100%;
+  display: block;
+}
+/* Get rid of blue underline and background color on hover/focus */
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"] a:focus {
+  box-shadow: none !important;
+}
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"] a:hover {
+  box-shadow: none !important;
+  background-color: #ffffff00;
+}
+/* Hides public note whitespace */
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"] button span[ng-if^="!"] {
+  display: none;
+}
+/* Hides space between get it and owning library sections */
+prm-alma-viewit-items md-list-item[aria-label="Add to Reserves  , opens in a new window"] md-list:not([ng-if]) {
+  display: none;
+}
+
+/*Style Get it links as buttons*/
+prm-request-services prm-service-button button {
+  box-shadow: 0 0 4px #969696 !important;
+  background-color: #cc0000 !important;
+  border-radius: 0px !important;
+  color: white !important;
+  transition: background-color .35s cubic-bezier(.35,0,.25,1);
+  padding: 5px 15px !important;
+  min-height: 30px !important
+}
+prm-request-services button:hover {
+  background-color: #202020 !important;
+  color: #e2e2e2 !important;
+}
+/* Reduce size of 'In new window' icon*/
+prm-request-services prm-icon {
+  color: white !important;
+  padding: 0px 5px;
+}
+/* Get rid of slashes */
+prm-request-services .separated-block-item::after {
+  display:none;
+}
+
+/*End Convert delivery service links to buttons*/
+
+/* Fix for partial request checkbox text change Sept 2023 */
+md-checkbox[aria-label="I only need a specific chapter or pages"] span {
+  color: inherit;
+}
+
+/*CFDUX Omni Improvement and Enhancements R. 1*/
+
+/*De-bold and de-capitalize "Omni Libraries that Own this Item*/
+span[translate="nui.brief.results.tabs.getit_other"] {
+  font-weight: normal;
+  text-transform: capitalize;
+  font-family: Source Sans Pro,Trebuchet MS,Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-size: 15px;
+}
+
+/*Unavailable Links in Brief Results*/
+.no_inventory  {
+  color:#e49831 !important;    
+  /* background: #330072 !important; */
+}
+
+/*End CFDUX Omni Improvement and Enhancements R. 1*/
+
+/*Hide 'Photocopy' option in Resource Sharing Request form*/
+div#getit_link1_0.full-view-section md-radio-button[value="PHYSICAL_NON_RETURNABLE"] {
+  display: none;
+}
+
+form[name="requestForm"] md-radio-button[value="PHYSICAL_NON_RETURNABLE"] {
+  display: none;
+}
+
+/*Reorder local request pickup options*/
+md-optgroup[label="Brock University"] {
+  display:flex;
+  flex-direction:column;
+}
+md-optgroup[label="Brock University"] :nth-child(2) {
+  order:3;
+}
+md-optgroup[label="Brock University"] :nth-child(3) {
+  order:4;
+}
+md-optgroup[label="Brock University"] :nth-child(4) {
+  order:2;
+}
+
 /*Hide select Omni locations on the REQUEST FORM in Alma*/
 /*makes sure that external patrons can't see weird locations at other Omni partners to request items to be sent to*/
 /*remove the section for your own institution from this set below so that these locations show up for your LOCAL patrons*/
@@ -1345,7 +1515,10 @@ md-option[value="112077800005165$$OUT_OF_INSTITUTION"] { display: none; } /*Educ
 md-option[value="112077420005165$$OUT_OF_INSTITUTION"] { display: none; } /*Architecture*/
 
 /*McMaster Request Form*/
-/*no locations hidden*/
+md-option[value="162413310007371$$OUT_OF_INSTITUTION"] { display: none; } /*MapCollection*/
+md-option[value="162414450007371$$OUT_OF_INSTITUTION"] { display: none; } /*ArchivesAndResearchCollection*/
+md-option[value="162414070007371$$OUT_OF_INSTITUTION"] { display: none; } /*BertrandRussellArchives*/
+md-option[value="162412170007371$$OUT_OF_INSTITUTION"] { display: none; } /*Health Sciences Library*/
 
 /*Nipissing Request Form*/
 md-option[value="2180891240005157$$OUT_OF_INSTITUTION"] { display: none; } /*VIRTUAL*/
@@ -1389,6 +1562,7 @@ md-option[value="112036500005156$$OUT_OF_INSTITUTION"] { display: none; } /*Wilf
 md-option[value="8188056800005164$$OUT_OF_INSTITUTION"] { display: none; } /*Keele Book Lockers*/
 md-option[value="8188104370005164$$OUT_OF_INSTITUTION"] { display: none; } /*Glendon Book Lockers*/
 md-option[value="9599265900005164$$OUT_OF_INSTITUTION"] { display: none; } /*Osgoode Book Lockers*/
+md-option[value="112036150005164$$OUT_OF_INSTITUTION"] { display: none; } /*Osgoode Hall*/
 
 /* And hide empty campuses in the Request Forms too */
 
@@ -1435,7 +1609,10 @@ md-option[value="112077800005165"] { display: none; } /*Education Resource Centr
 md-option[value="112077420005165"] { display: none; } /*Architecture*/
 
 /*McMaster Resource Sharing Request Form*/
-/*no locations hidden*/
+md-option[value="162413310007371"] { display: none; } /*MapCollection*/
+md-option[value="162414450007371"] { display: none; } /*ArchivesAndResearchCollection*/
+md-option[value="162414070007371"] { display: none; } /*BertrandRussellArchives*/
+md-option[value="162412170007371"] { display: none; } /*Health Sciences Library*/
 
 /*Nipissing Resource Sharing Request Form*/
 md-option[value="2180891240005157"] { display: none; } /*VIRTUAL*/
@@ -1479,3 +1656,4 @@ md-option[value="112036500005156"] { display: none; } /*Wilfrid Laurier Universi
 md-option[value="8188056800005164"] { display: none; } /*Keele Book Lockers*/
 md-option[value="8188104370005164"] { display: none; } /*Glendon Book Lockers*/
 md-option[value="9599265900005164"] { display: none; } /*Osgoode Book Lockers*/
+md-option[value="112036150005164"] { display: none; } /*Osgoode Hall*/
