@@ -245,7 +245,7 @@ app.component('prmActionContainerAfter', {
       var startX = 0;
       var endX = 0;
 
-      var homepage = 'http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_';
+      var homepage = 'http://10.20.124.65:8003/discovery/search?vid=01OCUL_BU:BU_NEW_TITLES';
       var viewall = 'https://ocul-bu.primo.exlibrisgroup.com/discovery/search?query=any,contains,%3F%3F&tab=New_Titles&search_scope=New_Books&vid=01OCUL_BU:BU_DEFAULT&lang=en&offset=0'
 
       $ctrl.display = [];
@@ -257,12 +257,23 @@ app.component('prmActionContainerAfter', {
           setTimeout(() =>  {  
             document.getElementById('bu-outer-carousel').scrollLeft = 0;
           },0 );
-          if ((window.location.href.startsWith(homepage)) 
+          if (onHomePage() 
               && (window.location.href.indexOf("&mode=advanced") == -1)) {        
             getBooks();
           } else {
             $ctrl.showDisplay = false;
           };
+      };
+
+
+      // Returns true if the url is the homepage url, false otherwise. Accounts for lang url parameter
+      function onHomePage(){
+        if ((window.location.href == homepage) 
+        || (window.location.href == homepage + '&lang=en')) {
+          return true;
+        } else {
+          return false;
+        };
       };
 
       //Load books from data file if not already loaded. If there is a problem hide the feature. 
@@ -350,7 +361,7 @@ app.component('prmActionContainerAfter', {
       //Hides feature if not on homepage or book array is empty
       addEventListener('resize', (Event) => {
         
-        if (((window.location.href.startsWith(homepage))
+        if ((onHomePage()
              && (window.location.href.indexOf("&mode=advanced") == -1))
              && newbooks.length != 0) {        
           findWidth();
@@ -391,7 +402,7 @@ app.component('prmActionContainerAfter', {
       //Removes feature if not on homepage or if book array is empty 
       addEventListener('locationchange', function () {
 
-        if (((!window.location.href.startsWith(homepage))         
+        if (((!onHomePage())         
             || (window.location.href.indexOf("&mode=advanced")) != -1)
             || newbooks.length == 0) {
           $ctrl.showDisplay = false;
