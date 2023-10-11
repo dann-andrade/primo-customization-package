@@ -254,9 +254,11 @@ app.component('prmActionContainerAfter', {
       // on the front page of Omni, if not hide the feature. 
       $ctrl.$onInit = function () {
           $ctrl.showDisplay = true;
-          setTimeout(() =>  {  
-            document.getElementById('bu-outer-carousel').scrollLeft = 0;
-          },0 );
+          if (onHomePage()) {
+            setTimeout(() =>  {  
+              document.getElementById('bu-outer-carousel').scrollLeft = 0;
+            },0 );
+          };
           if (onHomePage() 
               && (window.location.href.indexOf("&mode=advanced") == -1)) {        
             getBooks();
