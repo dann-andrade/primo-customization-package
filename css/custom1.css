@@ -1461,6 +1461,17 @@ span[translate="nui.brief.results.tabs.getit_other"] {
 
 /*End CFDUX Omni Improvement and Enhancements R. 1*/
 
+/*CFDUX Omni Improvement and Enhancements R. 2*/
+
+#services-index::before {
+  content: "Skip to ";
+  font-weight: bold;
+  text-transform: uppercase;
+  color: black;
+}
+
+/*End CFDUX Omni Improvement and Enhancements R. 2*/
+
 /*Hide 'Photocopy' option in Resource Sharing Request form*/
 div#getit_link1_0.full-view-section md-radio-button[value="PHYSICAL_NON_RETURNABLE"] {
   display: none;
